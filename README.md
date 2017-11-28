@@ -1,0 +1,2 @@
+# WeatherOnTheMap
+Swift Codable exercise
