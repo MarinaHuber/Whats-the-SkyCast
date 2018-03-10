@@ -2,7 +2,7 @@
 //  AllCurrentWeather.swift
 //  WeatherOnTheMap
 //
-//  Created by Marina Huber on 11/26/17.
+//  Created by Marina Huber on 01/26/18.
 //  Copyright © 2017 Marina Huber. All rights reserved.
 //
 
@@ -17,7 +17,6 @@ import UIKit
  protocol Decodable {
  init(from decoder: Decoder) throws
  }
- https://medium.com/@sarunw/codable-in-swift-4-0-1a12e38599d8
  */
 
 struct AllCurrentWeather: Decodable {
@@ -34,8 +33,8 @@ struct AllCurrentWeather: Decodable {
 struct Cities: Decodable {
 //    let coord: Coord
 //    let sys: Sys
-//    let weather: [Weather]
-//    let main: Main
+    let weather: [Weather]
+    let main: Main
 //    let wind: Wind
 //    let clouds: Clouds
 //    let dt: Int

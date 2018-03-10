@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 
+
 struct Background {
     
     var city: String
@@ -24,8 +25,8 @@ struct Background {
 }
 
 struct Font {
-    static let iPadText = UIFont(name: "Servetica-Thin", size: 23)
-    static let iPhoneText = UIFont(name: "Servetica-Thin", size: 20)
+    static let largeText = UIFont(name: "Servetica-Thin", size: 23)
+    static let smallText = UIFont(name: "Servetica-Thin", size: 20)
     
     
     static func mainFontWithSize(_ size: CGFloat) -> UIFont?  {
