@@ -8,32 +8,42 @@
 
 import UIKit
 
-
 class MainViewController: UIViewController {
+
+	let shared = WeatherService()
 
     @IBOutlet weak var largeCollectionView: UICollectionView!
     @IBOutlet weak var smallCollectionView: UICollectionView!
     
     @IBOutlet weak var smallCollectionViewWidthConstraint: NSLayoutConstraint!
-    var cityNames: Array<Any>? = nil
 
-    private var backgrounds: [Background] = [Background(city: "", backgroundColor: UIColor.yellow.withAlphaComponent(0.3)),Background(city: "", backgroundColor: UIColor.gray.withAlphaComponent(0.3)), Background(city: "", backgroundColor: UIColor.magenta.withAlphaComponent(0.3)),Background(city: "", backgroundColor: UIColor.blue.withAlphaComponent(0.3)), Background(city: "", backgroundColor: UIColor.red.withAlphaComponent(0.3))]
+	//to do intial scroll and prevent flickering
+	var initialScrollDone: Bool = false
+	var currentCity: Int?
+
+// Array for every call made to the group of 6 cities ID
+	private var backgrounds: [ForcastBackground] = [ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0), ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0), ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0),ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0), ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0), ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0)]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        WeatherService.shared.getCurrentWeather { error, cities in
-            
-            self.backgrounds = cities.flatMap {
-                Background(city: $0.name!, backgroundColor: UIColor.orange)
-            }
-
-        }
+        loadCities()
         largeCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "ID")
         smallCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "IDsmall")
+		largeCollectionView.animateAppearance()
+		smallCollectionView.animateAppearance()
     }
-    
+
+    func loadCities() {
+        shared.getCurrentWeather { error, cities in
+            
+            self.backgrounds = cities.flatMap {
+				ForcastBackground(city: $0.name!, cityTemperature: $0.main.temp!, cityID: $0.weather[0].id!/*, backgroundColor: UIColor.init(red: 0.0, green: 0.1, blue: 0.3, alpha: 0.3)*/)
+            }
+            
+        }
+     }
     
     
     public func setNavigationBar() {
@@ -45,30 +55,28 @@ class MainViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+		guard currentCity != nil else {
+			print ("I cannot mark city, as I don't know which city is displayed")
+			return
+		}
+
+		if (!initialScrollDone) {
+			let indexPath = IndexPath(item: currentCity ?? 0, section: 0)
+			largeCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+			smallCollectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+			initialScrollDone = true
+		}
+
+		smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //        Do this after loading the Data
-        //        #4 is selected
-        
-        let indexPath = IndexPath(item: 3, section: 0)
-       // print(#file, #line, #function, (indexPath), "my city item")
-        
-        largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-        smallCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-        
-        smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
+
+		largeCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+		smallCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
     }
-    
-    func refresh(_ sender:AnyObject) {
-        DispatchQueue.main.async(execute: {
-            self.largeCollectionView.reloadData()
-            
-        })
-    }
-    
+
     
 
 }
@@ -78,32 +86,47 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return backgrounds.count
     }
-    
+
+
+
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellData = self.backgrounds[indexPath.row]
         switch collectionView {
         case largeCollectionView!:
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
-         cell.backgroundColor = cellData.backgroundColor
-         cell.labelCityName.text = cellData.city
-         cell.configureCellWithType(.large)
-                return cell
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
+			cell.labelCityName.text = cellData.city
+
+//TODO: api decoding in celsuis, needs func for fahrenheit from settingsVC
+		 let tempResult = cellData.cityTemperature
+			let temp = Int(round(tempResult))
+			cell.labelCityTemerature.text = "\(temp)°"
+
+		 let weatherID = cellData.cityID
+		    cell.updateWeatherIcon(conditionFor: weatherID)
+
+            cell.configureCellWithType(.large)
+			   return cell
        case smallCollectionView!:
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IDsmall", for: indexPath) as! collectionViewCell
-        cell.backgroundColor = backgrounds[indexPath.row].backgroundColor
-         cell.configureCellWithType(.small)
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IDsmall", for: indexPath) as! collectionViewCell
+			let tempResult1 = cellData.cityTemperature
+			let temp = Int(round(tempResult1))
+				cell.labelCityTemerature.text = "\(temp)°"
+
+                cell.configureCellWithType(.small)
                 return cell
         default:
                 return UICollectionViewCell()
             }
         
     }
-    
-    
-    //TODO: delete from NSUserDefaults
-    func didTapDeleteCellBtn(delete: UIButton) {
-        
-    }
+
+
+
+
+	override var prefersStatusBarHidden: Bool {
+		return true
+	}
     
     
 }
@@ -118,6 +141,8 @@ extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if smallCollectionView == collectionView {
+			currentCity = indexPath.row
+			largeCollectionView.animateAppearance()
             smallCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
@@ -138,6 +163,7 @@ extension MainViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if largeCollectionView == scrollView {
             let index = Int(targetContentOffset.pointee.x/view.frame.width)
+			currentCity = index
             let indexPath = IndexPath(item: index, section: 0)
             
             smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)

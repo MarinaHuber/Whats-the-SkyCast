@@ -11,18 +11,24 @@ import UIKit
 
 
 
-struct Background {
+struct ForcastBackground {
     
     var city: String
-    var backgroundColor: UIColor
+	var cityTemperature: Double
+	var cityID: Int
+	//var backgroundColor: UIColor
     
-    init(city: String, backgroundColor: UIColor) {
+	init(city: String, cityTemperature: Double, cityID: Int/* , backgroundColor: UIColor*/ ) {
         self.city = city
-        self.backgroundColor = backgroundColor
+		self.cityTemperature = cityTemperature
+		self.cityID = cityID
+		//self.backgroundColor = backgroundColor
     }
     
   
 }
+
+
 
 struct Font {
     static let largeText = UIFont(name: "Servetica-Thin", size: 23)

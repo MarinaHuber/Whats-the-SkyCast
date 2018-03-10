@@ -18,31 +18,50 @@ class collectionViewCell: UICollectionViewCell {
     
     var mode: CellType?
     
-    var labelCityName = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-    var labelCityTemerature = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    var labelCityName = UILabel()
+    var labelCityTemerature = UILabel()
+
+	lazy var iconImage: UIImageView = {
+		let iview = UIImageView()
+		iview.image = #imageLiteral(resourceName: "sunny").withRenderingMode(.alwaysOriginal)
+		return iview
+	}()
+
     
     override var isSelected: Bool {
         didSet {
-            self.layer.borderColor = isSelected ? UIColor.red.cgColor : UIColor.clear.cgColor
+            self.layer.borderColor = isSelected ? UIColor.black.cgColor : UIColor.clear.cgColor
         }
     }
+
+
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		prepareForReuse()
+	}
+
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         labelCityName.translatesAutoresizingMaskIntoConstraints = false
-        labelCityName.center = CGPoint(x: frame.width/2.0, y: frame.height/2.0)
-        labelCityTemerature.center = CGPoint(x: frame.width/2.0, y: frame.height/2.0)
-        labelCityTemerature.font = UIFont.systemFont(ofSize: 25)
+		labelCityName.textColor = .white
         labelCityName.textAlignment = .center
-        labelCityName.textColor = UIColor.white
-        labelCityName.font = UIFont.boldSystemFont(ofSize: 28)
-        
-        
+		labelCityName.lineBreakMode = .byCharWrapping
+		labelCityName.numberOfLines = 2
+        labelCityName.font = UIFont.boldSystemFont(ofSize: 20)
+
+		labelCityTemerature.sizeToFit()
+		labelCityTemerature.textAlignment = .center
+		labelCityTemerature.textColor = .black
+
+
         contentView.addSubview(labelCityName)
         contentView.addSubview(labelCityTemerature)
+		contentView.addSubview(iconImage)
+		labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 240, leftConstant: contentView.frame.width/2 - 50, bottomConstant: 20, rightConstant: 0, widthConstant: 100, heightConstant: 20)
+		iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: -90, rightConstant: contentView.frame.width/2-100, widthConstant: 210, heightConstant: 210)
+		labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: iconImage.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 100)
+		contentView.bringSubview(toFront: labelCityTemerature)
         
     }
     
@@ -50,23 +69,57 @@ class collectionViewCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+
     
     func configureCellWithType (_ cellType: CellType) {
         
         self.mode = cellType
         
         switch cellType {
-            
-        case .large:
+		case .large:
             labelCityName.isHidden = false
-           // labelCityName.text = "test"
+			iconImage.isHidden = false
+			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 110)
+			layer.backgroundColor = UIColor.randomColor.cgColor
         case .small:
             labelCityName.isHidden = true
-            self.layer.borderWidth = 1.5
-            self.layer.borderColor = UIColor.clear.cgColor
-        default:
+			iconImage.isHidden = true
+			labelCityTemerature.isHidden = false
+			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 20)
+			contentView.addSubview(labelCityTemerature)
+			labelCityTemerature.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: 10, leftConstant: 5, bottomConstant: 10, rightConstant: 5, widthConstant: 40, heightConstant: 40)
+			layer.borderWidth = 1.5
+            layer.borderColor = UIColor.clear.cgColor
+			layer.backgroundColor = UIColor.randomColor.cgColor
+			
+     
             break
             
         }
     }
+
+
+	func updateWeatherIcon(conditionFor: Int) {
+		var imageName:String
+		switch conditionFor {
+		case 200..<300:
+			imageName = "thunderstorm"
+		case 300..<600:
+			imageName = "rainy"
+		case 700..<800:
+			imageName = "snowy"
+		case 800:
+			imageName = "sunny"
+		case 801..<805:
+			imageName = "cloudy"
+		default:
+			imageName = "sunny"
+			break
+		}
+		self.iconImage.image = UIImage(named: imageName)
+	}
+
+
+
+
 }

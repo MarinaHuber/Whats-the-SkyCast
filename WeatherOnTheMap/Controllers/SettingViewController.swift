@@ -14,12 +14,16 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	@IBOutlet weak var pickerView: UIPickerView!
 
+
 	var isHidden: Bool = true {
 		didSet {
 
 			pickerView.isHidden = isHidden ? true :  false
 		}
 	}
+
+
+
 	var dataSource:[String] = []
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
@@ -68,6 +72,8 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			configurationHandler: {(textField: UITextField!) in
 				textField.placeholder = "City name..."
 		})
+		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
+			(action : UIAlertAction!) -> Void in })
 
 		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: { [weak self]
 			(paramAction:UIAlertAction!) in
@@ -79,7 +85,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 //  1. create basic request without making the object first
 //  2. getCurrenWeather is after made the object
 
-				let urlString = String("\(Constants.base_URL)/weather?q=" + (self?.inputCityText.replacingOccurrences(of: " ", with: "%20"))! + ",uk&appid=\(Constants.APIKey)")
+				let urlString = ""// String("\(Constants.base_URL)/weather?q=" + (self?.inputCityText.replacingOccurrences(of: " ", with: "%20"))! + ",uk&appid=\(Constants.APIKey)")
 				//  print(urlString)
 
 				guard let url = URL(string: urlString) else { return }
@@ -95,12 +101,12 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 							decoder.dateDecodingStrategy = .secondsSince1970
 						}
-						let currentForecastDecoded = try decoder.decode(CurrentWeather.self, from: data)
-						//print(forecastDecoded)
-						for city in currentForecastDecoded.weather {
-							print(city.description)
+						let currentForecastDecoded = try decoder.decode(AllCurrentWeather.self, from: data)
+						//print(currentForecastDecoded)
+						for city in currentForecastDecoded.cities {
+							print(city.name)
 							DispatchQueue.main.async(execute: {
-								//self?.descriptionForcastLabel.text = city.description
+								self?.buttonTitleLocation.titleLabel?.text = city.name
 
 
 							})
@@ -122,8 +128,17 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		})
 
 		alertController?.addAction(action)
+		alertController?.addAction(cancelAction)
 		self.present(alertController!, animated: true, completion: nil)
     }
+
+
+
+
+
+
+
+
 
 
 	@IBAction func buttonUnits(_ sender: Any) {
@@ -139,7 +154,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		pickerView.reloadAllComponents()
 
 	}
-
 
 
 
@@ -186,7 +200,13 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	}
 
-// to show in Dashboard vc
+	@IBAction func backToMainView(_ sender: Any) {
+		navigationController?.popViewController(animated: true)
+	}
+
+
+	
+	// to show in Dashboard vc
 //	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //		let wod = FilteredWodList[index]
 //		if segue.identifier == "showBenchmarkDetail" {

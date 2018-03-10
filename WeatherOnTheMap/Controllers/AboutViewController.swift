@@ -25,7 +25,7 @@ class AboutViewController: UIViewController, WKNavigationDelegate, WKUIDelegate 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        UIView.animate(withDuration: 2.5, animations: {
+        UIView.animate(withDuration: 1.1, animations: {
             self.activity.alpha = 0
 
         }, completion: nil)

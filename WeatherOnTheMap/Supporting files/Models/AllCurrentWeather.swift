@@ -37,8 +37,8 @@ struct Cities: Decodable {
     let main: Main
 //    let wind: Wind
 //    let clouds: Clouds
-//    let dt: Int
-//    let id: Int
+    let dt: Int
+    let id: Int
     let name: String?
     
 }
@@ -67,10 +67,10 @@ struct Weather: Decodable {
 struct Main: Decodable {
     
     let temp: Double?
-    let pressure: Int?
+    let pressure: Double?
     let humidity: Int?
-    let temp_max: Int?
-    let temp_min: Int?
+    let temp_max: Double?
+    let temp_min: Double?
     
 }
 

@@ -10,62 +10,42 @@ import Foundation
 import CoreLocation
 import UIKit
 
-protocol WeatherServiceDelegate {
-    func setWeather(weather: AllCurrentWeather)
-    func weatherErrorWithMessage(message: String)
-}
-enum ResultType<T> {
-    case Success(T)
-    case Failure(e: Error)
+//protocol WeatherServiceDelegate {
+//    func setWeather(weather: AllCurrentWeather)
+//    func weatherErrorWithMessage(message: String)
+//}
+//enum ResultType<T> {
+//    case Success(T)
+//    case Failure(e: Error)
+//}
+
+enum APIRouter {
+
+	static let APIKey: String = "c6e381d8c7ff98f0fee43775817cf6ad"
+	static let base_URL = "http://api.openweathermap.org/data/2.5/"
 }
 
 class WeatherService {
     // Set your appid
-    let appid: String
-    var delegate: WeatherServiceDelegate?
-    static let shared = WeatherService(appid: "")
+
+//
+//    let appid: String
+//    var delegate: WeatherServiceDelegate?
+//    static let shared = WeatherService()
     /** Initial a WeatherService instance with your OpenWeatherMap app id. */
-    init(appid: String) {
-        self.appid = appid
-    }
-    
-// this is also data managment
-    var storedFavoriteItems: Array<String>? = nil
-    
-    var favoriteCities: Array<String> {
-        get {
-            return storedFavoriteItems! //?? loadFavoriteItems()
-        }
-        
-        set (newValue) {
-            
-            storedFavoriteItems = newValue
-            
-            DispatchQueue.main.async() {
-               // self.saveFavoriteItems(newValue)
-                
-            }
-            
-            
-            
-        }
-    }
-    /** Formats an API call to the OpenWeatherMap service. Pass in a CLLocation to retrieve weather data for that location.  */
-//    func getWeatherForLocation(location: CLLocation) {
-//        let lat = location.coordinate.latitude
-//        let lon = location.coordinate.longitude
+
 //
-//        // Put together a URL With lat and lon
-//        let path = "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(appid)"
-//
-//        //getWeatherWithPath(path)
+//    init(appid: String) {
+//        self.appid = appid
 //    }
-    
+
+
   //  1. create basic request without making the object first
-  // 2. getCurrenWeather is after made the object
+  //  2. getCurrenWeather is after made the object
+  //  The limit of locations is 20: treated as 6 API calls for 6 city IDs
   
     public func getCurrentWeather(_ completionHandler: @escaping (_ error: Error?, _ cities: [Cities] ) -> ()) {
-        let urlString = String("\(APIRouter.base_URL)group?id=524901,703448,2643743,5128581&units=metric&appid=\(APIRouter.APIKey)")
+        let urlString = String("\(APIRouter.base_URL)group?id=2172797,1851632,1016666,524901,703448,2643743&units=metric&appid=\(APIRouter.APIKey)")
         print(urlString)
         //let urlString = String("\(Constants.base_URL)?id=2643743&units=metric&APPID=\(Constants.APIKey)")
         guard let url = URL(string: urlString) else { return }
@@ -87,17 +67,6 @@ class WeatherService {
                 //    print(oneCity)
                 //}
                 DispatchQueue.main.async() {
-                    
-                    //1. create let currentWeather:CurrentWeather
-                    
-                    // Any of the following allows me to access the data from the JSON
-//                    self.locationLabel.text = "\(json.name)"
-//                    self.temperatureLabel.text = "Currently: \(json.main.temp)ºC"
-//                    self.humidityLabel.text = "Humidity: \(json.main.humidity)%"
-//                    self.windSpeedLabel.text = "Wind Speed: \(json.wind.speed) km/h"
-                    
-                    
-                    
                     completionHandler(err, currentWeatherDecoded.cities)
                     
                 }
@@ -110,38 +79,55 @@ class WeatherService {
             }.resume()
     }
     
+
+
+
+
     
-//    public func getLocation(_ completionHandler: @escaping (NSError?, Array<Coord>?) -> ()) {
-//        let urlString = String("\(Constants.base_URL)?APPID=\(Constants.APIKey)&q=London")
-//        guard let url = URL(string: urlString) else { return }
-//
-//        URLSession.shared.dataTask(with: url) { (data, response, err) in
-//
-//            guard let data = data else { return }
-//            do {
-//                let location = try JSONDecoder().decode([AllCurrentWeather].self, from: data)
-//                print(location)
-//
-//            } catch let jsonErr {
-//                print("Error serializing json:", jsonErr)
-//            }
-//
-//            }.resume()
-//    }
+
     
-    // this is data managment
-    
-    class func removeFavoriteCity (_ imageName: String) {
-        shared.favoriteCities.removeLast()
+    // MARK: - Helper functions
+	func changeUTCtoDayOfWeek(timeStamp:Int) -> String{
+		let date = NSDate(timeIntervalSince1970: Double(timeStamp))
+
+		let formatter = DateFormatter()
+		formatter.dateStyle = DateFormatter.Style.short
+		formatter.dateFormat = "EEEE"
+		let str = formatter.string(from: date as Date)
+		return str
+	}
+
+
+
+
+
+
+	 // MARK: - Helper functions for temperature conversion
+    func cToFahrenheit(tempC: Double) -> Double {
+        return (tempC * 1.8) + 32
     }
     
-//    class func getFavoriteCities() -> Array<String> {
-//
-//        return shared.favoriteCities.map {
-//            value in
-//            return value
-//        }
     
+    func kelvinToCelsius(tempK: Double) -> Double {
+        return tempK - 273.15
+    }
+
+	func fToC(tempF: Double) -> Double {
+		return (tempF - 32) / 1.8
+	}
+
+    
+    
+    func fixTempForDisplayFahrenheit(temp: Double) -> String {
+        print("Kelvin: \(temp)")
+        print("C: \(temp - 273.15)")
+        
+        let tempC = kelvinToCelsius(tempK: temp)
+        let tempF = cToFahrenheit(tempC: tempC)
+        let tempR = Int(round(tempF))
+        let tempString = String(format: "%.0f", tempR)
+        return tempString
+    }
     
     
     }
