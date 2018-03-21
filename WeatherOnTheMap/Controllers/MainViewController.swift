@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
 		}
 
 		if (!initialScrollDone) {
-			let indexPath = IndexPath(item: currentCity ?? 0, section: 0)
+			let indexPath = IndexPath(item: currentCity ?? 3, section: 0)
 			print(#file, #line, #function, (indexPath), "my first item selected")
 			largeCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
 			smallCollectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
@@ -113,9 +113,6 @@ extension MainViewController: UICollectionViewDataSource {
         switch collectionView {
         case largeCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
-			if indexPath.row == 3 {
-				collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
-			} 
 			cell.labelCityName.text = cellData.city
 
 //TODO: api decoding in celsuis, needs func for fahrenheit from settingsVC
@@ -133,9 +130,10 @@ extension MainViewController: UICollectionViewDataSource {
 			let tempResult1 = cellData.cityTemperature
 			let temp = Int(round(tempResult1))
 				cell.labelCityTemerature.text = "\(temp)°"
-		if indexPath.row == 3 {
+		if indexPath.row == 0 {
 			cell.isSelected = true
-			collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+			smallCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+			largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
 		} else {
 			cell.isSelected = false
 		}
