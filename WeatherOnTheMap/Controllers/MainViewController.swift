@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
 	//to do intial scroll and prevent flickering
 	var initialScrollDone: Bool = false
 	var currentCity: Int?
+	var unitMainController: String?
 
 // Array for every call made to the group of 6 cities ID
 	private var backgrounds: Array<ForcastBackground> = []

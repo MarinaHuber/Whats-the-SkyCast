@@ -25,18 +25,19 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 
 	var dataSource:[String] = []
+
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
 	@IBOutlet weak var buttonTitleDays: UIButton!
 
-	let unitData = [UnitsPicker.Fahrenheit.rawValue, UnitsPicker.Celsius.rawValue]
+	let unitsInSettingController = [UnitsPicker.Fahrenheit.rawValue, UnitsPicker.Celsius.rawValue]
 
 	enum UnitsPicker: String {
 		case Fahrenheit
 		case Celsius
 	}
 
-
+	var currentUnit: String?
 
 	let daysData = [DaysPicker.today.rawValue, DaysPicker.two.rawValue, DaysPicker.three.rawValue, DaysPicker.four.rawValue, DaysPicker.five.rawValue]
 
@@ -59,10 +60,11 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		pickerView.dataSource = self
 		pickerView.delegate = self
 		pickerView.isHidden = true
+
 		let indexOfDefaultElement = 0 // Make sure that an element at this index exists
 		pickerView.selectRow(indexOfDefaultElement, inComponent: 0, animated: false)
 
-		buttonTitleTemp.setTitle(unitData[0], for: .normal)
+		buttonTitleTemp.setTitle(unitsInSettingController[0], for: .normal)
 		buttonTitleDays.setTitle(daysData[0], for: .normal)
 
 		var alertController:UIAlertController?
@@ -143,7 +145,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	@IBAction func buttonUnits(_ sender: Any) {
 		toggleDatepicker()
-		dataSource = unitData
+		dataSource = unitsInSettingController
 		pickerView.reloadAllComponents()
 
 	}
@@ -170,10 +172,13 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		return dataSource.count
 	}
+	
 
 	public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 		return dataSource[row]
 	}
+
+
 	public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
 		if dataSource == daysData {
@@ -181,8 +186,8 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			buttonTitleDays.titleLabel?.text = selectedUnits
 
 		} else {
-			let selectedUnits = unitData[row]
-			buttonTitleTemp.titleLabel?.text = selectedUnits
+			currentUnit = unitsInSettingController[row]
+			buttonTitleTemp.titleLabel?.text = currentUnit
 
 		}
 
@@ -202,22 +207,22 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	@IBAction func backToMainView(_ sender: Any) {
 		navigationController?.popViewController(animated: true)
+		//performSegue(withIdentifier: "segueDetail", sender: sender)
+
 	}
 
 
 	
 	// to show in Dashboard vc
-//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//		let wod = FilteredWodList[index]
-//		if segue.identifier == "showBenchmarkDetail" {
-//			let controller = segue.destinationViewController as? BenchmarkWODDetailView
-//			if let indexPath = self.tableView.indexPathForSelectedRow
-//
-//			{
-//				controller?.nameText = wod.name![indexPath]
-//				controller?.descriptionText = wod.description![indexPath]
-//				controller?.exerciseText = wod.exercise![indexPath]
-//			}
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+		if segue.identifier == "main" {
+
+			if let backToMainController = segue.destination as? MainViewController {
+				backToMainController.unitMainController = currentUnit
+			}
+		}
+	}
 
 
 
