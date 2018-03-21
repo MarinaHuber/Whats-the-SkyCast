@@ -18,7 +18,7 @@ struct ForcastBackground {
 	var cityID: Int
 	//var backgroundColor: UIColor
     
-	init(city: String, cityTemperature: Double, cityID: Int/* , backgroundColor: UIColor*/ ) {
+	init(city: String, cityTemperature: Double , cityID: Int /* , backgroundColor: UIColor*/ ) {
         self.city = city
 		self.cityTemperature = cityTemperature
 		self.cityID = cityID

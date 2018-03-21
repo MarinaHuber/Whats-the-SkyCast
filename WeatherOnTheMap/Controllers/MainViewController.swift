@@ -22,13 +22,15 @@ class MainViewController: UIViewController {
 	var currentCity: Int?
 
 // Array for every call made to the group of 6 cities ID
-	private var backgrounds: [ForcastBackground] = [ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0), ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0), ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0),ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0), ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0), ForcastBackground(city: "", cityTemperature: 0.0, cityID: 0)]
+	private var backgrounds: Array<ForcastBackground> = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        loadCities()
+		smallCollectionView.reloadData()
+		largeCollectionView.reloadData()
+
         largeCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "ID")
         smallCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "IDsmall")
 		largeCollectionView.animateAppearance()
@@ -36,14 +38,28 @@ class MainViewController: UIViewController {
     }
 
     func loadCities() {
-        shared.getCurrentWeather { error, cities in
-            
-            self.backgrounds = cities.flatMap {
-				ForcastBackground(city: $0.name!, cityTemperature: $0.main.temp!, cityID: $0.weather[0].id!/*, backgroundColor: UIColor.init(red: 0.0, green: 0.1, blue: 0.3, alpha: 0.3)*/)
+		shared.getCurrentWeather {
+			error, cities in
+
+			guard cities != nil else {return}
+
+			self.backgrounds = cities.map {
+				ForcastBackground(city: $0.name!, cityTemperature: $0.main.temp!, cityID: $0.weather[0].id!)
+					/*, backgroundColor: UIColor.init(red: 0.0, green: 0.1, blue: 0.3, alpha: 0.3)*/
             }
+			self.reloadSections()
             
-        }
+       }
      }
+	func reloadSections() {
+
+		DispatchQueue.main.async(execute: {
+			self.largeCollectionView.reloadSections(IndexSet(integer: 0))
+			self.smallCollectionView.reloadSections(IndexSet(integer: 0))
+
+		})
+
+	}
     
     
     public func setNavigationBar() {
@@ -55,6 +71,7 @@ class MainViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+		//TODO: without this i get a crash!!!
 		guard currentCity != nil else {
 			print ("I cannot mark city, as I don't know which city is displayed")
 			return
@@ -70,9 +87,9 @@ class MainViewController: UIViewController {
 		smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+		loadCities()
 		largeCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
 		smallCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
     }

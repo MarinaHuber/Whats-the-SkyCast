@@ -2,18 +2,20 @@
 //  WeatherService.swift
 //  WeatherOnTheMap
 //
-//  Created by Marina Huber on 9/27/17.
+//  Created by Marina Huber on 12/27/17.
 //  Copyright © 2017 Marina Huber. All rights reserved.
 //
 
 import Foundation
-import CoreLocation
 import UIKit
 
 //protocol WeatherServiceDelegate {
 //    func setWeather(weather: AllCurrentWeather)
 //    func weatherErrorWithMessage(message: String)
 //}
+
+
+// TODO:check Daniel notes on generics
 //enum ResultType<T> {
 //    case Success(T)
 //    case Failure(e: Error)
@@ -26,18 +28,6 @@ enum APIRouter {
 }
 
 class WeatherService {
-    // Set your appid
-
-//
-//    let appid: String
-//    var delegate: WeatherServiceDelegate?
-//    static let shared = WeatherService()
-    /** Initial a WeatherService instance with your OpenWeatherMap app id. */
-
-//
-//    init(appid: String) {
-//        self.appid = appid
-//    }
 
 
   //  1. create basic request without making the object first
@@ -45,9 +35,8 @@ class WeatherService {
   //  The limit of locations is 20: treated as 6 API calls for 6 city IDs
   
     public func getCurrentWeather(_ completionHandler: @escaping (_ error: Error?, _ cities: [Cities] ) -> ()) {
-        let urlString = String("\(APIRouter.base_URL)group?id=2172797,1851632,1016666,524901,703448,2643743&units=metric&appid=\(APIRouter.APIKey)")
+        let urlString = String("\(APIRouter.base_URL)group?id=2172797,2643743,1016666,524901,703448,1851632&units=metric&appid=\(APIRouter.APIKey)")
         print(urlString)
-        //let urlString = String("\(Constants.base_URL)?id=2643743&units=metric&APPID=\(Constants.APIKey)")
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, err) in
@@ -63,11 +52,9 @@ class WeatherService {
                 }
                 let currentWeatherDecoded = try decoder.decode(AllCurrentWeather.self, from: data)
                 print(currentWeatherDecoded)
-                //for oneCity in currentWeatherDecoded.list {
-                //    print(oneCity)
-                //}
+				
                 DispatchQueue.main.async() {
-                    completionHandler(err, currentWeatherDecoded.cities)
+					completionHandler(err, currentWeatherDecoded.cities!)
                     
                 }
                 
@@ -96,9 +83,6 @@ class WeatherService {
 		let str = formatter.string(from: date as Date)
 		return str
 	}
-
-
-
 
 
 

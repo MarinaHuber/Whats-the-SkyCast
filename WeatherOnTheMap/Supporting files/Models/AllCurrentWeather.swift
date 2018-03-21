@@ -21,7 +21,7 @@ import UIKit
 
 struct AllCurrentWeather: Decodable {
     let count: Int
-    let cities: [Cities]
+    let cities: [Cities]?
     
     enum CodingKeys: String, CodingKey {
         case count = "cnt"
@@ -37,8 +37,8 @@ struct Cities: Decodable {
     let main: Main
 //    let wind: Wind
 //    let clouds: Clouds
-    let dt: Int
-    let id: Int
+    let dt: Int?
+    let id: Int?
     let name: String?
     
 }

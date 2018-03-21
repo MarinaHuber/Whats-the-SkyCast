@@ -103,7 +103,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 						}
 						let currentForecastDecoded = try decoder.decode(AllCurrentWeather.self, from: data)
 						//print(currentForecastDecoded)
-						for city in currentForecastDecoded.cities {
+						for city in currentForecastDecoded.cities! {
 							print(city.name)
 							DispatchQueue.main.async(execute: {
 								self?.buttonTitleLocation.titleLabel?.text = city.name
