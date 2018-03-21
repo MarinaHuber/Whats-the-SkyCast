@@ -37,7 +37,10 @@ class collectionViewCell: UICollectionViewCell {
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		prepareForReuse()
+		layer.borderColor = UIColor.black.cgColor
+	}
+	override func prepareForReuse() {
+		super.prepareForReuse()
 	}
 
 
@@ -54,6 +57,9 @@ class collectionViewCell: UICollectionViewCell {
 		labelCityTemerature.textAlignment = .center
 		labelCityTemerature.textColor = .black
 
+		layer.borderWidth = 1.5
+		layer.borderColor = UIColor.clear.cgColor
+		layer.backgroundColor = UIColor.randomColor.cgColor
 
         contentView.addSubview(labelCityName)
         contentView.addSubview(labelCityTemerature)
@@ -81,6 +87,7 @@ class collectionViewCell: UICollectionViewCell {
 			iconImage.isHidden = false
 			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 110)
 			layer.backgroundColor = UIColor.randomColor.cgColor
+			
         case .small:
             labelCityName.isHidden = true
 			iconImage.isHidden = true
@@ -88,11 +95,7 @@ class collectionViewCell: UICollectionViewCell {
 			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 20)
 			contentView.addSubview(labelCityTemerature)
 			labelCityTemerature.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: 10, leftConstant: 5, bottomConstant: 10, rightConstant: 5, widthConstant: 40, heightConstant: 40)
-			layer.borderWidth = 1.5
-            layer.borderColor = UIColor.clear.cgColor
-			layer.backgroundColor = UIColor.randomColor.cgColor
-			
-     
+
             break
             
         }

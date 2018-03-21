@@ -28,8 +28,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-		smallCollectionView.reloadData()
-		largeCollectionView.reloadData()
+//		smallCollectionView.reloadData()
+//		largeCollectionView.reloadData()
 
         largeCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "ID")
         smallCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "IDsmall")
@@ -79,6 +79,7 @@ class MainViewController: UIViewController {
 
 		if (!initialScrollDone) {
 			let indexPath = IndexPath(item: currentCity ?? 0, section: 0)
+			print(#file, #line, #function, (indexPath), "my first item selected")
 			largeCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
 			smallCollectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
 			initialScrollDone = true
@@ -112,6 +113,9 @@ extension MainViewController: UICollectionViewDataSource {
         switch collectionView {
         case largeCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
+			if indexPath.row == 3 {
+				collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+			} 
 			cell.labelCityName.text = cellData.city
 
 //TODO: api decoding in celsuis, needs func for fahrenheit from settingsVC
@@ -129,7 +133,12 @@ extension MainViewController: UICollectionViewDataSource {
 			let tempResult1 = cellData.cityTemperature
 			let temp = Int(round(tempResult1))
 				cell.labelCityTemerature.text = "\(temp)°"
-
+		if indexPath.row == 3 {
+			cell.isSelected = true
+			collectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+		} else {
+			cell.isSelected = false
+		}
                 cell.configureCellWithType(.small)
                 return cell
         default:
@@ -147,6 +156,9 @@ extension MainViewController: UICollectionViewDataSource {
     
     
 }
+
+
+
 
         
         
