@@ -206,20 +206,22 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	}
 
 	@IBAction func backToMainView(_ sender: Any) {
-		navigationController?.popViewController(animated: true)
-		//performSegue(withIdentifier: "segueDetail", sender: sender)
+
+		performSegue(withIdentifier: "main", sender: sender)
 
 	}
 
 
 	
 	// to show in Dashboard vc
+	//https://stackoverflow.com/questions/31075116/passing-data-between-two-viewcontrollers-delegate-swift
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
 		if segue.identifier == "main" {
 
 			if let backToMainController = segue.destination as? MainViewController {
 				backToMainController.unitMainController = currentUnit
+				navigationController?.pushViewController(backToMainController, animated: true)
 			}
 		}
 	}

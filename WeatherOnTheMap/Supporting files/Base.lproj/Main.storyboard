@@ -59,7 +59,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="main" id="BYZ-38-t0r" customClass="MainViewController" customModule="WeatherOnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="WeatherOnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -140,7 +140,7 @@
                         <barButtonItem key="leftBarButtonItem" image="settings" id="mp5-H5-00v">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="7Gb-ji-dmO" kind="show" id="pHr-on-Caa"/>
+                                <segue destination="7Gb-ji-dmO" kind="show" identifier="" id="pHr-on-Caa"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="map-pin" largeContentSizeImage="map-pin" style="plain" id="Bzf-fl-Ooy">
@@ -386,7 +386,8 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="VLt-s6-ukw">
                             <color key="tintColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="backToMainView:" destination="7Gb-ji-dmO" id="5WM-Vm-jov"/>
+                                <action selector="backToMainView:" destination="7Gb-ji-dmO" id="SpC-zi-5j7"/>
+                                <segue destination="izx-7Y-uj2" kind="show" identifier="main" id="nKw-Tc-1gl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
