@@ -65,8 +65,7 @@ class collectionViewCell: UICollectionViewCell {
         contentView.addSubview(labelCityTemerature)
 		contentView.addSubview(iconImage)
 		labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 240, leftConstant: contentView.frame.width/2 - 50, bottomConstant: 20, rightConstant: 0, widthConstant: 100, heightConstant: 20)
-		iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: -90, rightConstant: contentView.frame.width/2-100, widthConstant: 210, heightConstant: 210)
-		labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: iconImage.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 100)
+		iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: -150, rightConstant: contentView.frame.width/2-100, widthConstant: 210, heightConstant: 210)
 		contentView.bringSubview(toFront: labelCityTemerature)
         
     }
@@ -87,6 +86,8 @@ class collectionViewCell: UICollectionViewCell {
 			iconImage.isHidden = false
 			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 110)
 			layer.backgroundColor = UIColor.randomColor.cgColor
+			labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: 0, leftConstant: -60, bottomConstant: 0, rightConstant: 0, widthConstant: 210, heightConstant: 210)
+			contentView.bringSubview(toFront: labelCityTemerature)
 			
         case .small:
             labelCityName.isHidden = true
@@ -94,7 +95,7 @@ class collectionViewCell: UICollectionViewCell {
 			labelCityTemerature.isHidden = false
 			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 20)
 			contentView.addSubview(labelCityTemerature)
-			labelCityTemerature.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: 10, leftConstant: 5, bottomConstant: 10, rightConstant: 5, widthConstant: 40, heightConstant: 40)
+			labelCityTemerature.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: 10, leftConstant: 5, bottomConstant: 10, rightConstant: 5, widthConstant: 10, heightConstant: 10)
 
             break
             

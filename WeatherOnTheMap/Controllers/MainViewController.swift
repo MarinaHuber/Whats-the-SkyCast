@@ -118,7 +118,7 @@ extension MainViewController: UICollectionViewDataSource {
 //TODO: api decoding in celsuis, needs func for fahrenheit from settingsVC
 		 let tempResult = cellData.cityTemperature
 			let temp = Int(round(tempResult))
-			cell.labelCityTemerature.text = "\(temp)°"
+			cell.labelCityTemerature.text = "\(temp)°C"
 
 		 let weatherID = cellData.cityID
 		    cell.updateWeatherIcon(conditionFor: weatherID)
