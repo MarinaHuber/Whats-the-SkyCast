@@ -29,12 +29,13 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
 	@IBOutlet weak var buttonTitleDays: UIButton!
+	let unitsTitle = "unitsTitle"
 
 	let unitsInSettingController = [UserDefaultsUnitKey.Fahrenheit.rawValue, UserDefaultsUnitKey.Celsius.rawValue]
 
 	enum UserDefaultsUnitKey: String {
-		case Fahrenheit
-		case Celsius
+		case Fahrenheit = "°F"
+		case Celsius = "°C"
 	}
 
 	var currentUnit: String?
@@ -138,7 +139,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 
 	override func viewWillAppear(_ animated: Bool) {
-		let units: String? = UserDefaults.standard.object(forKey: "units") as? String
+		let units: String? = UserDefaults.standard.object(forKey: unitsTitle) as? String
 		if let unitsToDisplay = units {
 			currentUnit = unitsToDisplay
 			buttonTitleTemp.setTitle(unitsToDisplay, for: .normal)
@@ -201,7 +202,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		} else {
 			currentUnit = unitsInSettingController[row]
 			buttonTitleTemp.titleLabel?.text = currentUnit
-			UserDefaults.standard.set(currentUnit, forKey: "units")
+			UserDefaults.standard.set(currentUnit, forKey: unitsTitle)
 
 		}
 

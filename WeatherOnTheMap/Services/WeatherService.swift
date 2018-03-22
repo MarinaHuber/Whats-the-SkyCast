@@ -87,16 +87,16 @@ class WeatherService {
 
 
 	 // MARK: - Helper functions for temperature conversion
-    func cToFahrenheit(tempC: Double) -> Double {
+    open func cToFahrenheit(tempC: Double) -> Double {
         return (tempC * 1.8) + 32
     }
     
-    
+
     func kelvinToCelsius(tempK: Double) -> Double {
         return tempK - 273.15
     }
 
-	func fToC(tempF: Double) -> Double {
+	open func fToC(tempF: Double) -> Double {
 		return (tempF - 32) / 1.8
 	}
 

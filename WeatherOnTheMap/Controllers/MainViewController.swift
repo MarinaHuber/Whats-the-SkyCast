@@ -22,6 +22,8 @@ class MainViewController: UIViewController {
 	var currentCity: Int?
 	var unitMainController: String?
 
+	//cell.labelCityTemerature.text = "\(temp)\(currentUnit)"
+
 // Array for every call made to the group of 6 cities ID
 	private var backgrounds: Array<ForcastBackground> = []
     
@@ -109,6 +111,8 @@ extension MainViewController: UICollectionViewDataSource {
 
 
 
+
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellData = self.backgrounds[indexPath.row]
         switch collectionView {
@@ -145,6 +149,9 @@ extension MainViewController: UICollectionViewDataSource {
             }
         
     }
+
+
+
 
 
 
