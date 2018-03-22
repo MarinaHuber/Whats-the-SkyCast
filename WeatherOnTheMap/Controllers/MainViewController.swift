@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
 
 	let shared = WeatherService()
+	var settingsVC: SettingViewController?
 
     @IBOutlet weak var largeCollectionView: UICollectionView!
     @IBOutlet weak var smallCollectionView: UICollectionView!
@@ -21,8 +22,6 @@ class MainViewController: UIViewController {
 	var initialScrollDone: Bool = false
 	var currentCity: Int?
 	var unitSetting: String?
-
-	//cell.labelCityTemerature.text = "\(temp)\(unitSettingController)"
 
 // Array for every call made to the group of 6 cities ID
 	private var backgrounds: Array<ForcastBackground> = []
@@ -121,10 +120,12 @@ extension MainViewController: UICollectionViewDataSource {
 
    		    let tempResult = cellData.cityTemperature
 			let temp = Int(round(tempResult))
-			let units: String? = UserDefaults.standard.object(forKey: "unitsTitle") as? String
-			if let unitsToDisplay = units {
-				unitSetting = unitsToDisplay
-				cell.labelCityTemerature.text = "\(temp)\(unitSetting!)"
+			let units1: String? = UserDefaults.standard.object(forKey: "Celsius") as? String
+			let units2: String? = UserDefaults.standard.object(forKey: "Fahrenheit") as? String
+			if let unitsToDisplayCelsius = units1 {
+				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplayCelsius)"
+			} else if let unitsToDisplayFahrenheit = units2 {
+				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplayFahrenheit)"
 			}
 
 		 let weatherID = cellData.cityID

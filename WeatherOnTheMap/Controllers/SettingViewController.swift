@@ -199,9 +199,12 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			buttonTitleDays.titleLabel?.text = selectedUnits
 
 		} else {
+
 			currentUnit = unitsInSettingController[row]
 			buttonTitleTemp.titleLabel?.text = currentUnit
 			UserDefaults.standard.set(currentUnit, forKey: unitsTitle)
+			saveUnits(keyCels: SettingViewController.UserDefaultsUnitKey(rawValue: currentUnit!)!)
+			saveUnits(keyFar: SettingViewController.UserDefaultsUnitKey(rawValue: currentUnit!)!)
 
 		}
 
@@ -211,15 +214,22 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	}
 
+	func saveUnits(keyCels: UserDefaultsUnitKey) {
+		UserDefaults.standard.set(keyCels.rawValue, forKey: "Celsius")
+		UserDefaults.standard.synchronize()
+
+	}
+
+	func saveUnits(keyFar: UserDefaultsUnitKey) {
+		UserDefaults.standard.set(keyFar.rawValue, forKey: "Fahrenheit")
+		UserDefaults.standard.synchronize()
+	}
+
 
 	func toggleDatepicker() {
 
 		isHidden = !isHidden
 		tableView.endUpdates()
-
-
-
-
 	}
 
 	@IBAction func backToMainView(_ sender: Any) {
@@ -230,7 +240,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 
 	
-	// to show in Dashboard vc
+	// to show in Main vc
 	//https://stackoverflow.com/questions/31075116/passing-data-between-two-viewcontrollers-delegate-swift
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
