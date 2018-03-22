@@ -22,13 +22,12 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		}
 	}
 
-
-
 	var dataSource:[String] = []
 
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
 	@IBOutlet weak var buttonTitleDays: UIButton!
+
 	let unitsTitle = "unitsTitle"
 
 	let unitsInSettingController = [UserDefaultsUnitKey.Fahrenheit.rawValue, UserDefaultsUnitKey.Celsius.rawValue]
@@ -225,7 +224,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	@IBAction func backToMainView(_ sender: Any) {
 
-		performSegue(withIdentifier: "main", sender: sender)
+		//performSegue(withIdentifier: "main", sender: sender)
 
 	}
 
@@ -237,10 +236,9 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 		if segue.identifier == "main" {
 
-			if let backToMainController = segue.destination as? MainViewController {
-				backToMainController.unitMainController = currentUnit
+			//if let backToMainController = segue.destination as? MainViewController {
 				//navigationController?.pushViewController(backToMainController, animated: true)
-			}
+		//	}
 		}
 	}
 

@@ -20,9 +20,9 @@ class MainViewController: UIViewController {
 	//to do intial scroll and prevent flickering
 	var initialScrollDone: Bool = false
 	var currentCity: Int?
-	var unitMainController: String?
+	var unitSetting: String?
 
-	//cell.labelCityTemerature.text = "\(temp)\(currentUnit)"
+	//cell.labelCityTemerature.text = "\(temp)\(unitSettingController)"
 
 // Array for every call made to the group of 6 cities ID
 	private var backgrounds: Array<ForcastBackground> = []
@@ -44,11 +44,10 @@ class MainViewController: UIViewController {
 		shared.getCurrentWeather {
 			error, cities in
 
-			guard cities != nil else {return}
+		//	guard cities != nil else {return}
 
 			self.backgrounds = cities.map {
 				ForcastBackground(city: $0.name!, cityTemperature: $0.main.temp!, cityID: $0.weather[0].id!)
-					/*, backgroundColor: UIColor.init(red: 0.0, green: 0.1, blue: 0.3, alpha: 0.3)*/
             }
 			self.reloadSections()
             
@@ -74,7 +73,7 @@ class MainViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-		//TODO: without this i get a crash!!!
+		//TODO: without this i get a crash?
 		guard currentCity != nil else {
 			print ("I cannot mark city, as I don't know which city is displayed")
 			return
@@ -120,10 +119,13 @@ extension MainViewController: UICollectionViewDataSource {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
 			cell.labelCityName.text = cellData.city
 
-//TODO: api decoding in celsuis, needs func for fahrenheit from settingsVC
-		 let tempResult = cellData.cityTemperature
+   		    let tempResult = cellData.cityTemperature
 			let temp = Int(round(tempResult))
-			cell.labelCityTemerature.text = "\(temp)°C"
+			let units: String? = UserDefaults.standard.object(forKey: "unitsTitle") as? String
+			if let unitsToDisplay = units {
+				unitSetting = unitsToDisplay
+				cell.labelCityTemerature.text = "\(temp)\(unitSetting!)"
+			}
 
 		 let weatherID = cellData.cityID
 		    cell.updateWeatherIcon(conditionFor: weatherID)
