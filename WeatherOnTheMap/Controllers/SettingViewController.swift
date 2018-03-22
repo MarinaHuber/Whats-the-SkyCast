@@ -30,19 +30,21 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBOutlet weak var buttonTitleTemp: UIButton!
 	@IBOutlet weak var buttonTitleDays: UIButton!
 
-	let unitsInSettingController = [UnitsPicker.Fahrenheit.rawValue, UnitsPicker.Celsius.rawValue]
+	let unitsInSettingController = [UserDefaultsUnitKey.Fahrenheit.rawValue, UserDefaultsUnitKey.Celsius.rawValue]
 
-	enum UnitsPicker: String {
+	enum UserDefaultsUnitKey: String {
 		case Fahrenheit
 		case Celsius
 	}
 
 	var currentUnit: String?
 
-	let daysData = [DaysPicker.today.rawValue, DaysPicker.two.rawValue, DaysPicker.three.rawValue, DaysPicker.four.rawValue, DaysPicker.five.rawValue]
+
+
+	let daysData = [DaysPicker.Today.rawValue, DaysPicker.two.rawValue, DaysPicker.three.rawValue, DaysPicker.four.rawValue, DaysPicker.five.rawValue]
 
 	enum DaysPicker: String {
-		case today
+		case Today
 		case two
 		case three
 		case four
@@ -64,7 +66,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		let indexOfDefaultElement = 0 // Make sure that an element at this index exists
 		pickerView.selectRow(indexOfDefaultElement, inComponent: 0, animated: false)
 
-		buttonTitleTemp.setTitle(unitsInSettingController[0], for: .normal)
 		buttonTitleDays.setTitle(daysData[0], for: .normal)
 
 		var alertController:UIAlertController?
@@ -136,7 +137,16 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 
 
+	override func viewWillAppear(_ animated: Bool) {
+		let units: String? = UserDefaults.standard.object(forKey: "units") as? String
+		if let unitsToDisplay = units {
+			currentUnit = unitsToDisplay
+			buttonTitleTemp.setTitle(unitsToDisplay, for: .normal)
+		} else {
+			buttonTitleTemp.setTitle(unitsInSettingController[1], for: .normal)
+		}
 
+	}
 
 
 
@@ -146,7 +156,10 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBAction func buttonUnits(_ sender: Any) {
 		toggleDatepicker()
 		dataSource = unitsInSettingController
-		pickerView.reloadAllComponents()
+		DispatchQueue.main.async(execute: {
+
+			self.pickerView.reloadAllComponents()
+		})
 
 	}
 
@@ -188,6 +201,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		} else {
 			currentUnit = unitsInSettingController[row]
 			buttonTitleTemp.titleLabel?.text = currentUnit
+			UserDefaults.standard.set(currentUnit, forKey: "units")
 
 		}
 
@@ -197,10 +211,13 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	}
 
+
 	func toggleDatepicker() {
 
 		isHidden = !isHidden
 		tableView.endUpdates()
+
+
 
 
 	}
@@ -221,7 +238,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 			if let backToMainController = segue.destination as? MainViewController {
 				backToMainController.unitMainController = currentUnit
-				navigationController?.pushViewController(backToMainController, animated: true)
+				//navigationController?.pushViewController(backToMainController, animated: true)
 			}
 		}
 	}
