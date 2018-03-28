@@ -140,7 +140,7 @@
                         <barButtonItem key="leftBarButtonItem" image="settings" id="mp5-H5-00v">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="7Gb-ji-dmO" kind="show" identifier="" id="pHr-on-Caa"/>
+                                <segue destination="7Gb-ji-dmO" kind="show" identifier="SettingsSegue" id="pHr-on-Caa"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="map-pin" largeContentSizeImage="map-pin" style="plain" id="Bzf-fl-Ooy">
@@ -280,7 +280,7 @@
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="buttonCityShow:" destination="7Gb-ji-dmO" eventType="touchUpInside" id="Nzt-Jo-ReB"/>
+                                                        <action selector="buttonCityAdd:" destination="7Gb-ji-dmO" eventType="touchUpInside" id="Sd7-hI-8Lf"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="48Q-4b-I6N">
@@ -387,7 +387,6 @@
                             <color key="tintColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="backToMainView:" destination="7Gb-ji-dmO" id="SpC-zi-5j7"/>
-                                <segue destination="izx-7Y-uj2" kind="show" identifier="main" id="nKw-Tc-1gl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

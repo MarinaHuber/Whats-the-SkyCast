@@ -34,9 +34,9 @@ class WeatherService {
   //  2. getCurrenWeather is after made the object
   //  The limit of locations is 20: treated as 6 API calls for 6 city IDs
   
-    public func getCurrentWeather(_ completionHandler: @escaping (_ error: Error?, _ cities: [Cities] ) -> ()) {
+    public static func getCurrentWeatherAll(_ completionHandler: @escaping (_ error: Error?, _ cities: [Cities] ) -> ()) {
         let urlString = String("\(APIRouter.base_URL)group?id=2172797,2643743,1016666,524901,703448,1851632&units=metric&appid=\(APIRouter.APIKey)")
-        print(urlString)
+       // print(urlString)
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, err) in
@@ -66,6 +66,32 @@ class WeatherService {
             }.resume()
     }
     
+
+
+
+	public static func getCityWeather(_ city: String, completion: @escaping (SingleCurrentWeather, Error?) -> ()) {
+		let urlString = String("\(APIRouter.base_URL)/weather?q=" + (city.replacingOccurrences(of: " ", with: "%20")) + "&units=metric&appid=\(APIRouter.APIKey)")
+
+		guard let url = URL(string: urlString) else { return }
+		let task = URLSession.shared.dataTask(with: url) { (data, response, err) in
+			guard let data = data else { return }
+			do {
+				let decoder = JSONDecoder()
+				if #available(iOS 10.0, *) {
+					decoder.dateDecodingStrategy = .iso8601
+				} else {
+					decoder.dateDecodingStrategy = .secondsSince1970
+				}
+				let currentForecastDecoded = try decoder.decode(SingleCurrentWeather.self, from: data)
+				DispatchQueue.main.async(execute: {
+					completion(currentForecastDecoded, nil)
+				})
+			} catch let jsonErr {
+				print("Error serializing json:", jsonErr)
+			}
+		}
+		task.resume()
+	}
 
 
 
@@ -100,7 +126,7 @@ class WeatherService {
 		return (tempF - 32) / 1.8
 	}
 
-    
+    // it comes in celsius units
     
     func fixTempForDisplayFahrenheit(temp: Double) -> String {
         print("Kelvin: \(temp)")

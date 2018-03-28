@@ -10,7 +10,6 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-	let shared = WeatherService()
 	var settingsVC: SettingViewController?
 
     @IBOutlet weak var largeCollectionView: UICollectionView!
@@ -24,15 +23,13 @@ class MainViewController: UIViewController {
 	var unitSetting: String?
 
 // Array for every call made to the group of 6 cities ID
-	private var backgrounds: Array<ForcastBackground> = []
+	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-//		smallCollectionView.reloadData()
-//		largeCollectionView.reloadData()
-
+		loadCities()
         largeCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "ID")
         smallCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "IDsmall")
 		largeCollectionView.animateAppearance()
@@ -40,13 +37,11 @@ class MainViewController: UIViewController {
     }
 
     func loadCities() {
-		shared.getCurrentWeather {
+		WeatherService.getCurrentWeatherAll {
 			error, cities in
 
-		//	guard cities != nil else {return}
-
-			self.backgrounds = cities.map {
-				ForcastBackground(city: $0.name!, cityTemperature: $0.main.temp!, cityID: $0.weather[0].id!)
+			self.citiesWeather = cities.map {
+				ForcastBackground(cityName: $0.name ?? "", cityTemperature: $0.main.temp ?? 0, cityID: $0.weather[0].id ?? 0)
             }
 			self.reloadSections()
             
@@ -79,7 +74,7 @@ class MainViewController: UIViewController {
 		}
 
 		if (!initialScrollDone) {
-			let indexPath = IndexPath(item: currentCity ?? 3, section: 0)
+			let indexPath = IndexPath(item: currentCity ?? 0, section: 0)
 			print(#file, #line, #function, (indexPath), "my first item selected")
 			largeCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
 			smallCollectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
@@ -91,9 +86,9 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-		loadCities()
+		citiesWeather = UserDefaults.standard.cities
 		largeCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-		smallCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+		//smallCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
     }
 
     
@@ -103,7 +98,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return backgrounds.count
+        return citiesWeather.count
     }
 
 
@@ -112,21 +107,27 @@ extension MainViewController: UICollectionViewDataSource {
 
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellData = self.backgrounds[indexPath.row]
+        let cellData = self.citiesWeather[indexPath.row]
         switch collectionView {
         case largeCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
-			cell.labelCityName.text = cellData.city
+			cell.labelCityName.text = cellData.cityName
 
    		    let tempResult = cellData.cityTemperature
+// TO DO: convert Fahrenheit
+//			let tempFahrenh = (tempResult * 1.8) + 32
+//			let roundFah = Int(round(tempFahrenh))
 			let temp = Int(round(tempResult))
+			cell.labelCityTemerature.text = "\(temp)°C"
 			let units1: String? = UserDefaults.standard.object(forKey: "Celsius") as? String
 			let units2: String? = UserDefaults.standard.object(forKey: "Fahrenheit") as? String
-			if let unitsToDisplayCelsius = units1 {
-				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplayCelsius)"
-			} else if let unitsToDisplayFahrenheit = units2 {
-				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplayFahrenheit)"
-			}
+//			if let unitsToDisplayCelsius = units1 {
+//				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplayCelsius)"
+//			}
+//			else if let unitsToDisplayFahrenheit = units2 {
+//
+//				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplayFahrenheit)"
+//			}
 
 		 let weatherID = cellData.cityID
 		    cell.updateWeatherIcon(conditionFor: weatherID)
@@ -154,7 +155,13 @@ extension MainViewController: UICollectionViewDataSource {
     }
 
 
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		super.prepare(for: segue, sender: sender)
 
+		if let settingsViewController = segue.destination as? SettingViewController, segue.identifier == "SettingsSegue" {
+			settingsViewController.delegate = self
+		}
+	}
 
 
 
@@ -207,4 +214,15 @@ extension MainViewController: UIScrollViewDelegate {
             smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
     }
+}
+
+extension MainViewController: SettingViewControllerDelegate {
+
+	func citySelected(cityWeather: SingleCurrentWeather) {
+		let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main?.temp ?? 0, cityID: cityWeather.weather?.first?.id ?? 0)
+		citiesWeather.append(forecastWeather)
+		largeCollectionView.reloadData()
+		largeCollectionView.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: UICollectionViewScrollPosition.right, animated: true)
+		UserDefaults.standard.cities = citiesWeather
+	}
 }

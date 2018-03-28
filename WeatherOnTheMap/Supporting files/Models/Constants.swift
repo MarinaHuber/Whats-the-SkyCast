@@ -11,18 +11,22 @@ import UIKit
 
 
 
-struct ForcastBackground {
-    
-    var city: String
+struct ForcastBackground: Codable {
+//TO DO: add units for UserDefault?
+    var cityName: String
 	var cityTemperature: Double
 	var cityID: Int
-	//var backgroundColor: UIColor
-    
-	init(city: String, cityTemperature: Double , cityID: Int /* , backgroundColor: UIColor*/ ) {
-        self.city = city
+
+	enum CodingKeys: String, CodingKey {
+		case cityName = "city"
+		case cityTemperature = "city_temperature"
+		case cityID = "city_id"
+	}
+
+	init(cityName: String, cityTemperature: Double , cityID: Int) {
+        self.cityName = cityName
 		self.cityTemperature = cityTemperature
 		self.cityID = cityID
-		//self.backgroundColor = backgroundColor
     }
     
   

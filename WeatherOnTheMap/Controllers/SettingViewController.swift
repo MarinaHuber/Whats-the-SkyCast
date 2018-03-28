@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SettingViewControllerDelegate: class {
+	func citySelected(cityWeather: SingleCurrentWeather)
+}
+
 class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
 	var inputCityText: String = ""
@@ -21,8 +25,10 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			pickerView.isHidden = isHidden ? true :  false
 		}
 	}
-
+   weak var delegate: SettingViewControllerDelegate?
 	var dataSource:[String] = []
+
+	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
 
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
@@ -38,8 +44,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	}
 
 	var currentUnit: String?
-
-
 
 	let daysData = [DaysPicker.Today.rawValue, DaysPicker.two.rawValue, DaysPicker.three.rawValue, DaysPicker.four.rawValue, DaysPicker.five.rawValue]
 
@@ -68,72 +72,13 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 		buttonTitleDays.setTitle(daysData[0], for: .normal)
 
-		var alertController:UIAlertController?
-		alertController = UIAlertController(title: "Location", message: "Enter the city you want the forcast for", preferredStyle: .alert)
-
-		alertController!.addTextField(
-			configurationHandler: {(textField: UITextField!) in
-				textField.placeholder = "City name..."
-		})
-		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
-			(action : UIAlertAction!) -> Void in })
-
-		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: { [weak self]
-			(paramAction:UIAlertAction!) in
-			if let textFields = alertController?.textFields{
-				let theTextFields = textFields as [UITextField]
-				self?.inputCityText = theTextFields[0].text!
-				//self!.currentForcastLabel.text = self?.inputCityText
-
-//  1. create basic request without making the object first
-//  2. getCurrenWeather is after made the object
-
-				let urlString = ""// String("\(Constants.base_URL)/weather?q=" + (self?.inputCityText.replacingOccurrences(of: " ", with: "%20"))! + ",uk&appid=\(Constants.APIKey)")
-				//  print(urlString)
-
-				guard let url = URL(string: urlString) else { return }
-
-				URLSession.shared.dataTask(with: url) { (data, response, err) in
-
-					guard let data = data else { return }
-					do {
-						let decoder = JSONDecoder()
-						if #available(iOS 10.0, *) {
-							decoder.dateDecodingStrategy = .iso8601
-						} else {
-
-							decoder.dateDecodingStrategy = .secondsSince1970
-						}
-						let currentForecastDecoded = try decoder.decode(AllCurrentWeather.self, from: data)
-						//print(currentForecastDecoded)
-						for city in currentForecastDecoded.cities! {
-							print(city.name)
-							DispatchQueue.main.async(execute: {
-								self?.buttonTitleLocation.titleLabel?.text = city.name
 
 
-							})
-						}
-
-
-					} catch let jsonErr {
-						print("Error serializing json:", jsonErr)
-
-					}
-
-					}.resume()
-
-
-
-
-			}
-
-		})
-
-		alertController?.addAction(action)
-		alertController?.addAction(cancelAction)
-		self.present(alertController!, animated: true, completion: nil)
     }
+	
+
+
+
 
 
 
@@ -170,6 +115,44 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	}
 
+	@IBAction func buttonCityAdd(_ sender: Any) {
+
+
+		var alertController:UIAlertController?
+		alertController = UIAlertController(title: "Location", message: "Enter the city you want the forcast for", preferredStyle: .alert)
+
+		alertController!.addTextField(
+			configurationHandler: {(textField: UITextField!) in
+				textField.placeholder = "City name..."
+		})
+		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
+			(action : UIAlertAction!) -> Void in })
+
+		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: { [weak self]
+			(paramAction:UIAlertAction!) in
+			if let textFields = alertController?.textFields{
+				//self?.buttonTitleLocation.titleLabel?.text = citiesWeather
+				let theTextFields = textFields as [UITextField]
+				self?.inputCityText = theTextFields[0].text!
+				guard let city = self?.inputCityText else { return }
+				WeatherService.getCityWeather(city) { cityWeather, error in
+					let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main?.temp ?? 0, cityID: cityWeather.weather?.first?.id ?? 0)
+					self?.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
+					self?.citiesWeather.append(forecastWeather)
+					self?.delegate?.citySelected(cityWeather: cityWeather)
+				}
+
+
+
+			}
+
+		})
+
+		alertController?.addAction(action)
+		alertController?.addAction(cancelAction)
+		self.present(alertController!, animated: true, completion: nil)
+
+	}
 
 
 
@@ -233,24 +216,10 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	}
 
 	@IBAction func backToMainView(_ sender: Any) {
-
-		//performSegue(withIdentifier: "main", sender: sender)
+		self.navigationController?.popViewController(animated: true)
 
 	}
 
-
-	
-	// to show in Main vc
-	//https://stackoverflow.com/questions/31075116/passing-data-between-two-viewcontrollers-delegate-swift
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-		if segue.identifier == "main" {
-
-			//if let backToMainController = segue.destination as? MainViewController {
-				//navigationController?.pushViewController(backToMainController, animated: true)
-		//	}
-		}
-	}
 
 
 

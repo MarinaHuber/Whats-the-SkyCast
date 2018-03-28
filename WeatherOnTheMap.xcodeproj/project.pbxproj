@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C397B3B206BE5A300DD95E1 /* SingleCurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C397B39206BE5A200DD95E1 /* SingleCurrentWeather.swift */; };
+		9C397B3C206BE5A300DD95E1 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C397B3A206BE5A200DD95E1 /* UserDefaults+.swift */; };
 		9C46DEFF1F7B8DC1004834C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46DEFE1F7B8DC1004834C8 /* Constants.swift */; };
 		9C46DF031F7B9255004834C8 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46DF021F7B9255004834C8 /* WeatherService.swift */; };
 		9C46DF071F7B9B37004834C8 /* collectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C46DF061F7B9B36004834C8 /* collectionViewCell.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C397B39206BE5A200DD95E1 /* SingleCurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCurrentWeather.swift; sourceTree = "<group>"; };
+		9C397B3A206BE5A200DD95E1 /* UserDefaults+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		9C46DEFE1F7B8DC1004834C8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9C46DF021F7B9255004834C8 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		9C46DF061F7B9B36004834C8 /* collectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collectionViewCell.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 			children = (
 				9C46DEFE1F7B8DC1004834C8 /* Constants.swift */,
 				9CDB95EC1FCAD94A0000C689 /* AllCurrentWeather.swift */,
+				9C397B39206BE5A200DD95E1 /* SingleCurrentWeather.swift */,
+				9C397B3A206BE5A200DD95E1 /* UserDefaults+.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			files = (
 				9C9C601B1F7AB4DF00661A58 /* AppDelegate.swift in Sources */,
 				9CDB95ED1FCAD94A0000C689 /* AllCurrentWeather.swift in Sources */,
+				9C397B3C206BE5A300DD95E1 /* UserDefaults+.swift in Sources */,
 				9C46DF071F7B9B37004834C8 /* collectionViewCell.swift in Sources */,
 				9CC70D701F7ABBF30032406D /* MapViewController.swift in Sources */,
 				9CD7B646203F6EE70095F58D /* SettingViewController.swift in Sources */,
@@ -226,6 +233,7 @@
 				9C9C602E1F7AB92600661A58 /* MainViewController.swift in Sources */,
 				9C7351FF205094730005C8FD /* UIView+Anchors.swift in Sources */,
 				9C46DEFF1F7B8DC1004834C8 /* Constants.swift in Sources */,
+				9C397B3B206BE5A300DD95E1 /* SingleCurrentWeather.swift in Sources */,
 				9C46DF031F7B9255004834C8 /* WeatherService.swift in Sources */,
 				9CF2C1E1205182DF0018423D /* UIColor+UIImageView.swift in Sources */,
 			);
