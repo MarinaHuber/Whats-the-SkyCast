@@ -17,12 +17,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var smallCollectionViewWidthConstraint: NSLayoutConstraint!
 
-	//to do intial scroll and prevent flickering
-	var initialScrollDone: Bool = false
-	var currentCity: Int?
-	var unitSetting: String?
-
-// Array for every call made to the group of 6 cities ID
 	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
     
     
@@ -43,10 +37,13 @@ class MainViewController: UIViewController {
 			self.citiesWeather = cities.map {
 				ForcastBackground(cityName: $0.name ?? "", cityTemperature: $0.main.temp ?? 0, cityID: $0.weather[0].id ?? 0)
             }
+			UserDefaults.standard.cities = self.citiesWeather
 			self.reloadSections()
+
             
        }
      }
+//MARK: GCD async on main queue
 	func reloadSections() {
 
 		DispatchQueue.main.async(execute: {
@@ -65,36 +62,22 @@ class MainViewController: UIViewController {
         self.navigationController?.view.backgroundColor = UIColor.clear
         
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-		//TODO: without this i get a crash?
-		guard currentCity != nil else {
-			print ("I cannot mark city, as I don't know which city is displayed")
-			return
-		}
 
-		if (!initialScrollDone) {
-			let indexPath = IndexPath(item: currentCity ?? 0, section: 0)
-			print(#file, #line, #function, (indexPath), "my first item selected")
-			largeCollectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-			smallCollectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-			initialScrollDone = true
-		}
-
-		smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
-    }
+	override var prefersStatusBarHidden: Bool {
+		return true
+	}
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 		citiesWeather = UserDefaults.standard.cities
-		largeCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-		//smallCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-    }
 
-    
+		largeCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+		smallCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+    }
 
 }
 
+//MARK: UICollectionViewDataSource
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -102,13 +85,13 @@ extension MainViewController: UICollectionViewDataSource {
     }
 
 
-
-
-
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		if indexPath.row > citiesWeather.count {
+			print(indexPath.row)
+		}
         let cellData = self.citiesWeather[indexPath.row]
-        switch collectionView {
+
+		switch collectionView {
         case largeCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
 			cell.labelCityName.text = cellData.cityName
@@ -139,10 +122,10 @@ extension MainViewController: UICollectionViewDataSource {
 			let tempResult1 = cellData.cityTemperature
 			let temp = Int(round(tempResult1))
 				cell.labelCityTemerature.text = "\(temp)°"
-		if indexPath.row == 0 {
+		if indexPath.row == citiesWeather.count - 1 {
 			cell.isSelected = true
-			smallCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
 			largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+			smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
 		} else {
 			cell.isSelected = false
 		}
@@ -164,21 +147,10 @@ extension MainViewController: UICollectionViewDataSource {
 	}
 
 
-
-
-	override var prefersStatusBarHidden: Bool {
-		return true
-	}
-    
-    
 }
 
-
-
-
         
-        
-        
+//MARK: UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return collectionView != largeCollectionView
@@ -186,7 +158,6 @@ extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if smallCollectionView == collectionView {
-			currentCity = indexPath.row
 			largeCollectionView.animateAppearance()
             smallCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -194,35 +165,61 @@ extension MainViewController: UICollectionViewDelegate {
     }
 }
 
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard largeCollectionView == collectionView else {
-            return CGSize(width: 50, height: 50)
-        }
-        
-        return CGSize(width: view.frame.width, height: view.frame.height)
-    }
-}
 
-extension MainViewController: UIScrollViewDelegate {
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if largeCollectionView == scrollView {
-            let index = Int(targetContentOffset.pointee.x/view.frame.width)
-			currentCity = index
-            let indexPath = IndexPath(item: index, section: 0)
-            
-            smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        }
-    }
-}
 
+//MARK: Passing data from SettingsVC to UICollectionView
 extension MainViewController: SettingViewControllerDelegate {
 
 	func citySelected(cityWeather: SingleCurrentWeather) {
 		let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main?.temp ?? 0, cityID: cityWeather.weather?.first?.id ?? 0)
 		citiesWeather.append(forecastWeather)
 		largeCollectionView.reloadData()
-		largeCollectionView.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: UICollectionViewScrollPosition.right, animated: true)
+		smallCollectionView.reloadData()
+		largeCollectionView?.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: .right, animated: true)
+		smallCollectionView?.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: .right, animated: true)
+
 		UserDefaults.standard.cities = citiesWeather
+	}
+}
+
+
+
+
+
+
+
+
+//MARK: Cell Layout CollectionView
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		guard largeCollectionView == collectionView else {
+			return CGSize(width: 50, height: 50)
+		}
+
+		return CGSize(width: view.frame.width, height: view.frame.height)
+	}
+
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		if largeCollectionView == collectionView {
+			return 0
+		} else if smallCollectionView == collectionView {
+			return 6
+		}
+		return 0
+	}
+}
+
+
+//MARK: CollectionView scroll
+extension MainViewController: UIScrollViewDelegate {
+
+	func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+		if largeCollectionView == scrollView {
+			let index = Int(targetContentOffset.pointee.x/view.frame.width)
+			//currentCity = index
+			let indexPath = IndexPath(item: index, section: 0)
+			smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+		}
 	}
 }

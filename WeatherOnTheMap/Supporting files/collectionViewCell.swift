@@ -64,7 +64,7 @@ class collectionViewCell: UICollectionViewCell {
         contentView.addSubview(labelCityName)
         contentView.addSubview(labelCityTemerature)
 		contentView.addSubview(iconImage)
-		labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 240, leftConstant: contentView.frame.width/2 - 50, bottomConstant: 20, rightConstant: 0, widthConstant: 100, heightConstant: 20)
+		labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 240, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 20, rightConstant: 0, widthConstant: 120, heightConstant: 20)
 		iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: -150, rightConstant: contentView.frame.width/2-100, widthConstant: 210, heightConstant: 210)
 		contentView.bringSubview(toFront: labelCityTemerature)
         
@@ -108,9 +108,9 @@ class collectionViewCell: UICollectionViewCell {
 		switch conditionFor {
 		case 200..<300:
 			imageName = "thunderstorm"
-		case 300..<600:
+		case 300..<700:
 			imageName = "rainy"
-		case 700..<800:
+		case 701..<799:
 			imageName = "snowy"
 		case 800:
 			imageName = "sunny"
