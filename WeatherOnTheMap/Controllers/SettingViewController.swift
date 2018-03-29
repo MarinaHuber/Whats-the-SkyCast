@@ -13,40 +13,40 @@ protocol SettingViewControllerDelegate: class {
 }
 
 class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
+	
 	var inputCityText: String = ""
-
+	
 	@IBOutlet weak var pickerView: UIPickerView!
-
-
+	
+	
 	var isHidden: Bool = true {
 		didSet {
-
+			
 			pickerView.isHidden = isHidden ? true :  false
 		}
 	}
-   weak var delegate: SettingViewControllerDelegate?
+	weak var delegate: SettingViewControllerDelegate?
 	var dataSource:[String] = []
-
+	
 	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
-
+	
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
 	@IBOutlet weak var buttonTitleDays: UIButton!
-
+	
 	let unitsTitle = "unitsTitle"
-
+	
 	let unitsInSettingController = [UserDefaultsUnitKey.Fahrenheit.rawValue, UserDefaultsUnitKey.Celsius.rawValue]
-
+	
 	enum UserDefaultsUnitKey: String {
 		case Fahrenheit = "°F"
 		case Celsius = "°C"
 	}
-
+	
 	var currentUnit: String?
-
+	
 	let daysData = [DaysPicker.Today.rawValue, DaysPicker.two.rawValue, DaysPicker.three.rawValue, DaysPicker.four.rawValue, DaysPicker.five.rawValue]
-
+	
 	enum DaysPicker: String {
 		case Today
 		case two
@@ -54,34 +54,34 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		case four
 		case five
 	}
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		tableView.separatorColor = .black
 		tableView.allowsSelection = false
 		tableView.delegate = self
 		tableView.dataSource = self
-
+		
 		pickerView.dataSource = self
 		pickerView.delegate = self
 		pickerView.isHidden = true
-
+		
 		let indexOfDefaultElement = 0 // Make sure that an element at this index exists
 		pickerView.selectRow(indexOfDefaultElement, inComponent: 0, animated: false)
-
+		
 		buttonTitleDays.setTitle(daysData[0], for: .normal)
-
-
-
-    }
+		
+		
+		
+	}
 	
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
 	override func viewWillAppear(_ animated: Bool) {
 		let units: String? = UserDefaults.standard.object(forKey: unitsTitle) as? String
 		if let unitsToDisplay = units {
@@ -90,44 +90,44 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		} else {
 			buttonTitleTemp.setTitle(unitsInSettingController[1], for: .normal)
 		}
-
+		
 	}
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
 	@IBAction func buttonUnits(_ sender: Any) {
 		toggleDatepicker()
 		dataSource = unitsInSettingController
 		DispatchQueue.main.async(execute: {
-
+			
 			self.pickerView.reloadAllComponents()
 		})
-
+		
 	}
-
+	
 	@IBAction func buttonDays(_ sender: UIButton) {
 		toggleDatepicker()
 		dataSource = daysData
 		pickerView.reloadAllComponents()
-
+		
 	}
-
+	
 	@IBAction func buttonCityAdd(_ sender: Any) {
-
-
+		
+		
 		var alertController:UIAlertController?
 		alertController = UIAlertController(title: "Location", message: "Enter the city you want the forcast for", preferredStyle: .alert)
-
+		
 		alertController!.addTextField(
 			configurationHandler: {(textField: UITextField!) in
 				textField.placeholder = "City name..."
 		})
 		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
 			(action : UIAlertAction!) -> Void in })
-
+		
 		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: { [weak self]
 			(paramAction:UIAlertAction!) in
 			if let textFields = alertController?.textFields{
@@ -141,86 +141,86 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 					self?.citiesWeather.append(forecastWeather)
 					self?.delegate?.citySelected(cityWeather: cityWeather)
 				}
-
-
-
+				
+				
+				
 			}
-
+			
 		})
-
+		
 		alertController?.addAction(action)
 		alertController?.addAction(cancelAction)
 		self.present(alertController!, animated: true, completion: nil)
-
+		
 	}
-
-
-
-
-//MARK: UIPickerViewDataSourcefunc
-
+	
+	
+	
+	
+	//MARK: UIPickerViewDataSourcefunc
+	
 	// returns the number of 'columns' to display.
 	public func numberOfComponents(in pickerView: UIPickerView) -> Int {
 		return 1
 	}
-
-
+	
+	
 	public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		return dataSource.count
 	}
 	
-
+	
 	public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 		return dataSource[row]
 	}
-
-
+	
+	
 	public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
+		
 		if dataSource == daysData {
 			let selectedUnits = daysData[row]
 			buttonTitleDays.titleLabel?.text = selectedUnits
-
+			
 		} else {
-
+			
 			currentUnit = unitsInSettingController[row]
 			buttonTitleTemp.titleLabel?.text = currentUnit
 			UserDefaults.standard.set(currentUnit, forKey: unitsTitle)
 			saveUnits(keyCels: SettingViewController.UserDefaultsUnitKey(rawValue: currentUnit!)!)
 			saveUnits(keyFar: SettingViewController.UserDefaultsUnitKey(rawValue: currentUnit!)!)
-
+			
 		}
-
+		
 		toggleDatepicker()
 		tableView.endUpdates()
 		pickerView.resignFirstResponder()
-
+		
 	}
-
+	
 	func saveUnits(keyCels: UserDefaultsUnitKey) {
 		UserDefaults.standard.set(keyCels.rawValue, forKey: "Celsius")
 		UserDefaults.standard.synchronize()
-
+		
 	}
-
+	
 	func saveUnits(keyFar: UserDefaultsUnitKey) {
 		UserDefaults.standard.set(keyFar.rawValue, forKey: "Fahrenheit")
 		UserDefaults.standard.synchronize()
 	}
-
-
+	
+	
 	func toggleDatepicker() {
-
+		
 		isHidden = !isHidden
 		tableView.endUpdates()
 	}
-
+	
 	@IBAction func backToMainView(_ sender: Any) {
 		self.navigationController?.popViewController(animated: true)
-
+		
 	}
-
-
-
-
+	
+	
+	
+	
 }
