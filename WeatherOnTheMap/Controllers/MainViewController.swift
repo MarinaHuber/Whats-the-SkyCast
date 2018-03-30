@@ -26,8 +26,7 @@ class MainViewController: UIViewController {
 		loadCities()
 		largeCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "ID")
 		smallCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "IDsmall")
-		largeCollectionView.animateAppearance()
-		smallCollectionView.animateAppearance()
+
 	}
 
 	func loadCities() {
@@ -39,17 +38,22 @@ class MainViewController: UIViewController {
 					ForcastBackground(cityName: $0.name ?? "", cityTemperature: $0.main.temp ?? 0, cityID: $0.weather[0].id ?? 0)
 				}
 				UserDefaults.standard.cities = self.citiesWeather
-				self.reloadSections()
+				self.reloadSectionsUI()
 
 			}
 		}
 	}
-	//MARK: GCD async on main queue
-	func reloadSections() {
+	//MARK: GCD async for closure
+	func reloadSectionsUI() {
 
 		DispatchQueue.main.async(execute: {
 			self.largeCollectionView.reloadSections(IndexSet(integer: 0))
 			self.smallCollectionView.reloadSections(IndexSet(integer: 0))
+			//important! on main thread random first scroll selected
+			self.largeCollectionView?.scrollToItem(at: IndexPath(row: self.citiesWeather.count - 4, section: 0), at: .centeredHorizontally, animated: true)
+			self.smallCollectionView?.selectItem(at: IndexPath(row: self.citiesWeather.count - 4, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+			self.largeCollectionView.animateAppearance()
+			self.smallCollectionView.animateAppearance()
 
 		})
 
@@ -68,11 +72,17 @@ class MainViewController: UIViewController {
 		return true
 	}
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		if !citiesWeather.isEmpty {
+
+		largeCollectionView?.scrollToItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), at: .centeredHorizontally, animated: true)
+		smallCollectionView?.selectItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+
+		smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
 		citiesWeather = UserDefaults.standard.cities
-		largeCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
-		smallCollectionView?.performSelector(onMainThread: #selector(UICollectionView.reloadData), with: nil, waitUntilDone: true)
+		}
+
 	}
 
 }
@@ -125,13 +135,6 @@ extension MainViewController: UICollectionViewDataSource {
 			let tempResult1 = cellData.cityTemperature
 			let temp = Int(round(tempResult1))
 			cell.labelCityTemerature.text = "\(temp)°"
-			if indexPath.row == citiesWeather.count - 1 {
-				cell.isSelected = true
-				largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-				smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-			} else {
-				cell.isSelected = false
-			}
 			cell.configureCellWithType(.small)
 			return cell
 		default:
@@ -176,10 +179,12 @@ extension MainViewController: SettingViewControllerDelegate {
 	func citySelected(cityWeather: SingleCurrentWeather) {
 		let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main?.temp ?? 0, cityID: cityWeather.weather?.first?.id ?? 0)
 		citiesWeather.append(forecastWeather)
+		//important! on background thread
 		largeCollectionView.reloadData()
 		smallCollectionView.reloadData()
-		largeCollectionView?.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: .right, animated: true)
-		smallCollectionView?.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: .right, animated: true)
+
+		largeCollectionView?.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: .centeredHorizontally, animated: true)
+		smallCollectionView?.selectItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
 
 		UserDefaults.standard.cities = citiesWeather
 	}

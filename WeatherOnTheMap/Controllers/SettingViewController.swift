@@ -71,17 +71,9 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		pickerView.selectRow(indexOfDefaultElement, inComponent: 0, animated: false)
 		
 		buttonTitleDays.setTitle(daysData[0], for: .normal)
-		
-		
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	override func viewWillAppear(_ animated: Bool) {
 		let units: String? = UserDefaults.standard.object(forKey: unitsTitle) as? String
 		if let unitsToDisplay = units {
@@ -92,12 +84,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
+
 	@IBAction func buttonUnits(_ sender: Any) {
 		toggleDatepicker()
 		dataSource = unitsInSettingController
@@ -159,7 +146,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	
 	//MARK: UIPickerViewDataSourcefunc
 	
-	// returns the number of 'columns' to display.
 	public func numberOfComponents(in pickerView: UIPickerView) -> Int {
 		return 1
 	}
