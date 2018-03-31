@@ -26,7 +26,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		}
 	}
 	weak var delegate: SettingViewControllerDelegate?
-	var dataSource:[String] = []
+	var dataSourcePicker:[String] = []
 	
 	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
 	
@@ -36,7 +36,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	
 	let unitsTitle = "unitsTitle"
 	
-	let unitsInSettingController = [UserDefaultsUnitKey.Fahrenheit.rawValue, UserDefaultsUnitKey.Celsius.rawValue]
+	let unitsData = [UserDefaultsUnitKey.Fahrenheit.rawValue, UserDefaultsUnitKey.Celsius.rawValue]
 	
 	enum UserDefaultsUnitKey: String {
 		case Fahrenheit = "°F"
@@ -75,33 +75,40 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
-		let units: String? = UserDefaults.standard.object(forKey: unitsTitle) as? String
-		if let unitsToDisplay = units {
-			currentUnit = unitsToDisplay
-			buttonTitleTemp.setTitle(unitsToDisplay, for: .normal)
-		} else {
-			buttonTitleTemp.setTitle(unitsInSettingController[1], for: .normal)
-		}
-		
+
+       buttonTitleTemp.setTitle(changedUnits(), for: .normal)
+	   buttonTitleTemp.titleLabel?.adjustsFontSizeToFitWidth = true
+
+
 	}
 
 	@IBAction func buttonUnits(_ sender: Any) {
+		buttonTitleTemp.setTitle(changedUnits(), for: .normal)
 		toggleDatepicker()
-		dataSource = unitsInSettingController
-		DispatchQueue.main.async(execute: {
-			
-			self.pickerView.reloadAllComponents()
-		})
-		
+		dataSourcePicker = unitsData
+		self.pickerView.reloadAllComponents()
 	}
 	
 	@IBAction func buttonDays(_ sender: UIButton) {
 		toggleDatepicker()
-		dataSource = daysData
+		dataSourcePicker = daysData
 		pickerView.reloadAllComponents()
 		
 	}
-	
+	func toggleDatepicker() {
+
+		isHidden = !isHidden
+		tableView.endUpdates()
+	}
+
+	public func changedUnits() -> String {
+		let units: String? = UserDefaults.standard.object(forKey: unitsTitle) as? String
+		if let unitsToDisplay = units {
+			currentUnit = unitsToDisplay
+		return unitsToDisplay
+		}
+		return "Unknown"
+	}
 	@IBAction func buttonCityAdd(_ sender: Any) {
 		
 		
@@ -152,28 +159,28 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	
 	
 	public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return dataSource.count
+		return dataSourcePicker.count
 	}
 	
 	
 	public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		return dataSource[row]
+		return dataSourcePicker[row]
 	}
 	
 	
 	public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		
-		if dataSource == daysData {
+		if dataSourcePicker == daysData {
 			let selectedUnits = daysData[row]
 			buttonTitleDays.titleLabel?.text = selectedUnits
 			
-		} else {
+		} else if dataSourcePicker == unitsData {
 			
-			currentUnit = unitsInSettingController[row]
+			currentUnit = unitsData[row]
 			buttonTitleTemp.titleLabel?.text = currentUnit
 			UserDefaults.standard.set(currentUnit, forKey: unitsTitle)
-			saveUnits(keyCels: SettingViewController.UserDefaultsUnitKey(rawValue: currentUnit!)!)
-			saveUnits(keyFar: SettingViewController.UserDefaultsUnitKey(rawValue: currentUnit!)!)
+			UserDefaults.standard.synchronize()
+
 			
 		}
 		
@@ -182,24 +189,9 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		pickerView.resignFirstResponder()
 		
 	}
+
 	
-	func saveUnits(keyCels: UserDefaultsUnitKey) {
-		UserDefaults.standard.set(keyCels.rawValue, forKey: "Celsius")
-		UserDefaults.standard.synchronize()
-		
-	}
-	
-	func saveUnits(keyFar: UserDefaultsUnitKey) {
-		UserDefaults.standard.set(keyFar.rawValue, forKey: "Fahrenheit")
-		UserDefaults.standard.synchronize()
-	}
-	
-	
-	func toggleDatepicker() {
-		
-		isHidden = !isHidden
-		tableView.endUpdates()
-	}
+
 	
 	@IBAction func backToMainView(_ sender: Any) {
 		self.navigationController?.popViewController(animated: true)

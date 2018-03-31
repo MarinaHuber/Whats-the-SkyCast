@@ -32,6 +32,12 @@ struct ForcastBackground: Codable {
 	
 }
 
+struct UserDefaultsUnitsKey {
+	static let fahrenheit = "°F"
+	static let celsius = "°C"
+
+	private init() { }
+}
 
 
 struct Font {

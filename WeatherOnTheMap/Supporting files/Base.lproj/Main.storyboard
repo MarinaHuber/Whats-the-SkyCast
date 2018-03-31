@@ -300,10 +300,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="center" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whI-Pf-UPz">
-                                                    <rect key="frame" x="227" y="7" width="132" height="30"/>
+                                                <button opaque="NO" contentMode="center" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="whI-Pf-UPz">
+                                                    <rect key="frame" x="266" y="1" width="75" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                     <state key="normal">
                                                         <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -320,6 +320,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="3vc-Q1-kfK" secondAttribute="trailing" constant="16" id="hki-xm-JG6"/>
+                                                <constraint firstItem="3vc-Q1-kfK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Nd3-OJ-RkA" secondAttribute="leading" constant="16" id="yO7-ck-NPu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="kgZ-fp-2fN" style="IBUITableViewCellStyleDefault" id="qU3-Xb-p3O">
@@ -400,7 +404,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ML3-DJ-Db0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="B17-J4-pFG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="457" y="928"/>
+            <point key="canvasLocation" x="456.80000000000001" y="927.88605697151434"/>
         </scene>
     </scenes>
     <resources>

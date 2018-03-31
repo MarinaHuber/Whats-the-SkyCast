@@ -48,6 +48,5 @@ class AboutViewController: UIViewController, WKNavigationDelegate, WKUIDelegate 
 		
 	}
 	
-	
-	
+
 }
