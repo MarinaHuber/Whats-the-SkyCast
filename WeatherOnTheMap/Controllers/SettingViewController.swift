@@ -34,7 +34,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBOutlet weak var buttonTitleTemp: UIButton!
 	@IBOutlet weak var buttonTitleDays: UIButton!
 	
-	let unitsTitle = "unitsTitle"
+	var unitsTitle = "unitsChanged"
 	
 	let unitsData = [UserDefaultsUnitKey.Fahrenheit.rawValue, UserDefaultsUnitKey.Celsius.rawValue]
 	
@@ -96,7 +96,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		
 	}
 	func toggleDatepicker() {
-
 		isHidden = !isHidden
 		tableView.endUpdates()
 	}
@@ -109,6 +108,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		}
 		return "Unknown"
 	}
+
 	@IBAction func buttonCityAdd(_ sender: Any) {
 		
 		
@@ -124,7 +124,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		
 		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: { [weak self]
 			(paramAction:UIAlertAction!) in
-			if let textFields = alertController?.textFields{
+			if let textFields = alertController?.textFields {
 				//self?.buttonTitleLocation.titleLabel?.text = citiesWeather
 				let theTextFields = textFields as [UITextField]
 				self?.inputCityText = theTextFields[0].text!
@@ -134,8 +134,10 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 					self?.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
 					self?.citiesWeather.append(forecastWeather)
 					self?.delegate?.citySelected(cityWeather: cityWeather)
+
 				}
-				
+				UserDefaults.standard.set(self?.currentUnit, forKey: "unitsChanged")
+				UserDefaults.standard.synchronize()
 				
 				
 			}

@@ -78,7 +78,8 @@ class MainViewController: UIViewController {
 
 		largeCollectionView?.scrollToItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), at: .centeredHorizontally, animated: true)
 		smallCollectionView?.selectItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-
+		//Reload here to update units for first load
+		largeCollectionView?.reloadItems(at: [IndexPath(row: self.citiesWeather.count - 1, section: 0)])
 		smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
 		citiesWeather = UserDefaults.standard.cities
 		}
@@ -111,16 +112,14 @@ extension MainViewController: UICollectionViewDataSource {
 			//			let tempFahrenh = (tempResult * 1.8) + 32
 			//			let roundFah = Int(round(tempFahrenh))
 			let temp = Int(round(tempResult))
-			cell.labelCityTemerature.text = "\(temp)°C"
-			let units1: String? = UserDefaults.standard.object(forKey: "Celsius") as? String
-			let units2: String? = UserDefaults.standard.object(forKey: "Fahrenheit") as? String
-			//			if let unitsToDisplayCelsius = units1 {
-			//				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplayCelsius)"
-			//			}
-			//			else if let unitsToDisplayFahrenheit = units2 {
-			//
-			//				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplayFahrenheit)"
-			//			}
+			//cell.labelCityTemerature.text = "\(temp)°C"
+
+			let units: String? = UserDefaults.standard.object(forKey: "unitsChanged") as? String
+			if let unitsToDisplay = units {
+				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplay)"
+				cell.labelCityTemerature.animateAppearance()
+
+			}
 
 			let weatherID = cellData.cityID
 			cell.updateWeatherIcon(conditionFor: weatherID)
@@ -185,6 +184,7 @@ extension MainViewController: SettingViewControllerDelegate {
 
 		largeCollectionView?.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: .centeredHorizontally, animated: true)
 		smallCollectionView?.selectItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+
 
 		UserDefaults.standard.cities = citiesWeather
 	}
