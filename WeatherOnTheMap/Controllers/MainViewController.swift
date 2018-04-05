@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var smallCollectionViewWidthConstraint: NSLayoutConstraint!
 
 	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
+	private var unitsArray: Array<String> = Array<String>()
 
 
 	override func viewDidLoad() {
@@ -108,18 +109,27 @@ extension MainViewController: UICollectionViewDataSource {
 			cell.labelCityName.text = cellData.cityName
 
 			let tempResult = cellData.cityTemperature
-			// TO DO: convert Fahrenheit
-			//			let tempFahrenh = (tempResult * 1.8) + 32
-			//			let roundFah = Int(round(tempFahrenh))
-			let temp = Int(round(tempResult))
-			//cell.labelCityTemerature.text = "\(temp)°C"
+			let temp = cToFahrenheit(tempC: tempResult)
+			let tempF = Int(round(temp))
 
-			let units: String? = UserDefaults.standard.object(forKey: "unitsChanged") as? String
-			if let unitsToDisplay = units {
-				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplay)"
+			let tempC = Int(round(tempResult))
+			let aArr = UserDefaults.standard.string(forKey: "unitsCel") ?? String()
+			let aArr2 = UserDefaults.standard.string(forKey: "unitsFahr") ?? String()
+
+			if unitsArray.first == aArr {
+
+				cell.labelCityTemerature.text = "\(tempC)\(aArr)"
+				cell.labelCityTemerature.animateAppearance()
+
+			} else if unitsArray.last == aArr2 {
+				cell.labelCityTemerature.text = "\(tempF) x"
 				cell.labelCityTemerature.animateAppearance()
 
 			}
+//			} else {
+////				cell.labelCityTemerature.text = "\(tempC) °C"
+////				cell.labelCityTemerature.animateAppearance()
+//			}
 
 			let weatherID = cellData.cityID
 			cell.updateWeatherIcon(conditionFor: weatherID)
@@ -149,6 +159,15 @@ extension MainViewController: UICollectionViewDataSource {
 		if let settingsViewController = segue.destination as? SettingViewController, segue.identifier == "SettingsSegue" {
 			settingsViewController.delegate = self
 		}
+	}
+
+
+
+
+
+// MARK: - Helper functions for temperature conversion
+	 func cToFahrenheit(tempC: Double) -> Double {
+		return (tempC * 1.8) + 32
 	}
 
 
