@@ -18,6 +18,9 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var smallCollectionViewWidthConstraint: NSLayoutConstraint!
 
 	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
+	private var selectedUnit: String? {
+		return UserDefaults.standard.string(forKey: "unitsChanged") ?? "°C"
+	}
 
 
 	override func viewDidLoad() {
@@ -113,9 +116,9 @@ extension MainViewController: UICollectionViewDataSource {
 
 			let tempC = Int(round(tempResult))
 
-			let units: String? = UserDefaults.standard.object(forKey: "unitsChanged") as? String
-			if (units != nil) {
-				cell.labelCityTemerature.text = "\(tempC)\(units ?? "°C")"
+			//let units: String? = UserDefaults.standard.object(forKey: "unitsChanged") as? String
+			if (selectedUnit != nil) {
+				cell.labelCityTemerature.text = "\(tempC)\(selectedUnit ?? "°C")"
 				cell.labelCityTemerature.animateAppearance()
 
 			} else {
