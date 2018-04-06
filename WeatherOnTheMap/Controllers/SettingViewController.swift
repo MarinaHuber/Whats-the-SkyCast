@@ -106,7 +106,8 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			currentUnit = unitsToDisplay
 		return unitsToDisplay
 		}
-		return "Unknown"
+		//default value on first 
+		return "°C"
 	}
 
 	@IBAction func buttonCityAdd(_ sender: Any) {

@@ -118,6 +118,8 @@ extension MainViewController: UICollectionViewDataSource {
 				cell.labelCityTemerature.text = "\(tempC)\(units ?? "°C")"
 				cell.labelCityTemerature.animateAppearance()
 
+			} else {
+				cell.labelCityTemerature.text = "\(tempC)°C"
 			}
 
 			let weatherID = cellData.cityID
