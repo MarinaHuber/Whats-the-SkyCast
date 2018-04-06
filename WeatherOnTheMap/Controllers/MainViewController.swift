@@ -108,15 +108,14 @@ extension MainViewController: UICollectionViewDataSource {
 			cell.labelCityName.text = cellData.cityName
 
 			let tempResult = cellData.cityTemperature
-			// TO DO: convert Fahrenheit
-			//			let tempFahrenh = (tempResult * 1.8) + 32
-			//			let roundFah = Int(round(tempFahrenh))
-			let temp = Int(round(tempResult))
-			//cell.labelCityTemerature.text = "\(temp)°C"
+			let temp = cToFahrenheit(tempC: tempResult)
+			let tempF = Int(round(temp))
+
+			let tempC = Int(round(tempResult))
 
 			let units: String? = UserDefaults.standard.object(forKey: "unitsChanged") as? String
-			if let unitsToDisplay = units {
-				cell.labelCityTemerature.text = "\(temp)\(unitsToDisplay)"
+			if (units != nil) {
+				cell.labelCityTemerature.text = "\(tempC)\(units ?? "°C")"
 				cell.labelCityTemerature.animateAppearance()
 
 			}
@@ -149,6 +148,13 @@ extension MainViewController: UICollectionViewDataSource {
 		if let settingsViewController = segue.destination as? SettingViewController, segue.identifier == "SettingsSegue" {
 			settingsViewController.delegate = self
 		}
+	}
+
+
+
+	// MARK: - Helper functions for temperature conversion
+	func cToFahrenheit(tempC: Double) -> Double {
+		return (tempC * 1.8) + 32
 	}
 
 
