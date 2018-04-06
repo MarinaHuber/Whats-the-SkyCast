@@ -44,7 +44,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 //	defaults.set(unitsData, forKey: "unitsKey")
 
 //	if let aArr = defaults.value(forKey: "unitsKey") as? [String] {
-//		print("Array Retrieved: \(aArr)")
 //	}
 
 	
