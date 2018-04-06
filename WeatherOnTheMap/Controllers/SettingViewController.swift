@@ -36,7 +36,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	
 	var unitsTitle = "unitsChanged"
 	
-	let unitsData = [UserDefaultsUnitsKey.celsius, UserDefaultsUnitsKey.fahrenheit]
+	let unitsData = [UserDefaultsUnitsKey.celsius.rawValue, UserDefaultsUnitsKey.fahrenheit.rawValue]
 
 	// store an array for MainVC
 //	let arrayDefault = ["°C", "°F"]

@@ -32,11 +32,9 @@ struct ForcastBackground: Codable {
 	
 }
 
-struct UserDefaultsUnitsKey {
-	static let fahrenheit = "°F"
-	static let celsius = "°C"
-
-	private init() { }
+enum UserDefaultsUnitsKey: String {
+	case celsius
+	case fahrenheit
 }
 
 

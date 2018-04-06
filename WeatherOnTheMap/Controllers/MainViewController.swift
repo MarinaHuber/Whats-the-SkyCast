@@ -19,8 +19,16 @@ class MainViewController: UIViewController {
 
 	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
 	private var selectedUnit: String? {
+		// show from UserDefault
 		return UserDefaults.standard.string(forKey: "unitsChanged") ?? "°C"
 	}
+
+
+	enum UnitType: String {
+		case celsius = "°C"
+		case fahrenheit = "°F"
+	}
+	var mode: UnitType?
 
 
 	override func viewDidLoad() {
@@ -118,6 +126,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 			//let units: String? = UserDefaults.standard.object(forKey: "unitsChanged") as? String
 			if (selectedUnit != nil) {
+				print(selectedUnit as Any)
 				cell.labelCityTemerature.text = "\(tempC)\(selectedUnit ?? "°C")"
 				cell.labelCityTemerature.animateAppearance()
 
@@ -160,6 +169,18 @@ extension MainViewController: UICollectionViewDataSource {
 	// MARK: - Helper functions for temperature conversion
 	func cToFahrenheit(tempC: Double) -> Double {
 		return (tempC * 1.8) + 32
+	}
+
+	func configureUnits (_ unitType: UnitType) {
+
+		self.mode = unitType
+
+		switch unitType {
+		case .celsius:
+			break
+		case .fahrenheit:
+			break
+		}
 	}
 
 
