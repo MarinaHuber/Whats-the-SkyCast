@@ -36,12 +36,17 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	
 	var unitsTitle = "unitsChanged"
 	
-	let unitsData = [UserDefaultsUnitKey.Fahrenheit.rawValue, UserDefaultsUnitKey.Celsius.rawValue]
-	
-	enum UserDefaultsUnitKey: String {
-		case Fahrenheit = "°F"
-		case Celsius = "°C"
-	}
+	let unitsData = [UserDefaultsUnitsKey.celsius, UserDefaultsUnitsKey.fahrenheit]
+
+	// store an array for MainVC
+//	let arrayDefault = ["°C", "°F"]
+
+//	defaults.set(unitsData, forKey: "unitsKey")
+
+//	if let aArr = defaults.value(forKey: "unitsKey") as? [String] {
+//		print("Array Retrieved: \(aArr)")
+//	}
+
 	
 	var currentUnit: String?
 	
@@ -137,7 +142,12 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 					self?.delegate?.citySelected(cityWeather: cityWeather)
 
 				}
-				UserDefaults.standard.set(self?.currentUnit, forKey: "unitsChanged")
+//				UserDefaults.standard.set(self?.currentUnit, forKey: unitsTitle)
+//				UserDefaults.standard.synchronize()
+				UserDefaults.standard.set(self?.unitsData.first, forKey: "unitsCel")
+				UserDefaults.standard.synchronize()
+
+				UserDefaults.standard.set(self?.unitsData.last, forKey: "unitsFahr")
 				UserDefaults.standard.synchronize()
 				
 				
@@ -181,8 +191,15 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			
 			currentUnit = unitsData[row]
 			buttonTitleTemp.titleLabel?.text = currentUnit
+			UserDefaults.standard.set(unitsData.first, forKey: "unitsCel")
+			UserDefaults.standard.synchronize()
+
+			UserDefaults.standard.set(unitsData.last, forKey: "unitsFahr")
+			UserDefaults.standard.synchronize()
+
 			UserDefaults.standard.set(currentUnit, forKey: unitsTitle)
 			UserDefaults.standard.synchronize()
+
 
 			
 		}
