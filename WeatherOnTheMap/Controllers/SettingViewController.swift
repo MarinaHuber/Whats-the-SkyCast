@@ -142,14 +142,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 					self?.delegate?.citySelected(cityWeather: cityWeather)
 
 				}
-//				UserDefaults.standard.set(self?.currentUnit, forKey: unitsTitle)
-//				UserDefaults.standard.synchronize()
-				UserDefaults.standard.set(self?.unitsData.first, forKey: "unitsCel")
-				UserDefaults.standard.synchronize()
 
-				UserDefaults.standard.set(self?.unitsData.last, forKey: "unitsFahr")
-				UserDefaults.standard.synchronize()
-				
 				
 			}
 			
@@ -191,11 +184,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			
 			currentUnit = unitsData[row]
 			buttonTitleTemp.titleLabel?.text = currentUnit
-			UserDefaults.standard.set(unitsData.first, forKey: "unitsCel")
-			UserDefaults.standard.synchronize()
-
-			UserDefaults.standard.set(unitsData.last, forKey: "unitsFahr")
-			UserDefaults.standard.synchronize()
 
 			UserDefaults.standard.set(currentUnit, forKey: unitsTitle)
 			UserDefaults.standard.synchronize()

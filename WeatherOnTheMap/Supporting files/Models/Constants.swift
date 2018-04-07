@@ -33,8 +33,8 @@ struct ForcastBackground: Codable {
 }
 
 enum UserDefaultsUnitsKey: String {
-	case celsius
-	case fahrenheit
+	case celsius = "°C"
+	case fahrenheit = "°F"
 }
 
 
