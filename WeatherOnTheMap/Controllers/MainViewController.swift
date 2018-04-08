@@ -82,17 +82,22 @@ class MainViewController: UIViewController {
 		return true
 	}
 
+	override func viewWillLayoutSubviews() {
+		
+
+		largeCollectionView.layoutIfNeeded()
+	}
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		largeCollectionView.contentInset = UIEdgeInsets.zero
+
 		if !citiesWeather.isEmpty {
 
 		largeCollectionView?.scrollToItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), at: .centeredHorizontally, animated: true)
 		smallCollectionView?.selectItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
 		//Reload here to update units for first load
 		largeCollectionView?.reloadItems(at: [IndexPath(row: self.citiesWeather.count - 1, section: 0)])
-
-		//smallCollectionView.reloadItems(at: [IndexPath(row: self.citiesWeather.count - 1, section: 0)])
-
 		smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
 		citiesWeather = UserDefaults.standard.cities
 		}
@@ -254,7 +259,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 			return CGSize(width: 50, height: 50)
 		}
 
-		return CGSize(width: view.frame.width, height: view.frame.height)
+		return CGSize(width: view.bounds.size.width, height: view.bounds.size.height - 90)
 	}
 
 

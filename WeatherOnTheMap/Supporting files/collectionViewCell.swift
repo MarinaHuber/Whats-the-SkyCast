@@ -82,6 +82,7 @@ class collectionViewCell: UICollectionViewCell {
 		
 		switch cellType {
 		case .large:
+
 			labelCityName.isHidden = false
 			iconImage.isHidden = false
 			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 110)
