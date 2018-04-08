@@ -90,6 +90,9 @@ class MainViewController: UIViewController {
 		smallCollectionView?.selectItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
 		//Reload here to update units for first load
 		largeCollectionView?.reloadItems(at: [IndexPath(row: self.citiesWeather.count - 1, section: 0)])
+
+		//smallCollectionView.reloadItems(at: [IndexPath(row: self.citiesWeather.count - 1, section: 0)])
+
 		smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
 		citiesWeather = UserDefaults.standard.cities
 		}
@@ -131,7 +134,7 @@ extension MainViewController: UICollectionViewDataSource {
 					cell.labelCityTemerature.text = "\(tempF)°\(self.selectedUnit ?? "F")"
 					cell.labelCityTemerature.animateAppearance()
 				  }
-			} else if unitType == nil {
+			} else if (unitType == nil && selectedUnit == nil) {
 
 				cell.labelCityTemerature.text = "\(tempC)°C"
 			}

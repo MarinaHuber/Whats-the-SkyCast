@@ -91,7 +91,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	override func viewWillAppear(_ animated: Bool) {
 
-       buttonTitleTemp.setTitle("°\(unitsData[0])", for: .normal)
+       buttonTitleTemp.setTitle(changedUnits(), for: .normal)
 	   buttonTitleTemp.titleLabel?.adjustsFontSizeToFitWidth = true
 
 
