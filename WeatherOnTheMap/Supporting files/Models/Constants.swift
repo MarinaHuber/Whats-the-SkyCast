@@ -32,11 +32,6 @@ struct ForcastBackground: Codable {
 	
 }
 
-enum UserDefaultsUnitsKey: String {
-	case celsius = "°C"
-	case fahrenheit = "°F"
-}
-
 
 struct Font {
 	static let largeText = UIFont(name: "Servetica-Thin", size: 23)

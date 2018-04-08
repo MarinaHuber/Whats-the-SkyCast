@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-	var settingsVC: SettingViewController?
+	var settingsVC: SettingViewController!
 
 	@IBOutlet weak var largeCollectionView: UICollectionView!
 	@IBOutlet weak var smallCollectionView: UICollectionView!
@@ -18,17 +18,15 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var smallCollectionViewWidthConstraint: NSLayoutConstraint!
 
 	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
+
 	private var selectedUnit: String? {
 		// show from UserDefault
-		return UserDefaults.standard.string(forKey: "unitsChanged") ?? "°C"
+		return UserDefaults.standard.string(forKey: "unitsChanged") ?? "C"
 	}
+	var unitType: Int? = 0
 
 
-	enum UnitType: String {
-		case celsius = "°C"
-		case fahrenheit = "°F"
-	}
-	var mode: UnitType?
+
 
 
 	override func viewDidLoad() {
@@ -54,6 +52,7 @@ class MainViewController: UIViewController {
 			}
 		}
 	}
+	
 	//MARK: GCD async for closure
 	func reloadSectionsUI() {
 
@@ -112,25 +111,28 @@ extension MainViewController: UICollectionViewDataSource {
 			print(indexPath.row)
 		}
 		let cellData = self.citiesWeather[indexPath.row]
-
+		let tempResult = cellData.cityTemperature
 		switch collectionView {
 		case largeCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
 			cell.labelCityName.text = cellData.cityName
 
-			let tempResult = cellData.cityTemperature
 			let temp = cToFahrenheit(tempC: tempResult)
 			let tempF = Int(round(temp))
 
 			let tempC = Int(round(tempResult))
 
-			//let units: String? = UserDefaults.standard.object(forKey: "unitsChanged") as? String
 			if (selectedUnit != nil) {
-				print(selectedUnit as Any)
-				cell.labelCityTemerature.text = "\(tempC)\(selectedUnit ?? "°C")"
-				cell.labelCityTemerature.animateAppearance()
+				//fix here the first load of vc main
+			if (unitType == 0) {
+				   cell.labelCityTemerature.text = "\(tempC)°\(self.selectedUnit ?? "C")"
+				   cell.labelCityTemerature.animateAppearance()
+			} else if unitType == 1 {
+					cell.labelCityTemerature.text = "\(tempF)°\(self.selectedUnit ?? "F")"
+					cell.labelCityTemerature.animateAppearance()
+				  }
+			} else if unitType == nil {
 
-			} else {
 				cell.labelCityTemerature.text = "\(tempC)°C"
 			}
 
@@ -144,9 +146,23 @@ extension MainViewController: UICollectionViewDataSource {
 
 		case smallCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IDsmall", for: indexPath) as! collectionViewCell
-			let tempResult1 = cellData.cityTemperature
-			let temp = Int(round(tempResult1))
-			cell.labelCityTemerature.text = "\(temp)°"
+			let temp = cToFahrenheit(tempC: tempResult)
+			let tempF = Int(round(temp))
+			
+			let tempC = Int(round(tempResult))
+
+				//fix here the first load of vc main
+				if (unitType == 0) {
+					cell.labelCityTemerature.text = "\(tempC)°"
+					cell.labelCityTemerature.animateAppearance()
+				} else if unitType == 1 {
+					cell.labelCityTemerature.text = "\(tempF)°"
+					cell.labelCityTemerature.animateAppearance()
+				} else if unitType == nil {
+
+					cell.labelCityTemerature.text = "\(tempC)°"
+			}
+
 			cell.configureCellWithType(.small)
 			return cell
 		default:
@@ -161,6 +177,16 @@ extension MainViewController: UICollectionViewDataSource {
 
 		if let settingsViewController = segue.destination as? SettingViewController, segue.identifier == "SettingsSegue" {
 			settingsViewController.delegate = self
+			// passing picker value from block and gobal Int property
+			settingsViewController.celsiusBlock = {
+				self.unitType = 0
+				self.smallCollectionView.reloadData()
+			}
+			settingsViewController.fahrenheitBlock = {
+				self.unitType = 1
+				self.smallCollectionView.reloadData()
+			}
+
 		}
 	}
 
@@ -171,17 +197,6 @@ extension MainViewController: UICollectionViewDataSource {
 		return (tempC * 1.8) + 32
 	}
 
-	func configureUnits (_ unitType: UnitType) {
-
-		self.mode = unitType
-
-		switch unitType {
-		case .celsius:
-			break
-		case .fahrenheit:
-			break
-		}
-	}
 
 
 }

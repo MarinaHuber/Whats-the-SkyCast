@@ -17,6 +17,8 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	var inputCityText: String = ""
 	
 	@IBOutlet weak var pickerView: UIPickerView!
+	var celsiusBlock: (() -> ())?
+	var fahrenheitBlock: (() -> ())?
 	
 	
 	var isHidden: Bool = true {
@@ -33,23 +35,28 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
 	@IBOutlet weak var buttonTitleDays: UIButton!
-	
-	var unitsTitle = "unitsChanged"
-	
-	let unitsData = [UserDefaultsUnitsKey.celsius.rawValue, UserDefaultsUnitsKey.fahrenheit.rawValue]
 
-	// store an array for MainVC
-//	let arrayDefault = ["°C", "°F"]
-
-//	defaults.set(unitsData, forKey: "unitsKey")
-
-//	if let aArr = defaults.value(forKey: "unitsKey") as? [String] {
-
-//	}
-
-	
 	var currentUnit: String?
+	var unitsTitle = "unitsChanged"
+
+
+
+	enum UserDefaultsUnitKey: String {
+		case celsius = "C"
+		case fahrenheit = "F"
+	}
+
 	
+	let unitsData = [UserDefaultsUnitKey.celsius.rawValue, UserDefaultsUnitKey.fahrenheit.rawValue]
+//
+//	enum UnitType: Int {
+//		case celsius = 0
+//		case fahrenheit = 1
+//	}
+	var mode: Int? = Int()
+
+
+
 	let daysData = [DaysPicker.Today.rawValue, DaysPicker.two.rawValue, DaysPicker.three.rawValue, DaysPicker.four.rawValue, DaysPicker.five.rawValue]
 	
 	enum DaysPicker: String {
@@ -59,7 +66,8 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		case four
 		case five
 	}
-	
+
+
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -67,10 +75,12 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		tableView.allowsSelection = false
 		tableView.delegate = self
 		tableView.dataSource = self
-		
+		mode = 0
+	
 		pickerView.dataSource = self
 		pickerView.delegate = self
 		pickerView.isHidden = true
+		//mode = 0
 		
 		let indexOfDefaultElement = 0 // Make sure that an element at this index exists
 		pickerView.selectRow(indexOfDefaultElement, inComponent: 0, animated: false)
@@ -81,7 +91,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 	override func viewWillAppear(_ animated: Bool) {
 
-       buttonTitleTemp.setTitle(changedUnits(), for: .normal)
+       buttonTitleTemp.setTitle("°\(unitsData[0])", for: .normal)
 	   buttonTitleTemp.titleLabel?.adjustsFontSizeToFitWidth = true
 
 
@@ -90,6 +100,8 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBAction func buttonUnits(_ sender: Any) {
 		buttonTitleTemp.setTitle(changedUnits(), for: .normal)
 		toggleDatepicker()
+
+
 		dataSourcePicker = unitsData
 		self.pickerView.reloadAllComponents()
 	}
@@ -109,7 +121,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		let units: String? = UserDefaults.standard.object(forKey: unitsTitle) as? String
 		if let unitsToDisplay = units {
 			currentUnit = unitsToDisplay
-		return unitsToDisplay
+		return "°\(unitsToDisplay)"
 		}
 		//default value on first 
 		return "°C"
@@ -131,7 +143,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: { [weak self]
 			(paramAction:UIAlertAction!) in
 			if let textFields = alertController?.textFields {
-				//self?.buttonTitleLocation.titleLabel?.text = citiesWeather
 				let theTextFields = textFields as [UITextField]
 				self?.inputCityText = theTextFields[0].text!
 				guard let city = self?.inputCityText else { return }
@@ -153,10 +164,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		self.present(alertController!, animated: true, completion: nil)
 		
 	}
-	
-	
-	
-	
+
 	//MARK: UIPickerViewDataSourcefunc
 	
 	public func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -170,10 +178,11 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	
 	
 	public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-		return dataSourcePicker[row]
+		return "°\(dataSourcePicker[row])"
 	}
 	
-	
+	//https://stackoverflow.com/questions/41705050/uipickerview-sending-data-without-segue
+
 	public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		
 		if dataSourcePicker == daysData {
@@ -183,13 +192,20 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		} else if dataSourcePicker == unitsData {
 			
 			currentUnit = unitsData[row]
-			buttonTitleTemp.titleLabel?.text = currentUnit
+
+			buttonTitleTemp.titleLabel?.text = "°\(currentUnit ?? "°C")"
+
+	//   pass this to Mail vc, currentUnit?.first! = first chosen in picker
+			let chosen = pickerView.selectedRow(inComponent: 0)
+			print(chosen)
+			if chosen == 0 {
+				celsiusBlock?()
+			} else if chosen == 1 {
+				fahrenheitBlock?()
+			}
 
 			UserDefaults.standard.set(currentUnit, forKey: unitsTitle)
 			UserDefaults.standard.synchronize()
-
-
-			
 		}
 		
 		toggleDatepicker()
@@ -198,7 +214,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		
 	}
 
-	
 
 	
 	@IBAction func backToMainView(_ sender: Any) {

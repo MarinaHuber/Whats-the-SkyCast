@@ -100,8 +100,8 @@
 			children = (
 				9C46DF001F7B9203004834C8 /* Models */,
 				9CEE28052018EC3500B7BD77 /* Helpers */,
-				9C9C601A1F7AB4DF00661A58 /* AppDelegate.swift */,
 				9C46DF061F7B9B36004834C8 /* collectionViewCell.swift */,
+				9C9C601A1F7AB4DF00661A58 /* AppDelegate.swift */,
 				9C9C601E1F7AB4DF00661A58 /* Main.storyboard */,
 				9C9C60211F7AB4DF00661A58 /* Assets.xcassets */,
 				9C9C602F1F7AB9B200661A58 /* background.jpeg */,
