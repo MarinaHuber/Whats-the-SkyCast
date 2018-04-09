@@ -21,11 +21,11 @@ extension UIColor {
 	}
 }
 
-extension UIImageView
+extension UIView
 {
 	func addBlurEffect()
 	{
-		let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+		let blurEffect = UIBlurEffect(style: .light)
 		let blurEffectView = UIVisualEffectView(effect: blurEffect)
 		blurEffectView.frame = self.bounds
 

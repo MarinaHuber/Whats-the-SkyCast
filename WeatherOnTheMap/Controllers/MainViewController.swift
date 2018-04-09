@@ -35,6 +35,8 @@ class MainViewController: UIViewController {
 		loadCities()
 		largeCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "ID")
 		smallCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "IDsmall")
+		//smallCollectionView.alpha = 0.2
+		//smallCollectionView.backgroundColor = .blue
 
 	}
 
@@ -98,7 +100,7 @@ class MainViewController: UIViewController {
 		smallCollectionView?.selectItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
 		//Reload here to update units for first load
 		largeCollectionView?.reloadItems(at: [IndexPath(row: self.citiesWeather.count - 1, section: 0)])
-		smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
+		//smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
 		citiesWeather = UserDefaults.standard.cities
 		}
 
@@ -256,10 +258,10 @@ extension MainViewController: SettingViewControllerDelegate {
 extension MainViewController: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		guard largeCollectionView == collectionView else {
-			return CGSize(width: 50, height: 50)
+			return CGSize(width: 60, height: 60)
 		}
 
-		return CGSize(width: view.bounds.size.width, height: view.bounds.size.height - 90)
+		return CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
 	}
 
 
@@ -267,10 +269,31 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 		if largeCollectionView == collectionView {
 			return 0
 		} else if smallCollectionView == collectionView {
-			return 6
+			return 7
 		}
 		return 0
 	}
+
+	//For top/bottom/left/right padding method
+	func collectionView(_ collectionView: UICollectionView, layout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+		if largeCollectionView == collectionView {
+			if #available(iOS 11, *) {
+				let window = UIApplication.shared.windows[0]
+				let insets:UIEdgeInsets = window.safeAreaInsets
+				return insets
+			}
+		} else if smallCollectionView == collectionView {
+//			let totalCellWidth = 60 * 6
+//			let totalSpacingWidth = 7 * (6 - 1)
+//			let leftInset = (view.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+//			let rightInset = leftInset
+
+			return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+		}
+		return UIEdgeInsets()
+	}
+
 }
 
 

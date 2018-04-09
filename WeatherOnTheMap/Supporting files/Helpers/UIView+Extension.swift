@@ -19,7 +19,7 @@ extension UIView {
 
 	var defaultDelay: Double {
 		get {
-			return 0.4
+			return 0.5
 		}
 	}
 
