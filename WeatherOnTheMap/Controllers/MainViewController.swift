@@ -284,12 +284,17 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 				return insets
 			}
 		} else if smallCollectionView == collectionView {
-//			let totalCellWidth = 60 * 6
-//			let totalSpacingWidth = 7 * (6 - 1)
-//			let leftInset = (view.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
-//			let rightInset = leftInset
+			switch UIDevice().userInterfaceIdiom {
+			case UIUserInterfaceIdiom.pad:
+				let totalCellWidth = 60 * 6
+				let totalSpacingWidth = 7 * (6 - 1)
+				let leftInset = (view.bounds.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+				let rightInset = leftInset
+				return UIEdgeInsets(top: 10, left: leftInset, bottom: 10, right: rightInset)
+			default:
 
 			return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+			}
 		}
 		return UIEdgeInsets()
 	}

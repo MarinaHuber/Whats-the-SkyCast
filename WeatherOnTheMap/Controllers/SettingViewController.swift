@@ -35,6 +35,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
 	@IBOutlet weak var buttonTitleDays: UIButton!
+	var popOver:UIPopoverPresentationController?
 
 	var currentUnit: String?
 	var unitsTitle = "unitsChanged"
@@ -162,6 +163,15 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		alertController?.addAction(action)
 		alertController?.addAction(cancelAction)
 		self.present(alertController!, animated: true, completion: nil)
+
+		//if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
+			//TODO: UIPopoverPresentationController
+			//self.popOver = UIPopoverPresentationController(contentViewController: action)
+			//self.popOver?.present(from: buttonTitleLocation.frame, in: self, permittedArrowDirections: UIPopoverArrowDirection.up, animated: true)
+
+	//	} else {
+		//self.present(alertController!, animated: true, completion: nil)
+	//	}
 		
 	}
 
