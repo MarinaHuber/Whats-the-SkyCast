@@ -15,9 +15,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+		// ********************************************************
+		// check for Internet connection on launch
+		// ********************************************************
+		//customizeUI()
+		let reachability = Reachability()!
+		if reachability.connection != .none {
+		} else {
+			print("Internet connection FAILED")
+			let alert = UIAlertController(title: "No Internet connection", message: "Make sure your device is connected to the internet.", preferredStyle: .alert)
+			let action = UIAlertAction(title: "OK", style: .destructive, handler: {
+				(action : UIAlertAction!) -> Void in })
+			alert.addAction(action)
+		}
         return true
     }
+
+	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+
+		switch UIDevice().userInterfaceIdiom {
+		case UIUserInterfaceIdiom.pad:
+
+			return .portrait
+		default:
+			return .portrait
+		}
+
+
+	}
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -29,4 +54,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+//UI CUSTOMIZATION
+extension AppDelegate {
+
+	func customizeUI() {
+
+		UINavigationBar.appearance().isTranslucent = true
+		UINavigationBar.appearance().backgroundColor = UIColor.clear
+		UINavigationBar.appearance().barTintColor = UIColor.white
+		UINavigationBar.appearance().tintColor = UIColor.black
+		UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+		UINavigationBar.appearance().shadowImage = UIImage()
+		UINavigationBar.appearance().layer.shadowColor = UIColor.clear.cgColor
+
+		//add here for iPad and iPhone version
+		let isPad = UIDevice().userInterfaceIdiom  == .pad
+
+		UINavigationBar.appearance().titleTextAttributes = isPad ? [.foregroundColor: UIColor.black, .font: Font.largeText!] : [.foregroundColor: UIColor.black, .font: Font.smallText!]
+		if (UIScreen.main.bounds.size.height == 480) {
+		UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black, .font: Font.smallText!]
+		}
+
+
+	}
+
+}
+
 

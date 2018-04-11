@@ -31,7 +31,7 @@ class MainViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setNavigationBar()
+		//setNavigationBar() -> appDelegate
 		loadCities()
 		largeCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "ID")
 		smallCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "IDsmall")
