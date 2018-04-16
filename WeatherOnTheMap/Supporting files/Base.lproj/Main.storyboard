@@ -145,7 +145,7 @@
                                 <segue destination="7Gb-ji-dmO" kind="show" identifier="SettingsSegue" id="pHr-on-Caa"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="vEl-H8-oPy"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" id="vEl-H8-oPy"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -422,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ke-2d-E5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2198" y="881"/>
+            <point key="canvasLocation" x="2006" y="869"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qPa-t3-amZ">

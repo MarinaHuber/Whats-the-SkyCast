@@ -34,7 +34,7 @@ class LogoViewController: UIViewController {
 	func switchScreen() {
 		let storyboard = UIStoryboard(name: "Main", bundle: .main)
 		let vc : UIViewController = storyboard.instantiateViewController(withIdentifier: "main") as! MainViewController
-		self.navigationController?.present(vc, animated: true, completion: nil)
+		self.navigationController?.pushViewController(vc, animated: true)
 
 
 	}

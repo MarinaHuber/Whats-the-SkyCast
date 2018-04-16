@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+		customizeUI()
 		// ********************************************************
 		// check for Internet connection on launch
 		// ********************************************************
@@ -59,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
 
 	func customizeUI() {
-
 		UINavigationBar.appearance().isTranslucent = true
 		UINavigationBar.appearance().backgroundColor = UIColor.clear
 		UINavigationBar.appearance().barTintColor = UIColor.white
@@ -71,12 +71,20 @@ extension AppDelegate {
 		//add here for iPad and iPhone version
 		let isPad = UIDevice().userInterfaceIdiom  == .pad
 
-		UINavigationBar.appearance().titleTextAttributes = isPad ? [.foregroundColor: UIColor.black, .font: Font.largeText!] : [.foregroundColor: UIColor.black, .font: Font.smallText!]
+		UINavigationBar.appearance().titleTextAttributes = isPad ? [NSAttributedStringKey.foregroundColor:UIColor.blue, NSAttributedStringKey.font: UIFont(name: "Servetica-Thin", size: 23)] : [NSAttributedStringKey.foregroundColor:UIColor.red, NSAttributedStringKey.font: UIFont(name: "Servetica-Thin", size: 15)]
+
+
+// missing this
+//		let myString = "Swift Attributed String"
+//		let attr:[NSAttributedStringKey: Any] = [.foregroundColor: UIColor.blue, .writingDirection: [NSNumber(integerLiteral: 3)]]
+//
+//		let myAttrString = NSAttributedString(string: myString, attributes:attr)
+//
+//		self.label.attributedText = myAttrString
+
 		if (UIScreen.main.bounds.size.height == 480) {
-		UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black, .font: Font.smallText!]
+		UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.red, NSAttributedStringKey.font: Font.smallText as Any]
 		}
-
-
 	}
 
 }

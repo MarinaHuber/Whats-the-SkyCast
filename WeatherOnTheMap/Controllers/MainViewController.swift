@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var largeCollectionView: UICollectionView!
 	@IBOutlet weak var smallCollectionView: UICollectionView!
 
+//not connected
 	@IBOutlet weak var smallCollectionViewWidthConstraint: NSLayoutConstraint!
 
 	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
@@ -31,12 +32,10 @@ class MainViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		//setNavigationBar() -> appDelegate
+	//TODO: setNavigationBar() -> appDelegate
 		loadCities()
 		largeCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "ID")
 		smallCollectionView.register(collectionViewCell.self, forCellWithReuseIdentifier: "IDsmall")
-		//smallCollectionView.alpha = 0.2
-		//smallCollectionView.backgroundColor = .blue
 
 	}
 
