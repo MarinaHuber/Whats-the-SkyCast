@@ -132,10 +132,17 @@
 		9C46DF091F7BB44A004834C8 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				9CEAE16F209D1ACE001415C8 /* logo_final.json */,
+				9CA8AB6A209F52F9005AB691 /* blue_waves_.json */,
+				9CA8AB78209F5EE4005AB691 /* techno_penguin.json */,
+				9CA8AB7A209F616A005AB691 /* loading_ribbon.json */,
+				9CA8AB8C209F6615005AB691 /* yelloader.json */,
+				9CA8AB84209F6462005AB691 /* ball.json */,
+				9CA8AB6E209F58D0005AB691 /* color_line.json */,
+				9C593F6E207EA9D400F621B8 /* loader_animation.json */,
 				9C9C601A1F7AB4DF00661A58 /* AppDelegate.swift */,
 				9C593F66207E407700F621B8 /* Reachability.swift */,
 				9C46DEFE1F7B8DC1004834C8 /* Constants.swift */,
-				9C46DF001F7B9203004834C8 /* Models */,
 				9CEE28052018EC3500B7BD77 /* Helpers */,
 				9C46DF061F7B9B36004834C8 /* collectionViewCell.swift */,
 				9C9C601E1F7AB4DF00661A58 /* Main.storyboard */,
@@ -167,16 +174,9 @@
 			isa = PBXGroup;
 			children = (
 				9CEAE171209D1BB8001415C8 /* Launch Screen.storyboard */,
-				9CEAE16F209D1ACE001415C8 /* logo_final.json */,
-				9CA8AB6A209F52F9005AB691 /* blue_waves_.json */,
-				9CA8AB78209F5EE4005AB691 /* techno_penguin.json */,
-				9CA8AB7A209F616A005AB691 /* loading_ribbon.json */,
-				9CA8AB8C209F6615005AB691 /* yelloader.json */,
-				9CA8AB84209F6462005AB691 /* ball.json */,
-				9CA8AB6E209F58D0005AB691 /* color_line.json */,
 				9C9C60261F7AB4DF00661A58 /* Info.plist */,
-				9C593F6E207EA9D400F621B8 /* loader_animation.json */,
 				9C46DF091F7BB44A004834C8 /* Supporting files */,
+				9C46DF001F7B9203004834C8 /* Models */,
 				9C46DF081F7BB438004834C8 /* Controllers */,
 				9C46DF011F7B923D004834C8 /* Services */,
 			);
