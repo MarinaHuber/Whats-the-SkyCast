@@ -24,7 +24,6 @@
 		9C9C602E1F7AB92600661A58 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9C602D1F7AB92600661A58 /* MainViewController.swift */; };
 		9C9C60301F7AB9B200661A58 /* background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C602F1F7AB9B200661A58 /* background.jpeg */; };
 		9C9E699C1F7CED880090B4E4 /* WEATHERinfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C46DF0A1F7BBAB9004834C8 /* WEATHERinfo.html */; };
-		9C9E699D1F7CF03E0090B4E4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C60261F7AB4DF00661A58 /* Info.plist */; };
 		9CA8AB6B209F52FA005AB691 /* blue_waves_.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB6A209F52F9005AB691 /* blue_waves_.json */; };
 		9CA8AB6F209F58D0005AB691 /* color_line.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB6E209F58D0005AB691 /* color_line.json */; };
 		9CA8AB79209F5EE5005AB691 /* techno_penguin.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB78209F5EE4005AB691 /* techno_penguin.json */; };
@@ -231,7 +230,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Marina Huber";
 				TargetAttributes = {
 					9C9C60161F7AB4DF00661A58 = {
@@ -268,7 +267,6 @@
 				9C9E699C1F7CED880090B4E4 /* WEATHERinfo.html in Resources */,
 				9CA8AB6B209F52FA005AB691 /* blue_waves_.json in Resources */,
 				9CEAE172209D1BB8001415C8 /* Launch Screen.storyboard in Resources */,
-				9C9E699D1F7CF03E0090B4E4 /* Info.plist in Resources */,
 				9C9C60221F7AB4DF00661A58 /* Assets.xcassets in Resources */,
 				9C593F6F207EA9D400F621B8 /* loader_animation.json in Resources */,
 				9C9C60201F7AB4DF00661A58 /* Main.storyboard in Resources */,
@@ -425,6 +423,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = SunWeather;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -475,6 +474,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SunWeather;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
