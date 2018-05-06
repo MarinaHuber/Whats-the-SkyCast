@@ -149,18 +149,18 @@ class collectionViewCell: UICollectionViewCell {
 		var animaName:String
 		switch conditionFor {
 		case 200..<300:
-			animaName = "waves_and_stripe"
+			animaName = "loading_ribbon"
 		case 300..<700:
 			animaName = "color_line"
 		case 701..<799:
 			animaName = "techno_penguin"
 		case 800:
-			animaName = "testanimation"
+			animaName = "yelloader"
 		case 801..<805:
 			animaName = "blue_waves_"
 		default:
-			animaName = "sky"
-			break
+			animaName = "yelloader"
+
 		}
 		self.iconView.setAnimation(named: animaName)
 		self.iconView.play()
