@@ -147,6 +147,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 			let weatherID = cellData.cityID
 			cell.updateWeatherIcon(conditionFor: weatherID)
+			cell.updateAnimationIcon(conditionFor: weatherID)
 
 			cell.configureCellWithType(.large)
 			return cell

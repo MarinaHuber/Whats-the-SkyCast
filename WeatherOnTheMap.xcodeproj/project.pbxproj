@@ -25,6 +25,12 @@
 		9C9C60301F7AB9B200661A58 /* background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C602F1F7AB9B200661A58 /* background.jpeg */; };
 		9C9E699C1F7CED880090B4E4 /* WEATHERinfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C46DF0A1F7BBAB9004834C8 /* WEATHERinfo.html */; };
 		9C9E699D1F7CF03E0090B4E4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C9C60261F7AB4DF00661A58 /* Info.plist */; };
+		9CA8AB69209F5184005AB691 /* sun_burst_weather_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB68209F5184005AB691 /* sun_burst_weather_icon.json */; };
+		9CA8AB6B209F52FA005AB691 /* blue_waves_.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB6A209F52F9005AB691 /* blue_waves_.json */; };
+		9CA8AB6F209F58D0005AB691 /* color_line.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB6E209F58D0005AB691 /* color_line.json */; };
+		9CA8AB75209F5DDF005AB691 /* testanimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB74209F5DDF005AB691 /* testanimation.json */; };
+		9CA8AB77209F5EBC005AB691 /* waves_and_stripe.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB76209F5EBC005AB691 /* waves_and_stripe.json */; };
+		9CA8AB79209F5EE5005AB691 /* techno_penguin.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB78209F5EE4005AB691 /* techno_penguin.json */; };
 		9CC70D701F7ABBF30032406D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC70D6F1F7ABBF30032406D /* MapViewController.swift */; };
 		9CC70D721F7ABC080032406D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC70D711F7ABC080032406D /* AboutViewController.swift */; };
 		9CD7B646203F6EE70095F58D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD7B645203F6EE70095F58D /* SettingViewController.swift */; };
@@ -56,6 +62,12 @@
 		9C9C60261F7AB4DF00661A58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C9C602D1F7AB92600661A58 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9C9C602F1F7AB9B200661A58 /* background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpeg; sourceTree = "<group>"; };
+		9CA8AB68209F5184005AB691 /* sun_burst_weather_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun_burst_weather_icon.json; sourceTree = "<group>"; };
+		9CA8AB6A209F52F9005AB691 /* blue_waves_.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = blue_waves_.json; sourceTree = "<group>"; };
+		9CA8AB6E209F58D0005AB691 /* color_line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = color_line.json; sourceTree = "<group>"; };
+		9CA8AB74209F5DDF005AB691 /* testanimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testanimation.json; sourceTree = "<group>"; };
+		9CA8AB76209F5EBC005AB691 /* waves_and_stripe.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = waves_and_stripe.json; sourceTree = "<group>"; };
+		9CA8AB78209F5EE4005AB691 /* techno_penguin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = techno_penguin.json; sourceTree = "<group>"; };
 		9CC70D6F1F7ABBF30032406D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9CC70D711F7ABC080032406D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		9CD7B645203F6EE70095F58D /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +168,12 @@
 			children = (
 				9CEAE171209D1BB8001415C8 /* Launch Screen.storyboard */,
 				9CEAE16F209D1ACE001415C8 /* logo_final.json */,
+				9CA8AB6A209F52F9005AB691 /* blue_waves_.json */,
+				9CA8AB74209F5DDF005AB691 /* testanimation.json */,
+				9CA8AB78209F5EE4005AB691 /* techno_penguin.json */,
+				9CA8AB68209F5184005AB691 /* sun_burst_weather_icon.json */,
+				9CA8AB76209F5EBC005AB691 /* waves_and_stripe.json */,
+				9CA8AB6E209F58D0005AB691 /* color_line.json */,
 				9C9C60261F7AB4DF00661A58 /* Info.plist */,
 				9C593F6E207EA9D400F621B8 /* loader_animation.json */,
 				9C46DF091F7BB44A004834C8 /* Supporting files */,
@@ -247,11 +265,17 @@
 			files = (
 				9CEAE170209D1ACF001415C8 /* logo_final.json in Resources */,
 				9C9E699C1F7CED880090B4E4 /* WEATHERinfo.html in Resources */,
+				9CA8AB6B209F52FA005AB691 /* blue_waves_.json in Resources */,
 				9CEAE172209D1BB8001415C8 /* Launch Screen.storyboard in Resources */,
 				9C9E699D1F7CF03E0090B4E4 /* Info.plist in Resources */,
 				9C9C60221F7AB4DF00661A58 /* Assets.xcassets in Resources */,
 				9C593F6F207EA9D400F621B8 /* loader_animation.json in Resources */,
+				9CA8AB69209F5184005AB691 /* sun_burst_weather_icon.json in Resources */,
 				9C9C60201F7AB4DF00661A58 /* Main.storyboard in Resources */,
+				9CA8AB77209F5EBC005AB691 /* waves_and_stripe.json in Resources */,
+				9CA8AB6F209F58D0005AB691 /* color_line.json in Resources */,
+				9CA8AB79209F5EE5005AB691 /* techno_penguin.json in Resources */,
+				9CA8AB75209F5DDF005AB691 /* testanimation.json in Resources */,
 				9C9C60301F7AB9B200661A58 /* background.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

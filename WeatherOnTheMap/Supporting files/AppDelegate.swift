@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		customizeUI()
+		//customizeUI()
 		// ********************************************************
 		// check for Internet connection on launch
 		// ********************************************************
@@ -70,8 +70,8 @@ extension AppDelegate {
 
 		//add here for iPad and iPhone version
 		let isPad = UIDevice().userInterfaceIdiom  == .pad
-
-		UINavigationBar.appearance().titleTextAttributes = isPad ? [NSAttributedStringKey.foregroundColor:UIColor.blue, NSAttributedStringKey.font: UIFont(name: "Servetica-Thin", size: 23)] : [NSAttributedStringKey.foregroundColor:UIColor.red, NSAttributedStringKey.font: UIFont(name: "Servetica-Thin", size: 15)]
+//
+//		UINavigationBar.appearance().titleTextAttributes = isPad ? [NSAttributedStringKey.foregroundColor:UIColor.blue, NSAttributedStringKey.font: UIFont(name: "Servetica-Thin", size: 23)] : [NSAttributedStringKey.foregroundColor:UIColor.red, NSAttributedStringKey.font: UIFont(name: "Servetica-Thin", size: 15)]
 
 
 // missing this
