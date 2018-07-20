@@ -21,7 +21,7 @@ class collectionViewCell: UICollectionViewCell {
 	
 	var labelCityName = UILabel()
 	var labelCityTemerature = UILabel()
-	var iconView = LOTAnimationView()
+	var iconViewAnima = LOTAnimationView()
 	
 	lazy var iconImage: UIImageView = {
 		let iview = UIImageView()
@@ -87,20 +87,25 @@ class collectionViewCell: UICollectionViewCell {
 			contentView.addSubview(labelCityName)
 			contentView.addSubview(labelCityTemerature)
 			contentView.addSubview(iconImage)
-			contentView.addSubview(iconView)
-			contentView.bringSubview(toFront: iconView)
+			contentView.addSubview(iconViewAnima)
+			contentView.bringSubview(toFront: iconViewAnima)
 			contentView.bringSubview(toFront: labelCityTemerature)
 
-			iconView.layoutIfNeeded()
+			iconViewAnima.layoutIfNeeded()
 
 			contentView.backgroundColor = UIColor(red: .random, green: .random, blue: .random, alpha: 0.3)
 			switch UIDevice().userInterfaceIdiom {
 			case UIUserInterfaceIdiom.pad:
-				labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: 0, leftConstant: -350, bottomConstant: 0, rightConstant: 0, widthConstant: 210, heightConstant: 210)
+				labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: 10, leftConstant: -270, bottomConstant: 0, rightConstant: 0, widthConstant: 210, heightConstant: 210)
+
+				iconViewAnima.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 50, leftConstant: contentView.frame.width/2-280, bottomConstant: 0, rightConstant: contentView.frame.width/2-280, widthConstant: 410, heightConstant: 410)
+
+				iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 50, leftConstant: contentView.frame.width/2-160, bottomConstant: -150, rightConstant: contentView.frame.width/2-160, widthConstant: 350, heightConstant: 350)
+
 				labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 450, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 20, rightConstant: 0, widthConstant: 120, heightConstant: 20)
 			default:
 
-				iconView.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: 0, rightConstant: contentView.frame.width/2-110, widthConstant: 300, heightConstant: 300)
+				iconViewAnima.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: 0, rightConstant: contentView.frame.width/2-110, widthConstant: 300, heightConstant: 300)
 
 				labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: 0, leftConstant: -60, bottomConstant: 0, rightConstant: 0, widthConstant: 210, heightConstant: 210)
 				labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 200, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 20, rightConstant: 0, widthConstant: 120, heightConstant: 20)
@@ -112,7 +117,7 @@ class collectionViewCell: UICollectionViewCell {
 			layer.masksToBounds = true
 			labelCityName.isHidden = true
 			iconImage.isHidden = true
-			iconView.isHidden = true
+			iconViewAnima.isHidden = true
 			contentView.backgroundColor = UIColor.randomColor
 			labelCityTemerature.isHidden = false
 			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 20)
@@ -164,9 +169,9 @@ class collectionViewCell: UICollectionViewCell {
 			animaName = "yelloader"
 
 		}
-		self.iconView.setAnimation(named: animaName)
-		self.iconView.play()
-		self.iconView.loopAnimation = true
+		self.iconViewAnima.setAnimation(named: animaName)
+		self.iconViewAnima.play()
+		self.iconViewAnima.loopAnimation = true
 
 	}
 	
