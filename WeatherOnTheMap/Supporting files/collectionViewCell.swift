@@ -105,13 +105,15 @@ class collectionViewCell: UICollectionViewCell {
 
 
 			default:
-				labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 110)
+				labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 100)
 				labelCityName.font = UIFont.boldSystemFont(ofSize: 20)
-				iconViewAnima.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: 0, rightConstant: contentView.frame.width/2-110, widthConstant: 300, heightConstant: 300)
+				labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 170, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 40, rightConstant: 0, widthConstant: 120, heightConstant: 20)
+
+				iconViewAnima.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 60, leftConstant: contentView.frame.width/2-110, bottomConstant: 0, rightConstant: contentView.frame.width/2-110, widthConstant: 300, heightConstant: 300)
 
 				labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: 0, leftConstant: -60, bottomConstant: 0, rightConstant: 0, widthConstant: 210, heightConstant: 210)
-				labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 200, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 20, rightConstant: 0, widthConstant: 120, heightConstant: 20)
-				iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: -150, rightConstant: contentView.frame.width/2-100, widthConstant: 210, heightConstant: 210)}
+
+				iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: -110, rightConstant: contentView.frame.width/2-100, widthConstant: 210, heightConstant: 210)}
 
 
 		case .small:
@@ -138,15 +140,15 @@ class collectionViewCell: UICollectionViewCell {
 		var imageName:String
 		switch conditionFor {
 		case 200..<300:
-			imageName = "thunderstorm"
+			imageName = "thun"
 		case 300..<700:
-			imageName = "rainy"
+			imageName = "rain"
 		case 701..<799:
-			imageName = "snowy"
+			imageName = "snow"
 		case 800:
 			imageName = "sunny"
 		case 801..<805:
-			imageName = "cloudy"
+			imageName = "cloud1"
 		default:
 			imageName = "sunny"
 			break
