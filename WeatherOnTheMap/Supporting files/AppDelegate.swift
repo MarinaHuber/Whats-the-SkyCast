@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// ********************************************************
 		//https://stackoverflow.com/questions/30743408/check-for-internet-connection-with-swift
 		// ********************************************************
-		//customizeUI()
+
 		let reachability = Reachability()!
 		if reachability.connection != .none {
 		} else {

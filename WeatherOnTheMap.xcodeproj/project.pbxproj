@@ -31,7 +31,6 @@
 		9CA8AB6F209F58D0005AB691 /* color_line.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB6E209F58D0005AB691 /* color_line.json */; };
 		9CA8AB79209F5EE5005AB691 /* techno_penguin.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB78209F5EE4005AB691 /* techno_penguin.json */; };
 		9CA8AB7B209F616B005AB691 /* loading_ribbon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB7A209F616A005AB691 /* loading_ribbon.json */; };
-		9CA8AB85209F6462005AB691 /* ball.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB84209F6462005AB691 /* ball.json */; };
 		9CA8AB8D209F6617005AB691 /* yelloader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB8C209F6615005AB691 /* yelloader.json */; };
 		9CC70D701F7ABBF30032406D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC70D6F1F7ABBF30032406D /* MapViewController.swift */; };
 		9CC70D721F7ABC080032406D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC70D711F7ABC080032406D /* AboutViewController.swift */; };
@@ -82,7 +81,6 @@
 		9CA8AB6E209F58D0005AB691 /* color_line.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = color_line.json; sourceTree = "<group>"; };
 		9CA8AB78209F5EE4005AB691 /* techno_penguin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = techno_penguin.json; sourceTree = "<group>"; };
 		9CA8AB7A209F616A005AB691 /* loading_ribbon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading_ribbon.json; sourceTree = "<group>"; };
-		9CA8AB84209F6462005AB691 /* ball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ball.json; sourceTree = "<group>"; };
 		9CA8AB8C209F6615005AB691 /* yelloader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yelloader.json; sourceTree = "<group>"; };
 		9CC70D6F1F7ABBF30032406D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		9CC70D711F7ABC080032406D /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 				9CA8AB78209F5EE4005AB691 /* techno_penguin.json */,
 				9CA8AB7A209F616A005AB691 /* loading_ribbon.json */,
 				9CA8AB8C209F6615005AB691 /* yelloader.json */,
-				9CA8AB84209F6462005AB691 /* ball.json */,
 				9CA8AB6E209F58D0005AB691 /* color_line.json */,
 				9C593F6E207EA9D400F621B8 /* loader_animation.json */,
 				9C9C601A1F7AB4DF00661A58 /* AppDelegate.swift */,
@@ -330,7 +327,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CA8AB85209F6462005AB691 /* ball.json in Resources */,
 				9CEAE170209D1ACF001415C8 /* logo_final.json in Resources */,
 				9C9E699C1F7CED880090B4E4 /* WEATHERinfo.html in Resources */,
 				9CA8AB6B209F52FA005AB691 /* blue_waves_.json in Resources */,

@@ -193,7 +193,25 @@ extension MainViewController: UICollectionViewDataSource {
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		super.prepare(for: segue, sender: sender)
+		// TODO: refactor
+		let reachability = Reachability()!
+		if reachability.connection != .none {
+		} else {
+			print("Internet connection FAILED")
+			let alert = UIAlertController(title: "No Internet connection", message: "Make sure your device is connected to the internet.", preferredStyle: .alert)
+			let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+			alertWindow.rootViewController = UIViewController()
+			alertWindow.windowLevel = UIWindowLevelAlert + 1;
+			alertWindow.makeKeyAndVisible()
 
+
+			if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
+
+			} else {
+				alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+			}
+
+		}
 		if let settingsViewController = segue.destination as? SettingViewController, segue.identifier == "SettingsSegue" {
 			settingsViewController.delegate = self
 			// passing picker value from block and gobal Int property

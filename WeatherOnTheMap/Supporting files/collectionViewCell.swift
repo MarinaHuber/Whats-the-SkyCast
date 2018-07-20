@@ -108,6 +108,8 @@ class collectionViewCell: UICollectionViewCell {
 
 
 		case .small:
+			layer.cornerRadius = 5
+			layer.masksToBounds = true
 			labelCityName.isHidden = true
 			iconImage.isHidden = true
 			iconView.isHidden = true
