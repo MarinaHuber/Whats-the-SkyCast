@@ -53,8 +53,7 @@ class collectionViewCell: UICollectionViewCell {
 		labelCityName.textAlignment = .center
 		labelCityName.lineBreakMode = .byCharWrapping
 		labelCityName.numberOfLines = 2
-		labelCityName.font = UIFont.boldSystemFont(ofSize: 20)
-		
+
 		labelCityTemerature.sizeToFit()
 		labelCityTemerature.textAlignment = .center
 		labelCityTemerature.textColor = .black
@@ -63,9 +62,9 @@ class collectionViewCell: UICollectionViewCell {
 		layer.borderColor = UIColor.clear.cgColor
 
 		//change for that bg fog image
-		let isPad = UIDevice().userInterfaceIdiom  == .pad
-		backgroundView = isPad ? UIImageView(image: UIImage(named: "")) : UIImageView(image: UIImage(named: ""))
-		
+//		let isPad = UIDevice().userInterfaceIdiom  == .pad
+//		backgroundView = isPad ? UIImageView(image: UIImage(named: "")) : UIImageView(image: UIImage(named: ""))
+
 	}
 	
 	
@@ -82,7 +81,6 @@ class collectionViewCell: UICollectionViewCell {
 		case .large:
 			labelCityName.isHidden = false
 			iconImage.isHidden = false
-			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 110)
 
 			contentView.addSubview(labelCityName)
 			contentView.addSubview(labelCityTemerature)
@@ -96,15 +94,19 @@ class collectionViewCell: UICollectionViewCell {
 			contentView.backgroundColor = UIColor(red: .random, green: .random, blue: .random, alpha: 0.3)
 			switch UIDevice().userInterfaceIdiom {
 			case UIUserInterfaceIdiom.pad:
-				labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: 10, leftConstant: -270, bottomConstant: 0, rightConstant: 0, widthConstant: 210, heightConstant: 210)
+				labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 135)
+				labelCityName.font = UIFont.boldSystemFont(ofSize: 28)
+				labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 310, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 90, rightConstant: 0, widthConstant: 120, heightConstant: 35)
+				iconViewAnima.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 50, leftConstant: contentView.frame.width/2-270, bottomConstant: 0, rightConstant: contentView.frame.width/2-270, widthConstant: 400, heightConstant: 400)
+				iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-180, bottomConstant: -100, rightConstant: contentView.frame.width/2-180, widthConstant: 350, heightConstant: 350)
+				labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: 0, leftConstant: -280, bottomConstant: 0, rightConstant: 0, widthConstant: 210, heightConstant: 210)
 
-				iconViewAnima.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 50, leftConstant: contentView.frame.width/2-280, bottomConstant: 0, rightConstant: contentView.frame.width/2-280, widthConstant: 410, heightConstant: 410)
 
-				iconImage.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: labelCityTemerature.topAnchor, right: contentView.rightAnchor, topConstant: 50, leftConstant: contentView.frame.width/2-160, bottomConstant: -150, rightConstant: contentView.frame.width/2-160, widthConstant: 350, heightConstant: 350)
 
-				labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 450, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 20, rightConstant: 0, widthConstant: 120, heightConstant: 20)
+
 			default:
-
+				labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 110)
+				labelCityName.font = UIFont.boldSystemFont(ofSize: 20)
 				iconViewAnima.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 0, leftConstant: contentView.frame.width/2-110, bottomConstant: 0, rightConstant: contentView.frame.width/2-110, widthConstant: 300, heightConstant: 300)
 
 				labelCityTemerature.anchor(iconImage.bottomAnchor, left: iconImage.leftAnchor, bottom: nil, right: contentView.rightAnchor, topConstant: 0, leftConstant: -60, bottomConstant: 0, rightConstant: 0, widthConstant: 210, heightConstant: 210)
