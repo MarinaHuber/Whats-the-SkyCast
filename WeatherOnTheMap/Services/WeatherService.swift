@@ -35,7 +35,7 @@ class WeatherService {
 
 		URLSession.shared.dataTask(with: url) { (data, response, err) in
 			if let error = err {
-				print("To the user" , error.localizedDescription)
+				print("To the user what error" , error.localizedDescription)
 				return
 			}
 

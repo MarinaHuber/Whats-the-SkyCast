@@ -130,7 +130,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 						self.delegate?.citySelected(cityWeather: one)
 
 					case .failure(let error):
-						print("To the user :", error)
+						print(error)
 						let alertController = UIAlertController(title: "Location unknown", message: "No city found", preferredStyle: .alert)
 						let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
 						alertController.addAction(OKAction)

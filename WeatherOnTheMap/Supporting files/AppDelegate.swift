@@ -26,9 +26,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		} else {
 			print("Internet connection FAILED")
 			let alert = UIAlertController(title: "No Internet connection", message: "Make sure your device is connected to the internet.", preferredStyle: .alert)
-			let action = UIAlertAction(title: "OK", style: .destructive, handler: {
-				(action : UIAlertAction!) -> Void in })
-			alert.addAction(action)
+			let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+			alert.addAction(OKAction)
+			let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+			alertWindow.rootViewController = UIViewController()
+			alertWindow.windowLevel = UIWindowLevelAlert + 1;
+			alertWindow.makeKeyAndVisible()
+
+
+			if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
+
+			} else {
+				alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+			}
+
 		}
         return true
     }

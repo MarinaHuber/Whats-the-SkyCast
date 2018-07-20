@@ -55,16 +55,6 @@ class MainViewController: UIViewController {
 				}
 			}
 
-//			WeatherService.getCurrentWeatherAll {
-//				error, cities in
-//
-//				self.citiesWeather = cities.map {
-//					ForcastBackground(cityName: $0.name ?? "", cityTemperature: $0.main.temp ?? 0, cityID: $0.weather[0].id ?? 0)
-//				}
-//				UserDefaults.standard.cities = self.citiesWeather
-//				self.reloadSectionsUI()
-//
-//			}
 		}
 	}
 	
