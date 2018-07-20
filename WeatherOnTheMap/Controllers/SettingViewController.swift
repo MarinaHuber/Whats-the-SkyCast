@@ -21,7 +21,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	
 	var isHidden: Bool = true {
 		didSet {
-			
 			pickerView.isHidden = isHidden ? true :  false
 		}
 	}
@@ -38,23 +37,13 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	var currentUnit: String?
 	var unitsTitle = "unitsChanged"
 
-
-
 	enum UserDefaultsUnitKey: String {
 		case celsius = "C"
 		case fahrenheit = "F"
 	}
 
-	
 	let unitsData = [UserDefaultsUnitKey.celsius.rawValue, UserDefaultsUnitKey.fahrenheit.rawValue]
-//
-//	enum UnitType: Int {
-//		case celsius = 0
-//		case fahrenheit = 1
-//	}
 	var mode: Int? = Int()
-
-
 
 	let daysData = [DaysPicker.Today.rawValue, DaysPicker.two.rawValue, DaysPicker.three.rawValue, DaysPicker.four.rawValue, DaysPicker.five.rawValue]
 	
@@ -65,6 +54,8 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		case four
 		case five
 	}
+
+
 
 
 	
@@ -130,22 +121,31 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 		addCity() { city in
 			if city.isEmpty == false {
-				WeatherService.getCityWeather(city) { cityWeather, error in
+				WeatherService.getOneCity(city, completionHandler: { result in
+					switch result {
+					case .success(let one):
+						let forecastWeather = ForcastBackground(cityName: one.name ?? "", cityTemperature: one.main?.temp ?? 0, cityID: one.weather?.first?.id ?? 0)
+						self.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
+						self.citiesWeather.append(forecastWeather)
+						self.delegate?.citySelected(cityWeather: one)
 
-					let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main?.temp ?? 0, cityID: cityWeather.weather?.first?.id ?? 0)
-					self.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
-					self.citiesWeather.append(forecastWeather)
-					self.delegate?.citySelected(cityWeather: cityWeather)
-				}
+					case .failure(let error):
+						print("To the user :", error)
+						let alertController = UIAlertController(title: "Location unknown", message: "No city found", preferredStyle: .alert)
+						let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+						alertController.addAction(OKAction)
+
+						self.present(alertController, animated: true, completion: nil)
+					}
+					
+				})
+
 			} else {
-				/// present alert to the user
-				print("No city provide")
+				print("No city provided")
 
 				let alertController = UIAlertController(title: "Location", message: "You did not enter a city", preferredStyle: .alert)
-
 				alertController.addAction( UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
 					(action : UIAlertAction!) -> Void in }))
-
 				self.present(alertController, animated: true) {}
 
 				
@@ -157,7 +157,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 
 
-	func addCity ( completionHandler : @escaping (String) -> () ) {
+	func addCity (_ completionHandler : @escaping (String) -> () ) {
 
 		let alertController = UIAlertController(title: "Location", message: "Enter the city you want the forcast for", preferredStyle: .alert)
 		
@@ -173,9 +173,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			if let textFields = alertController.textFields {
 				let theTextFields = textFields as [UITextField]
 
-		/*		self?.inputCityText = theTextFields[0].text!
-				guard let city = self?.inputCityText else { return } */
-
 				if let city = theTextFields[0].text, city.isEmpty == false {
 					completionHandler(city)
 				} else {
@@ -189,7 +186,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		alertController.addAction(cancelAction)
 		self.present(alertController, animated: true) {}
 
-		//if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
+	// if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
 			//TODO: UIPopoverPresentationController
 			//self.popOver = UIPopoverPresentationController(contentViewController: action)
 			//self.popOver?.present(from: buttonTitleLocation.frame, in: self, permittedArrowDirections: UIPopoverArrowDirection.up, animated: true)
@@ -199,6 +196,19 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	//	}
 		
 	}
+
+	func alert(message: String, title: String = "Location") {
+		DispatchQueue.main.async {
+			let alertController = UIAlertController(title: title, message:   message, preferredStyle: .alert)
+			let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+			alertController.addAction(OKAction)
+			self.present(alertController, animated: true, completion: nil)
+		}
+
+	}
+
+
+
 
 	//MARK: UIPickerViewDataSourcefunc
 	
@@ -230,7 +240,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 			buttonTitleTemp.titleLabel?.text = "°\(currentUnit ?? "°C")"
 
-	//   pass this to Mail vc, currentUnit?.first! = first chosen in picker
+	//   pass this to MainVC, currentUnit?.first! = first chosen in picker
 			let chosen = pickerView.selectedRow(inComponent: 0)
 			print(chosen)
 			if chosen == 0 {

@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
 	func loadCities() {
 		if citiesWeather.isEmpty {
 
-			WeatherService.getCurrentWeatherFix { result in
+			WeatherService.getCurrentWeather { result in
 				switch result {
 				case .success(let cities):
 					self.citiesWeather = cities.map {

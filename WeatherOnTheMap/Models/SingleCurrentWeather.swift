@@ -11,7 +11,7 @@ import UIKit
 
 
 struct SingleCurrentWeather: Decodable {
-	let coord: Cordinates
+	//let coord: Cordinates?
 	let weather: [WeatherSingle]?
 	let base: String?
 	let main: MainSingle?
