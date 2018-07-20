@@ -32,7 +32,6 @@ struct ForcastBackground: Codable {
 	
 }
 
-
 struct Font {
 	static let largeText = UIFont(name: "Servetica-Thin", size: 23)
 	static let smallText = UIFont(name: "Servetica-Thin", size: 20)
@@ -42,5 +41,32 @@ struct Font {
 		return UIFont(name: "Servetica-Thin", size: size)
 	}
 	
-	
 }
+
+//
+//	 // MARK: - Helper functions for temperature conversion
+//    open func cToFahrenheit(tempC: Double) -> Double {
+//        return (tempC * 1.8) + 32
+//    }
+
+
+//    func kelvinToCelsius(tempK: Double) -> Double {
+//        return tempK - 273.15
+//    }
+//
+//	open func fToC(tempF: Double) -> Double {
+//		return (tempF - 32) / 1.8
+//	}
+//
+//    // it comes in celsius units
+//
+//    func fixTempForDisplayFahrenheit(temp: Double) -> String {
+//        print("Kelvin: \(temp)")
+//        print("C: \(temp - 273.15)")
+//
+//        let tempC = kelvinToCelsius(tempK: temp)
+//        let tempF = cToFahrenheit(tempC: tempC)
+//        let tempR = Int(round(tempF))
+//        let tempString = String(format: "%.0f", tempR)
+//        return tempString
+//    }

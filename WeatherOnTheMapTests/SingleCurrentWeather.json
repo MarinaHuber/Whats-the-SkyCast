@@ -1,0 +1,42 @@
+{
+	"coord": {
+		"lon": -79.93,
+		"lat": -1.95
+	},
+	"weather": [
+				{
+				"id": 521,
+				"main": "Rain",
+				"description": "shower rain",
+				"icon": "09d"
+				}
+				],
+	"base": "stations",
+	"main": {
+		"temp": 24,
+		"pressure": 1013,
+		"humidity": 88,
+		"temp_min": 24,
+		"temp_max": 24
+	},
+	"visibility": 10000,
+	"wind": {
+		"speed": 4.6,
+		"deg": 220
+	},
+	"clouds": {
+		"all": 90
+	},
+	"dt": 1521813600,
+	"sys": {
+		"type": 1,
+		"id": 4356,
+		"message": 0.002,
+		"country": "EC",
+		"sunrise": 1521804177,
+		"sunset": 1521847744
+	},
+	"id": 3658053,
+	"name": "Pula",
+	"cod": 200
+}

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w64-Ml-Rn3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w64-Ml-Rn3">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -65,10 +65,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="4tm-jn-LE6">
-                                <rect key="frame" x="0.0" y="24" width="375" height="749"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zZT-LA-UUL">
-                                <rect key="frame" x="0.0" y="24" width="375" height="617"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="674"/>
                                 <color key="backgroundColor" white="1" alpha="0.13990261130136986" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Qr0-74-dQm">
                                     <size key="itemSize" width="380" height="679"/>
@@ -78,7 +78,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ID" id="DFp-PK-Iqt" customClass="collectionViewCell">
-                                        <rect key="frame" x="0.0" y="-31" width="380" height="679"/>
+                                        <rect key="frame" x="0.0" y="-2.6666666666666665" width="380" height="679"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="380" height="679"/>
@@ -93,7 +93,7 @@
                                 </connections>
                             </collectionView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.94999999999999996" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6wH-9H-RAz">
-                                <rect key="frame" x="0.0" y="641" width="375" height="88"/>
+                                <rect key="frame" x="0.0" y="674" width="375" height="88"/>
                                 <color key="backgroundColor" red="0.45085787770000002" green="0.98829740290000001" blue="0.83763033149999999" alpha="0.19228916952054795" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="Sdh-QO-ovG"/>
@@ -123,15 +123,15 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6wH-9H-RAz" secondAttribute="trailing" id="94n-sM-cBN"/>
-                            <constraint firstItem="6wH-9H-RAz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Alv-bq-3g7"/>
-                            <constraint firstItem="zZT-LA-UUL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-64" id="Cj1-2G-xme"/>
+                            <constraint firstItem="6wH-9H-RAz" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" constant="-50" id="Alv-bq-3g7"/>
+                            <constraint firstItem="zZT-LA-UUL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Cj1-2G-xme"/>
                             <constraint firstItem="6wH-9H-RAz" firstAttribute="top" secondItem="zZT-LA-UUL" secondAttribute="bottom" id="FP6-zt-glu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zZT-LA-UUL" secondAttribute="trailing" id="OR3-WW-69U"/>
                             <constraint firstItem="4tm-jn-LE6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Uvs-cD-Fd5"/>
                             <constraint firstItem="zZT-LA-UUL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="e6G-9R-sWi"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4tm-jn-LE6" secondAttribute="bottom" constant="-44" id="lN5-OH-ORp"/>
+                            <constraint firstAttribute="bottom" secondItem="4tm-jn-LE6" secondAttribute="bottom" id="lN5-OH-ORp"/>
                             <constraint firstItem="4tm-jn-LE6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mjF-XW-qAH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="4tm-jn-LE6" secondAttribute="top" constant="64" id="vQs-UG-44l"/>
+                            <constraint firstAttribute="top" secondItem="4tm-jn-LE6" secondAttribute="top" id="vQs-UG-44l"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="6wH-9H-RAz" secondAttribute="leading" id="wqQ-XN-PxS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -235,12 +235,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="SgR-5u-YZN">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="SgR-5u-YZN">
                             <rect key="frame" x="0.0" y="241" width="375" height="415"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwW-tw-2P6">
-                                    <rect key="frame" x="-1" y="-136" width="375" height="137"/>
+                                    <rect key="frame" x="-1" y="279" width="375" height="137"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="OwW-tw-2P6" secondAttribute="height" multiplier="125:54" constant="57.870370370370381" id="jLJ-6Q-KLs"/>
                                     </constraints>

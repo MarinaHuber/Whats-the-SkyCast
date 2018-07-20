@@ -41,16 +41,30 @@ class MainViewController: UIViewController {
 
 	func loadCities() {
 		if citiesWeather.isEmpty {
-			WeatherService.getCurrentWeatherAll {
-				error, cities in
 
-				self.citiesWeather = cities.map {
-					ForcastBackground(cityName: $0.name ?? "", cityTemperature: $0.main.temp ?? 0, cityID: $0.weather[0].id ?? 0)
+			WeatherService.getCurrentWeatherFix { result in
+				switch result {
+				case .success(let cities):
+					self.citiesWeather = cities.map {
+						ForcastBackground(cityName: $0.name ?? "", cityTemperature: $0.main.temp ?? 0, cityID: $0.weather[0].id ?? 0)
+					}
+					UserDefaults.standard.cities = self.citiesWeather
+					self.reloadSectionsUI()
+				case .failure(let error):
+					print(error)
 				}
-				UserDefaults.standard.cities = self.citiesWeather
-				self.reloadSectionsUI()
-
 			}
+
+//			WeatherService.getCurrentWeatherAll {
+//				error, cities in
+//
+//				self.citiesWeather = cities.map {
+//					ForcastBackground(cityName: $0.name ?? "", cityTemperature: $0.main.temp ?? 0, cityID: $0.weather[0].id ?? 0)
+//				}
+//				UserDefaults.standard.cities = self.citiesWeather
+//				self.reloadSectionsUI()
+//
+//			}
 		}
 	}
 	
@@ -115,6 +129,9 @@ extension MainViewController: UICollectionViewDataSource {
 	}
 
 
+
+
+
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		if indexPath.row > citiesWeather.count {
 			print(indexPath.row)
@@ -125,10 +142,9 @@ extension MainViewController: UICollectionViewDataSource {
 		case largeCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
 			cell.labelCityName.text = cellData.cityName
-
+//TODO: place to model
 			let temp = cToFahrenheit(tempC: tempResult)
 			let tempF = Int(round(temp))
-
 			let tempC = Int(round(tempResult))
 
 			if (selectedUnit != nil) {
@@ -151,8 +167,6 @@ extension MainViewController: UICollectionViewDataSource {
 
 			cell.configureCellWithType(.large)
 			return cell
-
-
 
 		case smallCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IDsmall", for: indexPath) as! collectionViewCell
@@ -180,6 +194,11 @@ extension MainViewController: UICollectionViewDataSource {
 		}
 
 	}
+
+
+
+
+
 
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

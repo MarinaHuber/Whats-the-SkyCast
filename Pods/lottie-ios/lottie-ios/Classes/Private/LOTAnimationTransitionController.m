@@ -118,7 +118,8 @@
   
   [tranistionAnimationView_ playWithCompletion:^(BOOL animationFinished) {
     toVC.view.hidden = false;
-    [tranistionAnimationView_ removeFromSuperview];
+	 // [self->tranistionAnimationView_ removeFromSuperview];
+	  [tranistionAnimationView_ removeFromSuperview];
     [transitionContext completeTransition:animationFinished];
   }];
 }

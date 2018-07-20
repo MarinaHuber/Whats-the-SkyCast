@@ -62,7 +62,7 @@ struct MainSingle: Decodable {
 }
 
 struct WindSingle: Decodable {
-	let deg: Int?
+	let deg: Double?
 	let speed: Double?
 }
 

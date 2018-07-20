@@ -13,9 +13,7 @@ protocol SettingViewControllerDelegate: class {
 }
 
 class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-	
-	var inputCityText: String = ""
-	
+		
 	@IBOutlet weak var pickerView: UIPickerView!
 	var celsiusBlock: (() -> ())?
 	var fahrenheitBlock: (() -> ())?
@@ -129,40 +127,67 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	}
 
 	@IBAction func buttonCityAdd(_ sender: Any) {
+
+		addCity() { city in
+			if city.isEmpty == false {
+				WeatherService.getCityWeather(city) { cityWeather, error in
+
+					let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main?.temp ?? 0, cityID: cityWeather.weather?.first?.id ?? 0)
+					self.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
+					self.citiesWeather.append(forecastWeather)
+					self.delegate?.citySelected(cityWeather: cityWeather)
+				}
+			} else {
+				/// present alert to the user
+				print("No city provide")
+
+				let alertController = UIAlertController(title: "Location", message: "You did not enter a city", preferredStyle: .alert)
+
+				alertController.addAction( UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
+					(action : UIAlertAction!) -> Void in }))
+
+				self.present(alertController, animated: true) {}
+
+				
+			}
+		}
+
+
+	}
+
+
+
+	func addCity ( completionHandler : @escaping (String) -> () ) {
+
+		let alertController = UIAlertController(title: "Location", message: "Enter the city you want the forcast for", preferredStyle: .alert)
 		
-		
-		var alertController:UIAlertController?
-		alertController = UIAlertController(title: "Location", message: "Enter the city you want the forcast for", preferredStyle: .alert)
-		
-		alertController!.addTextField(
+		alertController.addTextField(
 			configurationHandler: {(textField: UITextField!) in
 				textField.placeholder = "City name..."
 		})
 		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
 			(action : UIAlertAction!) -> Void in })
 		
-		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: { [weak self]
+		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: {
 			(paramAction:UIAlertAction!) in
-			if let textFields = alertController?.textFields {
+			if let textFields = alertController.textFields {
 				let theTextFields = textFields as [UITextField]
-				self?.inputCityText = theTextFields[0].text!
-				guard let city = self?.inputCityText else { return }
-				WeatherService.getCityWeather(city) { cityWeather, error in
-					let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main?.temp ?? 0, cityID: cityWeather.weather?.first?.id ?? 0)
-					self?.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
-					self?.citiesWeather.append(forecastWeather)
-					self?.delegate?.citySelected(cityWeather: cityWeather)
 
+		/*		self?.inputCityText = theTextFields[0].text!
+				guard let city = self?.inputCityText else { return } */
+
+				if let city = theTextFields[0].text, city.isEmpty == false {
+					completionHandler(city)
+				} else {
+					completionHandler("")
 				}
-
-				
 			}
 			
 		})
 		
-		alertController?.addAction(action)
-		alertController?.addAction(cancelAction)
-		self.present(alertController!, animated: true, completion: nil)
+		alertController.addAction(action)
+		alertController.addAction(cancelAction)
+		self.present(alertController, animated: true) {}
 
 		//if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
 			//TODO: UIPopoverPresentationController

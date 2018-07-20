@@ -75,7 +75,7 @@ struct Main: Decodable {
 }
 
 struct Wind: Decodable {
-	let deg: Int?
+	let deg: Double?
 	let speed: Double?
 }
 
