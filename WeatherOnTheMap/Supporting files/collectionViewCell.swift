@@ -140,7 +140,7 @@ class collectionViewCell: UICollectionViewCell {
 		var imageName:String
 		switch conditionFor {
 		case 200..<300:
-			imageName = "thun"
+			imageName = "thunder"
 		case 300..<700:
 			imageName = "rain"
 		case 701..<799:
@@ -148,7 +148,7 @@ class collectionViewCell: UICollectionViewCell {
 		case 800:
 			imageName = "sunny"
 		case 801..<805:
-			imageName = "cloud1"
+			imageName = "cloud"
 		default:
 			imageName = "sunny"
 			break
