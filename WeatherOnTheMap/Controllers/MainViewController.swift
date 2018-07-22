@@ -83,9 +83,6 @@ class MainViewController: UIViewController {
 
 	}
 
-	override var prefersStatusBarHidden: Bool {
-		return true
-	}
 
 	override func viewWillLayoutSubviews() {
 		
@@ -234,7 +231,9 @@ extension MainViewController: UICollectionViewDataSource {
 		return (tempC * 1.8) + 32
 	}
 
-
+	override var prefersStatusBarHidden: Bool {
+		return false
+	}
 
 }
 

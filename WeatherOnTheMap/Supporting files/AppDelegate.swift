@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+
+		var controller = MainViewController()
+		application.isStatusBarHidden = false
+		controller.setNeedsStatusBarAppearanceUpdate()
 		//customizeUI()
 		// ********************************************************
 		//https://stackoverflow.com/questions/30743408/check-for-internet-connection-with-swift
