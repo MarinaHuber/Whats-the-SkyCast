@@ -263,8 +263,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceRightToLeft" ambiguous="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4uk-MX-Jgq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
+                                                <button opaque="NO" contentMode="scaleAspectFill" semanticContentAttribute="forceLeftToRight" ambiguous="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="fill" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4uk-MX-Jgq">
+                                                    <rect key="frame" x="218" y="0.0" width="137" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <bool key="isElement" value="NO"/>
@@ -273,8 +273,8 @@
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                                    <state key="normal" title="Add city">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="   Search      ">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.70387414383561642" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="buttonCityAdd:" destination="7Gb-ji-dmO" eventType="touchUpInside" id="Sd7-hI-8Lf"/>
@@ -406,7 +406,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ML3-DJ-Db0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="B17-J4-pFG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="456.44531249999994" y="927.67203513909215"/>
+            <point key="canvasLocation" x="455.19999999999999" y="927.33990147783254"/>
         </scene>
         <!--Logo View Controller-->
         <scene sceneID="6GO-8q-cXS">
