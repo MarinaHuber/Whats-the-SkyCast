@@ -47,6 +47,63 @@
             </objects>
             <point key="canvasLocation" x="1854" y="115"/>
         </scene>
+        <!--Credits View Controller-->
+        <scene sceneID="4NL-yA-b9a">
+            <objects>
+                <viewController id="d8e-bZ-BkK" customClass="CreditsViewController" customModule="WeatherOnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c2v-FW-WAQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmB-aS-8wJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code Bohemia presents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htA-wM-19c">
+                                        <rect key="frame" x="77" y="60" width="165" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="165" id="Fvb-Nb-qO9"/>
+                                            <constraint firstAttribute="height" constant="21" id="syi-rv-gNj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ItunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="DBx-DF-ShL">
+                                        <rect key="frame" x="95" y="95" width="130" height="130"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sun Weather app by  Marina Huber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXq-zU-wzS">
+                                        <rect key="frame" x="72" y="267" width="177" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="htA-wM-19c" firstAttribute="centerX" secondItem="PmB-aS-8wJ" secondAttribute="centerX" id="HFb-Va-VMS"/>
+                                    <constraint firstItem="htA-wM-19c" firstAttribute="top" secondItem="PmB-aS-8wJ" secondAttribute="top" constant="60" id="KXj-qj-lsY"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PmB-aS-8wJ" firstAttribute="leading" secondItem="o5O-P1-nuc" secondAttribute="leading" id="JKw-0K-tM1"/>
+                            <constraint firstItem="PmB-aS-8wJ" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="Pe3-Ib-egP"/>
+                            <constraint firstAttribute="bottom" secondItem="PmB-aS-8wJ" secondAttribute="bottom" id="dIg-Fa-kKH"/>
+                            <constraint firstItem="PmB-aS-8wJ" firstAttribute="top" secondItem="c2v-FW-WAQ" secondAttribute="top" id="v9x-rE-qBw"/>
+                            <constraint firstItem="PmB-aS-8wJ" firstAttribute="trailing" secondItem="o5O-P1-nuc" secondAttribute="trailing" id="x67-1N-0Xu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="o5O-P1-nuc"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="PmB-aS-8wJ" id="KEl-5d-2Je"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R0U-nJ-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2587.5" y="109.85915492957747"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -165,7 +222,7 @@
                                     <constraint firstAttribute="width" secondItem="plN-lw-sJo" secondAttribute="height" multiplier="17:24" constant="46.666666666666657" id="s8z-nD-jTO"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am Marina Huber and this is my first weather animation app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vg-No-ZgE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am Marina Huber and this is my sun weather animation app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vg-No-ZgE">
                                 <rect key="frame" x="57" y="270" width="206" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
@@ -189,6 +246,9 @@
                                         <state key="normal" title="Credits">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="d8e-bZ-BkK" kind="show" id="ZiV-bN-w67"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qS-dH-uYK">
                                         <rect key="frame" x="0.0" y="110.5" width="206" height="43.5"/>
@@ -489,6 +549,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ItunesArtwork" width="512" height="512"/>
         <image name="background.jpeg" width="1000" height="667"/>
         <image name="profile" width="250" height="240"/>
         <image name="settings" width="24" height="25"/>
