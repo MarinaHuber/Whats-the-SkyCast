@@ -55,49 +55,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmB-aS-8wJ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code Bohemia presents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htA-wM-19c">
-                                        <rect key="frame" x="77" y="60" width="165" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="165" id="Fvb-Nb-qO9"/>
-                                            <constraint firstAttribute="height" constant="21" id="syi-rv-gNj"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ItunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="DBx-DF-ShL">
-                                        <rect key="frame" x="95" y="95" width="130" height="130"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sun Weather app by  Marina Huber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXq-zU-wzS">
-                                        <rect key="frame" x="72" y="267" width="177" height="69"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code Bohemia presents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htA-wM-19c">
+                                <rect key="frame" x="88" y="90" width="143.5" height="21"/>
                                 <constraints>
-                                    <constraint firstItem="htA-wM-19c" firstAttribute="centerX" secondItem="PmB-aS-8wJ" secondAttribute="centerX" id="HFb-Va-VMS"/>
-                                    <constraint firstItem="htA-wM-19c" firstAttribute="top" secondItem="PmB-aS-8wJ" secondAttribute="top" constant="60" id="KXj-qj-lsY"/>
+                                    <constraint firstAttribute="height" constant="21" id="mPw-5E-pjg"/>
                                 </constraints>
-                            </scrollView>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ItunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="DBx-DF-ShL">
+                                <rect key="frame" x="101" y="128" width="119" height="119"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="119" id="Hma-HN-dgg"/>
+                                    <constraint firstAttribute="width" constant="119" id="uGo-w1-LO6"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun Weather app by  Marina Huber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXq-zU-wzS">
+                                <rect key="frame" x="104" y="268" width="112" height="31.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="112" id="0Yj-v6-jcs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Animations:                     Patrik samali             Ale Tur,               bla bla              Spetial thanx:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKQ-0N-kPT">
+                                <rect key="frame" x="104" y="323" width="112" height="101.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PmB-aS-8wJ" firstAttribute="leading" secondItem="o5O-P1-nuc" secondAttribute="leading" id="JKw-0K-tM1"/>
-                            <constraint firstItem="PmB-aS-8wJ" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="Pe3-Ib-egP"/>
-                            <constraint firstAttribute="bottom" secondItem="PmB-aS-8wJ" secondAttribute="bottom" id="dIg-Fa-kKH"/>
-                            <constraint firstItem="PmB-aS-8wJ" firstAttribute="top" secondItem="c2v-FW-WAQ" secondAttribute="top" id="v9x-rE-qBw"/>
-                            <constraint firstItem="PmB-aS-8wJ" firstAttribute="trailing" secondItem="o5O-P1-nuc" secondAttribute="trailing" id="x67-1N-0Xu"/>
+                            <constraint firstItem="htA-wM-19c" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="29z-ee-l5e"/>
+                            <constraint firstItem="jKQ-0N-kPT" firstAttribute="leading" secondItem="o5O-P1-nuc" secondAttribute="leading" constant="104" id="9vr-Sn-U14"/>
+                            <constraint firstItem="DBx-DF-ShL" firstAttribute="top" secondItem="htA-wM-19c" secondAttribute="bottom" constant="17" id="IZq-Ij-j2O"/>
+                            <constraint firstItem="htA-wM-19c" firstAttribute="top" secondItem="o5O-P1-nuc" secondAttribute="top" constant="26" id="LQ0-eT-f8n"/>
+                            <constraint firstItem="jKQ-0N-kPT" firstAttribute="top" secondItem="dXq-zU-wzS" secondAttribute="bottom" constant="23.5" id="Xku-TI-n6B"/>
+                            <constraint firstItem="DBx-DF-ShL" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="YFC-Sb-zYZ"/>
+                            <constraint firstItem="dXq-zU-wzS" firstAttribute="leading" secondItem="o5O-P1-nuc" secondAttribute="leading" constant="104" id="ocv-iT-tAT"/>
+                            <constraint firstItem="o5O-P1-nuc" firstAttribute="trailing" secondItem="jKQ-0N-kPT" secondAttribute="trailing" constant="104" id="tgr-p2-E3U"/>
+                            <constraint firstItem="dXq-zU-wzS" firstAttribute="top" secondItem="DBx-DF-ShL" secondAttribute="bottom" constant="21" id="udV-Ex-0lc"/>
+                            <constraint firstItem="dXq-zU-wzS" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="zbo-3l-HrV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o5O-P1-nuc"/>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="PmB-aS-8wJ" id="KEl-5d-2Je"/>
+                        <outlet property="imgLogo" destination="DBx-DF-ShL" id="Qt2-UZ-yjR"/>
+                        <outlet property="thnxLabel" destination="jKQ-0N-kPT" id="3se-SM-hwC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R0U-nJ-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,7 +222,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="plN-lw-sJo">
-                                <rect key="frame" x="80" y="93" width="160" height="160"/>
+                                <rect key="frame" x="35" y="93" width="250" height="287"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="78h-vC-TXF"/>
                                     <constraint firstAttribute="width" constant="160" id="Wuz-Ok-Zdf"/>
@@ -223,13 +230,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am Marina Huber and this is my sun weather animation app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vg-No-ZgE">
-                                <rect key="frame" x="57" y="270" width="206" height="29"/>
+                                <rect key="frame" x="57" y="397" width="206" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="1VH-kx-0Rb">
-                                <rect key="frame" x="57" y="315" width="206" height="154"/>
+                                <rect key="frame" x="57" y="442" width="206" height="154"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RlF-tD-qaY">
                                         <rect key="frame" x="0.0" y="0.0" width="206" height="43.5"/>

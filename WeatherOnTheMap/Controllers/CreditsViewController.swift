@@ -10,27 +10,39 @@ import UIKit
 import Lottie
 
 class CreditsViewController: UIViewController {
-	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var thnxLabel: UILabel!
 
+	@IBOutlet weak var imgLogo: UIImageView!
 	let animateView = LOTAnimationView(name: "logo_final")
 	let animateView2 = LOTAnimationView(name: "loader_animation")
 	
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		imgLogo.layer.cornerRadius = 16
+		imgLogo.layer.masksToBounds = true
+		thnxLabel.isHidden = true
 
     }
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
-		animateView.frame = CGRect(x: 0, y: scrollView.frame.size.height/2, width: scrollView.frame.size.width, height: view.frame.size.height/2)
-		animateView2.frame = CGRect(x: 0, y: view.frame.size.height/2, width: view.frame.size.width, height: view.frame.size.height/2)
-		animateView.contentMode = .scaleAspectFit
-		animateView2.contentMode = .scaleAspectFit
-		view.addSubview(animateView)
-		view.addSubview(animateView2)
-		animateView.play()
-		animateView2.play()
+
+
+
+		UIView.animate(withDuration: 1, delay: 3.0, options: .curveEaseIn, animations: {
+			self.animateView.frame = CGRect(x: 0, y: self.view.frame.size.height/3, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+
+			self.animateView2.frame = CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+			self.animateView.contentMode = .scaleAspectFit
+			self.animateView2.contentMode = .scaleAspectFit
+			self.view.addSubview(self.animateView)
+			self.view.addSubview(self.animateView2)
+			self.animateView.play()
+			self.animateView2.play()
+		}, completion: { finished in
+			self.thnxLabel.isHidden = false
+		})
 	}
 
 

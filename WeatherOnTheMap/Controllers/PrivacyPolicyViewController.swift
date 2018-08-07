@@ -33,13 +33,14 @@ class PrivacyPolicyViewController: UIViewController, WKNavigationDelegate, WKUID
 	
 	
 	func loadHtmlFile() {
-		webView = WKWebView(frame: CGRect( x: 0, y: 80, width: view.frame.width, height: view.frame.height - 60 ), configuration: WKWebViewConfiguration() )
+//		webView = WKWebView(frame: CGRect( x: 0, y: 80, width: view.frame.width, height: view.frame.height - 60 ), configuration: WKWebViewConfiguration() )
+		webView = WKWebView(frame: self.view.frame)
 		webView.navigationDelegate = self
-		view.insertSubview(webView, belowSubview: activity)
-		webView.allowsBackForwardNavigationGestures = true
-		//        webView.translatesAutoresizingMaskIntoConstraints = false
-		//        webView.addConstraint(NSLayoutConstraint(item: webView, attribute: .left, relatedBy: .equal, toItem: webView, attribute: .right, multiplier: 1.0, constant: 0.0))
-		//        webView.addConstraint(NSLayoutConstraint(item: webView, attribute: .right, relatedBy: .equal, toItem: webView, attribute: .right, multiplier: 1.0, constant: 0.0))
+
+		view.addSubview(webView)
+		view.bringSubview(toFront: activity)
+		//view.insertSubview(webView, belowSubview: activity)
+
 		guard let path = Bundle.main.path(forResource: "WEATHERinfo", ofType: "html") else { return }
 		let url = URL(fileURLWithPath:path)
 		let request = URLRequest(url: url)
