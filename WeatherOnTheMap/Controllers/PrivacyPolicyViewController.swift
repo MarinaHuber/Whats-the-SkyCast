@@ -17,15 +17,21 @@ class PrivacyPolicyViewController: UIViewController, WKNavigationDelegate, WKUID
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.navigationController?.navigationBar.topItem?.title = ""
+		self.navigationItem.title = "Privacy policy"
+		self.navigationController?.navigationBar.isTranslucent = false
+		self.navigationController?.navigationBar.tintColor = .black
+		self.navigationController?.navigationBar.barTintColor = UIColor(red: 222.0/255.0, green: 239.0/255.0, blue: 245.0/255.0, alpha: 1)
+		self.navigationController?.view.backgroundColor = UIColor(red: 222.0/255.0, green: 239.0/255.0, blue: 245.0/255.0, alpha: 1)
 		loadHtmlFile()
 		activity.alpha = 1
 		activity.startAnimating()
 		
 	}
-	
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
-		UIView.animate(withDuration: 2.1, animations: {
+		UIView.animate(withDuration: 2.6, animations: {
 			self.activity.alpha = 0
 			
 		}, completion: nil)
@@ -39,8 +45,6 @@ class PrivacyPolicyViewController: UIViewController, WKNavigationDelegate, WKUID
 
 		view.addSubview(webView)
 		view.bringSubview(toFront: activity)
-		//view.insertSubview(webView, belowSubview: activity)
-
 		guard let path = Bundle.main.path(forResource: "WEATHERinfo", ofType: "html") else { return }
 		let url = URL(fileURLWithPath:path)
 		let request = URLRequest(url: url)

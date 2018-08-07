@@ -19,7 +19,6 @@ class AboutViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
 		websiteButton.layer.borderWidth = 1.5
 		websiteButton.layer.borderColor = UIColor.black.cgColor
 		websiteButton.layer.cornerRadius = 5
@@ -33,6 +32,15 @@ class AboutViewController: UIViewController {
 		creditsButton.layer.borderColor = UIColor.black.cgColor
 		creditsButton.layer.cornerRadius = 5
 	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		navigationController?.navigationBar.isTranslucent = true
+		navigationController?.view.backgroundColor = .clear
+		navigationController?.navigationBar.barTintColor = .clear
+		navigationController?.navigationBar.tintColor = .black
+	}
+
 
 	@IBAction func websiteCall(_ sender: Any) {
 		if let url = URL(string: "http://www.marinahuber.com"),

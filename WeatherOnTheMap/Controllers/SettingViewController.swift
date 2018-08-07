@@ -80,8 +80,9 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
-
-       buttonTitleTemp.setTitle(changedUnits(), for: .normal)
+	   navigationController?.navigationBar.isTranslucent = true
+	   navigationController?.view.backgroundColor = .clear
+	   navigationController?.navigationBar.barTintColor = .clear
 	   buttonTitleTemp.titleLabel?.adjustsFontSizeToFitWidth = true
 
 

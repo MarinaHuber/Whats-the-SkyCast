@@ -27,13 +27,16 @@ class CreditsViewController: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
-
-
+		self.navigationController?.navigationBar.topItem?.title = ""
 
 		UIView.animate(withDuration: 1, delay: 3.0, options: .curveEaseIn, animations: {
-			self.animateView.frame = CGRect(x: 0, y: self.view.frame.size.height/3, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+			let iPhone = CGRect(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+			let isPad = UIDevice().userInterfaceIdiom  == .pad
+			self.animateView.frame = isPad ? CGRect(x: 0, y: self.view.frame.size.height/3, width: self.view.frame.size.width, height: self.view.frame.size.height/2) : iPhone
 
-			self.animateView2.frame = CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+
+			self.animateView2.frame = isPad ? CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: self.view.frame.size.height/2) : CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+
 			self.animateView.contentMode = .scaleAspectFit
 			self.animateView2.contentMode = .scaleAspectFit
 			self.view.addSubview(self.animateView)

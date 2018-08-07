@@ -30,7 +30,7 @@
                                 <color key="color" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92236328125" green="0.97813585069444442" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dih-Qf-DZE" firstAttribute="centerX" secondItem="snX-Ig-1RB" secondAttribute="centerX" id="4e9-dD-h9k"/>
                             <constraint firstItem="dih-Qf-DZE" firstAttribute="centerY" secondItem="snX-Ig-1RB" secondAttribute="centerY" id="xUL-jr-EQm"/>

@@ -92,6 +92,7 @@ class MainViewController: UIViewController {
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		setNavigationBar()
 		largeCollectionView.contentInset = UIEdgeInsets.zero
 
 		if !citiesWeather.isEmpty {
