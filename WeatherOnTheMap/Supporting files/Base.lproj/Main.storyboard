@@ -416,7 +416,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="buttonUnits:" destination="7Gb-ji-dmO" eventType="touchUpInside" id="K1F-YV-XFD"/>
-                                                        <action selector="tempUnitTapped:" destination="B17-J4-pFG" eventType="touchUpInside" id="gea-a2-etU"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Temperature units" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3vc-Q1-kfK">
@@ -512,7 +511,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ML3-DJ-Db0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="B17-J4-pFG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="455.19999999999999" y="927.33990147783254"/>
         </scene>

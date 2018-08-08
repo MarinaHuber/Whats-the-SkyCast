@@ -70,7 +70,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		pickerView.dataSource = self
 		pickerView.delegate = self
 		pickerView.isHidden = true
-		//mode = 0
+		buttonTitleTemp.setTitle(changedUnits(), for: .normal)
 		
 		let indexOfDefaultElement = 0 // Make sure that an element at this index exists
 		pickerView.selectRow(indexOfDefaultElement, inComponent: 0, animated: false)
@@ -91,8 +91,6 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBAction func buttonUnits(_ sender: Any) {
 		buttonTitleTemp.setTitle(changedUnits(), for: .normal)
 		toggleDatepicker()
-
-
 		dataSourcePicker = unitsData
 		self.pickerView.reloadAllComponents()
 	}
