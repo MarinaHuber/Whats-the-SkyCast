@@ -153,12 +153,12 @@
 		9C46DF081F7BB438004834C8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9C7B59B621120717002E26F2 /* CreditsViewController.swift */,
-				9C9C602D1F7AB92600661A58 /* MainViewController.swift */,
 				9C593F68207E89B900F621B8 /* LogoViewController.swift */,
+				9C7B59B621120717002E26F2 /* CreditsViewController.swift */,
+				9CC70D711F7ABC080032406D /* PrivacyPolicyViewController.swift */,
+				9C9C602D1F7AB92600661A58 /* MainViewController.swift */,
 				9CD7B645203F6EE70095F58D /* SettingViewController.swift */,
 				9C41BE062109F8FD0079DCD6 /* AboutViewController.swift */,
-				9CC70D711F7ABC080032406D /* PrivacyPolicyViewController.swift */,
 				9C46DF0A1F7BBAB9004834C8 /* WEATHERinfo.html */,
 			);
 			path = Controllers;

@@ -11,31 +11,38 @@ import Lottie
 
 class CreditsViewController: UIViewController {
 	@IBOutlet weak var thnxLabel: UILabel!
-
 	@IBOutlet weak var imgLogo: UIImageView!
+	@IBOutlet weak var text: UILabel!
+	@IBOutlet var presentText: UIView!
+
 	let animateView = LOTAnimationView(name: "logo_final")
 	let animateView2 = LOTAnimationView(name: "loader_animation")
 	
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		imgLogo.layer.cornerRadius = 16
-		imgLogo.layer.masksToBounds = true
-		thnxLabel.isHidden = true
+
 
     }
 	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(true)
-		self.navigationController?.navigationBar.topItem?.title = ""
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
+		navigationController?.navigationBar.topItem?.title = " "
+		navigationItem.title = "Thanks to:"
+		imgLogo.isHidden = true
+		imgLogo.layer.cornerRadius = 16
+		imgLogo.layer.masksToBounds = true
+		thnxLabel.isHidden = true
+		presentText.isHidden = true
+		text.isHidden = true
 
-		UIView.animate(withDuration: 1, delay: 3.0, options: .curveEaseIn, animations: {
-			let iPhone = CGRect(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+		UIView.animate(withDuration: 1.6, delay: 0.2, options: .curveEaseIn, animations: {
+			let iPhone = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
 			let isPad = UIDevice().userInterfaceIdiom  == .pad
-			self.animateView.frame = isPad ? CGRect(x: 0, y: self.view.frame.size.height/3, width: self.view.frame.size.width, height: self.view.frame.size.height/2) : iPhone
+			self.animateView.frame = isPad ? CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/2) : iPhone
 
-
-			self.animateView2.frame = isPad ? CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: self.view.frame.size.height/2) : CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+			let iPhone2 = CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
+			self.animateView2.frame = isPad ? CGRect(x: 0, y: self.view.frame.size.height/2, width: self.view.frame.size.width, height: self.view.frame.size.height/2) : iPhone2
 
 			self.animateView.contentMode = .scaleAspectFit
 			self.animateView2.contentMode = .scaleAspectFit
@@ -44,7 +51,13 @@ class CreditsViewController: UIViewController {
 			self.animateView.play()
 			self.animateView2.play()
 		}, completion: { finished in
+			self.presentText.isHidden = false
+			self.text.isHidden = false
 			self.thnxLabel.isHidden = false
+			self.imgLogo.isHidden = false
+			self.animateView.removeFromSuperview()
+			self.animateView2.removeFromSuperview()
+
 		})
 	}
 

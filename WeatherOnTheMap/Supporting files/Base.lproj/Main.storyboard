@@ -45,7 +45,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBu-Pq-Vza" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1854" y="115"/>
+            <point key="canvasLocation" x="1928" y="409"/>
         </scene>
         <!--Credits View Controller-->
         <scene sceneID="4NL-yA-b9a">
@@ -55,61 +55,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code Bohemia presents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htA-wM-19c">
-                                <rect key="frame" x="88" y="90" width="143.5" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="mPw-5E-pjg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ItunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="DBx-DF-ShL">
-                                <rect key="frame" x="101" y="128" width="119" height="119"/>
+                                <rect key="frame" x="100" y="165" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="119" id="Hma-HN-dgg"/>
-                                    <constraint firstAttribute="width" constant="119" id="uGo-w1-LO6"/>
+                                    <constraint firstAttribute="width" constant="120" id="69C-er-tJz"/>
+                                    <constraint firstAttribute="height" constant="120" id="ENm-Ze-mRB"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="wai-z1-FYH"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun Weather app by  Marina Huber" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXq-zU-wzS">
-                                <rect key="frame" x="104" y="268" width="112" height="31.5"/>
+                                <rect key="frame" x="42.5" y="307" width="236" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="112" id="0Yj-v6-jcs"/>
+                                    <constraint firstAttribute="height" constant="40" id="2Md-6l-mWM"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="145" id="xUx-vA-vNO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Animations:                     Patrik samali             Ale Tur,               bla bla              Spetial thanx:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKQ-0N-kPT">
-                                <rect key="frame" x="104" y="323" width="112" height="101.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" Animations by: Trev Zooy, Arpit Aguvwal, Ryan Sterling, Carolina Cajazeire" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKQ-0N-kPT">
+                                <rect key="frame" x="89" y="372" width="142" height="104"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="8kJ-9J-KH0"/>
+                                    <constraint firstAttribute="height" constant="104" id="Cxg-3n-ccC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Code Bohemia presents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htA-wM-19c">
+                                <rect key="frame" x="79" y="126" width="163" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="htA-wM-19c" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="29z-ee-l5e"/>
-                            <constraint firstItem="jKQ-0N-kPT" firstAttribute="leading" secondItem="o5O-P1-nuc" secondAttribute="leading" constant="104" id="9vr-Sn-U14"/>
-                            <constraint firstItem="DBx-DF-ShL" firstAttribute="top" secondItem="htA-wM-19c" secondAttribute="bottom" constant="17" id="IZq-Ij-j2O"/>
-                            <constraint firstItem="htA-wM-19c" firstAttribute="top" secondItem="o5O-P1-nuc" secondAttribute="top" constant="26" id="LQ0-eT-f8n"/>
-                            <constraint firstItem="jKQ-0N-kPT" firstAttribute="top" secondItem="dXq-zU-wzS" secondAttribute="bottom" constant="23.5" id="Xku-TI-n6B"/>
-                            <constraint firstItem="DBx-DF-ShL" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="YFC-Sb-zYZ"/>
-                            <constraint firstItem="dXq-zU-wzS" firstAttribute="leading" secondItem="o5O-P1-nuc" secondAttribute="leading" constant="104" id="ocv-iT-tAT"/>
-                            <constraint firstItem="o5O-P1-nuc" firstAttribute="trailing" secondItem="jKQ-0N-kPT" secondAttribute="trailing" constant="104" id="tgr-p2-E3U"/>
-                            <constraint firstItem="dXq-zU-wzS" firstAttribute="top" secondItem="DBx-DF-ShL" secondAttribute="bottom" constant="21" id="udV-Ex-0lc"/>
-                            <constraint firstItem="dXq-zU-wzS" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="zbo-3l-HrV"/>
+                            <constraint firstItem="jKQ-0N-kPT" firstAttribute="top" secondItem="dXq-zU-wzS" secondAttribute="bottom" constant="25" id="5Rb-VT-R1U"/>
+                            <constraint firstItem="htA-wM-19c" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="6kr-rV-tKo"/>
+                            <constraint firstItem="DBx-DF-ShL" firstAttribute="top" secondItem="htA-wM-19c" secondAttribute="bottom" constant="21" id="FRv-FY-dJO"/>
+                            <constraint firstItem="htA-wM-19c" firstAttribute="top" secondItem="o5O-P1-nuc" secondAttribute="top" constant="62" id="J2q-Nb-yqn"/>
+                            <constraint firstItem="jKQ-0N-kPT" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="OXC-Zh-naw"/>
+                            <constraint firstItem="dXq-zU-wzS" firstAttribute="top" secondItem="DBx-DF-ShL" secondAttribute="bottom" constant="22" id="VJb-F5-pKH"/>
+                            <constraint firstItem="DBx-DF-ShL" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="Zaz-6G-1eV"/>
+                            <constraint firstItem="dXq-zU-wzS" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="rav-JX-Euk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="o5O-P1-nuc"/>
                     </view>
                     <connections>
                         <outlet property="imgLogo" destination="DBx-DF-ShL" id="Qt2-UZ-yjR"/>
+                        <outlet property="presentText" destination="htA-wM-19c" id="SAU-HI-ACq"/>
+                        <outlet property="text" destination="dXq-zU-wzS" id="TxQ-uF-cCd"/>
                         <outlet property="thnxLabel" destination="jKQ-0N-kPT" id="3se-SM-hwC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R0U-nJ-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2587.5" y="109.85915492957747"/>
+            <point key="canvasLocation" x="1928" y="-289"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -526,7 +529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ke-2d-E5N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2005.6640624999998" y="868.814055636896"/>
+            <point key="canvasLocation" x="1973" y="1194"/>
         </scene>
         <!--Launch Screen-->
         <scene sceneID="G8r-Vn-zjU">
@@ -534,14 +537,14 @@
                 <viewControllerPlaceholder storyboardName="Launch Screen" id="eCb-qo-YsU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjG-QK-ti5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2389" y="867"/>
+            <point key="canvasLocation" x="2670" y="971"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qPa-t3-amZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w64-Ml-Rn3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5Zc-2Z-BWQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backIndicatorImage=" " id="5Zc-2Z-BWQ">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -552,10 +555,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GzP-2a-uRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350.5859375" y="868.814055636896"/>
+            <point key="canvasLocation" x="1301" y="1194"/>
         </scene>
     </scenes>
     <resources>
+        <image name=" " width="16" height="16"/>
         <image name="ItunesArtwork" width="512" height="512"/>
         <image name="background.jpeg" width="1000" height="667"/>
         <image name="profile" width="250" height="240"/>
