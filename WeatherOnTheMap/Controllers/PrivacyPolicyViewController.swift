@@ -31,7 +31,7 @@ class PrivacyPolicyViewController: UIViewController, WKNavigationDelegate, WKUID
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
-		UIView.animate(withDuration: 2.6, animations: {
+		UIView.animate(withDuration: 2.7, animations: {
 			self.activity.alpha = 0
 			
 		}, completion: nil)
@@ -39,7 +39,6 @@ class PrivacyPolicyViewController: UIViewController, WKNavigationDelegate, WKUID
 	
 	
 	func loadHtmlFile() {
-//		webView = WKWebView(frame: CGRect( x: 0, y: 80, width: view.frame.width, height: view.frame.height - 60 ), configuration: WKWebViewConfiguration() )
 		webView = WKWebView(frame: self.view.frame)
 		webView.navigationDelegate = self
 
