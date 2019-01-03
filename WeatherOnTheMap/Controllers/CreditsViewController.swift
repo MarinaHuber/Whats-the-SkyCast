@@ -14,6 +14,7 @@ class CreditsViewController: UIViewController {
 	@IBOutlet weak var imgLogo: UIImageView!
 	@IBOutlet weak var text: UILabel!
 	@IBOutlet var presentText: UIView!
+	@IBOutlet weak var photoLabel: UILabel!
 
 	let animateView = LOTAnimationView(name: "logo_final")
 	let animateView2 = LOTAnimationView(name: "loader_animation")
@@ -21,22 +22,22 @@ class CreditsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-    }
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(true)
-		navigationController?.navigationBar.topItem?.title = " "
-		navigationItem.title = "Thanks to:"
 		imgLogo.isHidden = true
 		imgLogo.layer.cornerRadius = 16
 		imgLogo.layer.masksToBounds = true
 		thnxLabel.isHidden = true
 		presentText.isHidden = true
 		text.isHidden = true
+		photoLabel.isHidden = true
 
-		UIView.animate(withDuration: 1.6, delay: 0.2, options: .curveEaseIn, animations: {
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(true)
+		navigationController?.navigationBar.topItem?.title = " "
+		navigationItem.title = "Thanks to:"
+
+		UIView.animate(withDuration: 2.0, delay: 0.2, options: .curveEaseInOut, animations: {
 			let iPhone = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/2)
 			let isPad = UIDevice().userInterfaceIdiom  == .pad
 			self.animateView.frame = isPad ? CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/2) : iPhone
@@ -48,6 +49,8 @@ class CreditsViewController: UIViewController {
 			self.animateView2.contentMode = .scaleAspectFit
 			self.view.addSubview(self.animateView)
 			self.view.addSubview(self.animateView2)
+			self.animateView.alpha = 1
+			self.animateView2.alpha = 1
 			self.animateView.play()
 			self.animateView2.play()
 		}, completion: { finished in
@@ -55,8 +58,11 @@ class CreditsViewController: UIViewController {
 			self.text.isHidden = false
 			self.thnxLabel.isHidden = false
 			self.imgLogo.isHidden = false
-			self.animateView.removeFromSuperview()
-			self.animateView2.removeFromSuperview()
+			self.photoLabel.isHidden = false
+			self.animateView.alpha = 0
+			self.animateView2.alpha = 0
+			//self.animateView.removeFromSuperview()
+			//self.animateView2.removeFromSuperview()
 
 		})
 	}

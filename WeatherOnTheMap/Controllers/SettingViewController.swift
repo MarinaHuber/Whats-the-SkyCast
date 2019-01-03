@@ -130,22 +130,15 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 					case .failure(let error):
 						print(error)
-						let alertController = UIAlertController(title: "Location unknown", message: "No city found", preferredStyle: .alert)
-						let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-						alertController.addAction(OKAction)
+						self.alert(message: "No city found", title: "Location unknown")
 
-						self.present(alertController, animated: true, completion: nil)
 					}
 					
 				})
 
 			} else {
 				print("No city provided")
-
-				let alertController = UIAlertController(title: "Location", message: "You did not enter a city", preferredStyle: .alert)
-				alertController.addAction( UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
-					(action : UIAlertAction!) -> Void in }))
-				self.present(alertController, animated: true) {}
+				self.alert(message: "You did not enter a city", title: "Location")
 
 				
 			}
@@ -183,7 +176,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		
 		alertController.addAction(action)
 		alertController.addAction(cancelAction)
-		self.present(alertController, animated: true) {}
+		self.present(alertController, animated: true)
 
 	// if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
 			//TODO: UIPopoverPresentationController
@@ -196,12 +189,14 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 		
 	}
 
-	func alert(message: String, title: String = "Location") {
+
+	//IS THIS USED???
+	func alert(message: String, title: String) {
 		DispatchQueue.main.async {
 			let alertController = UIAlertController(title: title, message:   message, preferredStyle: .alert)
 			let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
 			alertController.addAction(OKAction)
-			self.present(alertController, animated: true, completion: nil)
+			self.present(alertController, animated: true)
 		}
 
 	}

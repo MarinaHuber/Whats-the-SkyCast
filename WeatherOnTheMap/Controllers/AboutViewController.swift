@@ -19,18 +19,24 @@ class AboutViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		websiteButton.layer.borderWidth = 1.5
-		websiteButton.layer.borderColor = UIColor.black.cgColor
-		websiteButton.layer.cornerRadius = 5
+		sutUpButtonUI()
+
+	}
+
+	func sutUpButtonUI() {
+	websiteButton.layer.borderWidth = 1.5
+	websiteButton.layer.borderColor = UIColor.black.cgColor
+	websiteButton.layer.cornerRadius = 5
+	websiteButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
 
 
-		privacyButton.layer.borderWidth = 1.5
-		privacyButton.layer.borderColor = UIColor.black.cgColor
-		privacyButton.layer.cornerRadius = 5
+	privacyButton.layer.borderWidth = 1.5
+	privacyButton.layer.borderColor = UIColor.black.cgColor
+	privacyButton.layer.cornerRadius = 5
 
-		creditsButton.layer.borderWidth = 1.5
-		creditsButton.layer.borderColor = UIColor.black.cgColor
-		creditsButton.layer.cornerRadius = 5
+	creditsButton.layer.borderWidth = 1.5
+	creditsButton.layer.borderColor = UIColor.black.cgColor
+	creditsButton.layer.cornerRadius = 5
 	}
 
 	override func viewDidAppear(_ animated: Bool) {

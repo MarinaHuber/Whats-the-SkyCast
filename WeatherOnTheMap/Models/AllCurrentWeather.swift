@@ -7,17 +7,7 @@
 //
 
 import Foundation
-import UIKit
 
-/* reference to JSON indirect mapping
-protocol Encodable {
-func encode(to encoder: Encoder) throws
-}
-
-protocol Decodable {
-init(from decoder: Decoder) throws
-}
-*/
 
 struct AllCurrentWeather: Decodable {
 	let count: Int

@@ -107,7 +107,7 @@ class collectionViewCell: UICollectionViewCell {
 			default:
 				labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 100)
 				labelCityName.font = UIFont.boldSystemFont(ofSize: 20)
-				labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 170, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 40, rightConstant: 0, widthConstant: 120, heightConstant: 20)
+				labelCityName.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: iconImage.topAnchor, right: nil, topConstant: 125, leftConstant: contentView.frame.width/2 - 60, bottomConstant: 40, rightConstant: 0, widthConstant: 120, heightConstant: 20)
 
 				iconViewAnima.anchor(labelCityName.bottomAnchor, left: contentView.leftAnchor, bottom: iconImage.bottomAnchor, right: contentView.rightAnchor, topConstant: 60, leftConstant: contentView.frame.width/2-110, bottomConstant: 0, rightConstant: contentView.frame.width/2-110, widthConstant: 300, heightConstant: 300)
 
@@ -133,6 +133,15 @@ class collectionViewCell: UICollectionViewCell {
 			break
 			
 		}
+	}
+//TODO:
+	 func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+		print("did Rotate device")
+		coordinator.animate(alongsideTransition: { (_) in
+
+			// frame center here
+		}, completion: nil)
+
 	}
 	
 	

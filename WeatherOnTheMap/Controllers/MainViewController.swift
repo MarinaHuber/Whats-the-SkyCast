@@ -82,6 +82,9 @@ class MainViewController: UIViewController {
 		self.navigationController?.view.backgroundColor = UIColor.clear
 
 	}
+	private func prepareStatusBar() {
+		UIStatusBarStyle.lightContent
+	}
 
 
 	override func viewWillLayoutSubviews() {

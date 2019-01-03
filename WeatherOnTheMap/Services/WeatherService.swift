@@ -17,11 +17,11 @@ enum ResultType<T> {
 enum APIRouter {
 
 	static let APIKey: String = "c6e381d8c7ff98f0fee43775817cf6ad"
-	static let base_URL = "http://api.openweathermap.org/data/2.5/"
+	static let base_URL = "https://api.openweathermap.org/data/2.5/"
 }
 
 
-//  1. create basic request without making the object first
+//  1. create basic request without making the object first with URLString
 //  2. getCurrenWeather is after made the object
 //  The limit of locations is 20: treated as 6 API calls for 6 city IDs
 //  &units=metric url added GET for Celsius units temp
@@ -88,7 +88,6 @@ class WeatherService {
 			} catch let error {
 				print("Error serializing json:", error)
 				completionHandler(.failure(error))
-
 				DispatchQueue.main.async(execute: {
 					if let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any] {
 						print("JSON response code:", json ?? "")
@@ -96,9 +95,6 @@ class WeatherService {
 							if code != "200" {
 								if let message = json?["message"] as? String {
 									print( "To the user text: ", message.localizedUppercase)
-
-			//			UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
-
 
 								}
 								return
