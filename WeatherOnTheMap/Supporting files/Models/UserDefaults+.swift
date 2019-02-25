@@ -1,8 +1,4 @@
-//
-//  UserDefaults+.swift
-//  WeatherOnTheMap
-//
-//  Created by Amit Kumar Swami on 25/3/18.
+
 //  Copyright © 2018 Marina Huber. All rights reserved.
 //
 
