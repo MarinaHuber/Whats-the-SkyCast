@@ -43,7 +43,7 @@ class PrivacyPolicyViewController: UIViewController, WKNavigationDelegate, WKUID
 		webView.navigationDelegate = self
 
 		view.addSubview(webView)
-		view.bringSubview(toFront: activity)
+		view.bringSubviewToFront(activity)
 		guard let path = Bundle.main.path(forResource: "WEATHERinfo", ofType: "html") else { return }
 		let url = URL(fileURLWithPath:path)
 		let request = URLRequest(url: url)

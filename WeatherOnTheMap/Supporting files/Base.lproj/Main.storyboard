@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w64-Ml-Rn3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w64-Ml-Rn3">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -74,9 +73,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" Animations by Lottie: Trev Zooy, Arpit Aguvwal, Ryan Sterling, Carolina Cajazeire" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKQ-0N-kPT">
-                                <rect key="frame" x="117" y="382" width="142" height="115"/>
+                                <rect key="frame" x="-101.33333333333331" y="382" width="577.66666666666663" height="115"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="142" id="8kJ-9J-KH0"/>
                                     <constraint firstAttribute="height" constant="115" id="Cxg-3n-ccC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -99,7 +97,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wYu-nF-4aq" firstAttribute="leading" secondItem="o5O-P1-nuc" secondAttribute="leading" constant="117" id="2Yj-l0-Noo"/>
-                            <constraint firstItem="wYu-nF-4aq" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="2uf-RN-o5f"/>
                             <constraint firstItem="jKQ-0N-kPT" firstAttribute="top" secondItem="dXq-zU-wzS" secondAttribute="bottom" constant="17" id="5Rb-VT-R1U"/>
                             <constraint firstItem="htA-wM-19c" firstAttribute="centerX" secondItem="c2v-FW-WAQ" secondAttribute="centerX" id="6kr-rV-tKo"/>
                             <constraint firstItem="o5O-P1-nuc" firstAttribute="trailing" secondItem="wYu-nF-4aq" secondAttribute="trailing" constant="116" id="DWv-s6-DB9"/>
@@ -587,7 +584,7 @@
         <image name=" " width="16" height="16"/>
         <image name="ItunesArtwork" width="512" height="512"/>
         <image name="bg_sun.png" width="700" height="994"/>
-        <image name="profile" width="166" height="160"/>
-        <image name="settings" width="99" height="102"/>
+        <image name="profile" width="500" height="481"/>
+        <image name="settings" width="298" height="308"/>
     </resources>
 </document>

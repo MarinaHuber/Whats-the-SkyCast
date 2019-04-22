@@ -86,8 +86,8 @@ class collectionViewCell: UICollectionViewCell {
 			contentView.addSubview(labelCityTemerature)
 			contentView.addSubview(iconImage)
 			contentView.addSubview(iconViewAnima)
-			contentView.bringSubview(toFront: iconViewAnima)
-			contentView.bringSubview(toFront: labelCityTemerature)
+			contentView.bringSubviewToFront(iconViewAnima)
+			contentView.bringSubviewToFront(labelCityTemerature)
 
 			iconViewAnima.layoutIfNeeded()
 
@@ -127,7 +127,7 @@ class collectionViewCell: UICollectionViewCell {
 			labelCityTemerature.font = UIFont.boldSystemFont(ofSize: 20)
 			contentView.addBlurEffect()
 			contentView.addSubview(labelCityTemerature)
-			contentView.bringSubview(toFront: labelCityTemerature)
+			contentView.bringSubviewToFront(labelCityTemerature)
 			labelCityTemerature.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: 10, leftConstant: 5, bottomConstant: 10, rightConstant: 5, widthConstant: 10, heightConstant: 10)
 			
 			break

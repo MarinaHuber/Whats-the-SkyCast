@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
 		//:::::What is this????
 		var controller = MainViewController()
@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			alert.addAction(OKAction)
 			let alertWindow = UIWindow(frame: UIScreen.main.bounds)
 			alertWindow.rootViewController = UIViewController()
-			alertWindow.windowLevel = UIWindowLevelAlert + 1;
+			alertWindow.windowLevel = UIWindow.Level.alert + 1;
 			alertWindow.makeKeyAndVisible()
 
 
@@ -99,7 +99,7 @@ extension AppDelegate {
 //		self.label.attributedText = myAttrString
 
 		if (UIScreen.main.bounds.size.height == 480) {
-		UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.red, NSAttributedStringKey.font: Font.smallText as Any]
+		UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red, NSAttributedString.Key.font: Font.smallText as Any]
 		}
 	}
 

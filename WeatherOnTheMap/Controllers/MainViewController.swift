@@ -202,7 +202,7 @@ extension MainViewController: UICollectionViewDataSource {
 			let alert = UIAlertController(title: "No Internet connection", message: "Make sure your device is connected to the internet.", preferredStyle: .alert)
 			let alertWindow = UIWindow(frame: UIScreen.main.bounds)
 			alertWindow.rootViewController = UIViewController()
-			alertWindow.windowLevel = UIWindowLevelAlert + 1;
+			alertWindow.windowLevel = UIWindow.Level.alert + 1;
 			alertWindow.makeKeyAndVisible()
 
 

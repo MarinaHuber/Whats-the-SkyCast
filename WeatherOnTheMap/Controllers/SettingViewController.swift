@@ -157,10 +157,10 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			configurationHandler: {(textField: UITextField!) in
 				textField.placeholder = "City name..."
 		})
-		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: {
+		let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.destructive, handler: {
 			(action : UIAlertAction!) -> Void in })
 		
-		let action = UIAlertAction(title: "Submit", style: UIAlertActionStyle.default, handler: {
+		let action = UIAlertAction(title: "Submit", style: UIAlertAction.Style.default, handler: {
 			(paramAction:UIAlertAction!) in
 			if let textFields = alertController.textFields {
 				let theTextFields = textFields as [UITextField]
