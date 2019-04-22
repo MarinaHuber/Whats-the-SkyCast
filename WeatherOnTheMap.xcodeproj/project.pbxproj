@@ -33,6 +33,8 @@
 		9CA8AB79209F5EE5005AB691 /* techno_penguin.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB78209F5EE4005AB691 /* techno_penguin.json */; };
 		9CA8AB7B209F616B005AB691 /* loading_ribbon.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB7A209F616A005AB691 /* loading_ribbon.json */; };
 		9CA8AB8D209F6617005AB691 /* yelloader.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CA8AB8C209F6615005AB691 /* yelloader.json */; };
+		9CBAF7E5226DEB3900C33055 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CBAF7E4226DEB3900C33055 /* MainInterface.storyboard */; };
+		9CBAF7E9226DEB3E00C33055 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBAF7E7226DEB3E00C33055 /* TodayViewController.swift */; };
 		9CC70D721F7ABC080032406D /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC70D711F7ABC080032406D /* PrivacyPolicyViewController.swift */; };
 		9CC9887C21204591009C1EFF /* bg_sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC9887B21204591009C1EFF /* bg_sun.png */; };
 		9CD7B646203F6EE70095F58D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD7B645203F6EE70095F58D /* SettingViewController.swift */; };
@@ -84,6 +86,11 @@
 		9CA8AB78209F5EE4005AB691 /* techno_penguin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = techno_penguin.json; sourceTree = "<group>"; };
 		9CA8AB7A209F616A005AB691 /* loading_ribbon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading_ribbon.json; sourceTree = "<group>"; };
 		9CA8AB8C209F6615005AB691 /* yelloader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = yelloader.json; sourceTree = "<group>"; };
+		9CBAF7E2226DEAFD00C33055 /* WeatherOnTheMap.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = WeatherOnTheMap.entitlements; sourceTree = "<group>"; };
+		9CBAF7E4226DEB3900C33055 /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		9CBAF7E6226DEB3E00C33055 /* Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widget.entitlements; sourceTree = "<group>"; };
+		9CBAF7E7226DEB3E00C33055 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		9CBAF7E8226DEB3E00C33055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CC70D711F7ABC080032406D /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		9CC9887B21204591009C1EFF /* bg_sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_sun.png; sourceTree = "<group>"; };
 		9CD7B645203F6EE70095F58D /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +189,7 @@
 		9C9C600E1F7AB4DF00661A58 = {
 			isa = PBXGroup;
 			children = (
+				9CBAF7E3226DEB2900C33055 /* Widget */,
 				9C9C60191F7AB4DF00661A58 /* WeatherOnTheMap */,
 				9C44D52420F6700400597BDD /* WeatherOnTheMapTests */,
 				9C9C60181F7AB4DF00661A58 /* Products */,
@@ -202,6 +210,7 @@
 		9C9C60191F7AB4DF00661A58 /* WeatherOnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				9CBAF7E2226DEAFD00C33055 /* WeatherOnTheMap.entitlements */,
 				9CEAE171209D1BB8001415C8 /* Launch Screen.storyboard */,
 				9C9C60261F7AB4DF00661A58 /* Info.plist */,
 				9C46DF091F7BB44A004834C8 /* Supporting files */,
@@ -224,6 +233,18 @@
 				9C593F6E207EA9D400F621B8 /* loader_animation.json */,
 			);
 			path = Annimations;
+			sourceTree = "<group>";
+		};
+		9CBAF7E3226DEB2900C33055 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				9CBAF7E4226DEB3900C33055 /* MainInterface.storyboard */,
+				9CBAF7E8226DEB3E00C33055 /* Info.plist */,
+				9CBAF7E7226DEB3E00C33055 /* TodayViewController.swift */,
+				9CBAF7E6226DEB3E00C33055 /* Widget.entitlements */,
+			);
+			name = Widget;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		9CEE28052018EC3500B7BD77 /* Helpers */ = {
@@ -346,6 +367,7 @@
 				9CEAE172209D1BB8001415C8 /* Launch Screen.storyboard in Resources */,
 				9C9C60221F7AB4DF00661A58 /* Assets.xcassets in Resources */,
 				9C593F6F207EA9D400F621B8 /* loader_animation.json in Resources */,
+				9CBAF7E5226DEB3900C33055 /* MainInterface.storyboard in Resources */,
 				9C9C60201F7AB4DF00661A58 /* Main.storyboard in Resources */,
 				9CA8AB6F209F58D0005AB691 /* color_line.json in Resources */,
 				9CA8AB7B209F616B005AB691 /* loading_ribbon.json in Resources */,
@@ -427,6 +449,7 @@
 			files = (
 				9C9C601B1F7AB4DF00661A58 /* AppDelegate.swift in Sources */,
 				9CDB95ED1FCAD94A0000C689 /* AllCurrentWeather.swift in Sources */,
+				9CBAF7E9226DEB3E00C33055 /* TodayViewController.swift in Sources */,
 				9C397B3C206BE5A300DD95E1 /* UserDefaults+.swift in Sources */,
 				9C593F69207E89B900F621B8 /* LogoViewController.swift in Sources */,
 				9C46DF071F7B9B37004834C8 /* collectionViewCell.swift in Sources */,

@@ -153,6 +153,7 @@ extension MainViewController: UICollectionViewDataSource {
 			}
 
 			let weatherID = cellData.cityID
+			UserDefaults.init(suiteName: "group.com.hubermarina.SunWeather.Widget")?.set(weatherID, forKey: "icon")
 			cell.updateWeatherIcon(conditionFor: weatherID)
 			cell.updateAnimationIcon(conditionFor: weatherID)
 
