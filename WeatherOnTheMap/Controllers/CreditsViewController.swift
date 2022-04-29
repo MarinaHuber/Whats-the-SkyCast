@@ -16,8 +16,8 @@ class CreditsViewController: UIViewController {
 	@IBOutlet var presentText: UIView!
 	@IBOutlet weak var photoLabel: UILabel!
 
-	let animateView = LOTAnimationView(name: "logo_final")
-	let animateView2 = LOTAnimationView(name: "loader_animation")
+	let animateView = AnimationView(name: "logo_final")
+	let animateView2 = AnimationView(name: "loader_animation")
 	
 
     override func viewDidLoad() {
