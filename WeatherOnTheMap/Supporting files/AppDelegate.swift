@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let controller = MainViewController()
+		//:::::What is this????
+		var controller = MainViewController()
 		controller.setNeedsStatusBarAppearanceUpdate()
 		//customizeUI()
 		// ********************************************************
@@ -83,23 +84,6 @@ extension AppDelegate {
 		UINavigationBar.appearance().shadowImage = UIImage()
 		UINavigationBar.appearance().layer.shadowColor = UIColor.clear.cgColor
 
-		//add here for iPad and iPhone version
-		let isPad = UIDevice().userInterfaceIdiom  == .pad
-//
-//		UINavigationBar.appearance().titleTextAttributes = isPad ? [NSAttributedStringKey.foregroundColor:UIColor.blue, NSAttributedStringKey.font: UIFont(name: "Servetica-Thin", size: 23)] : [NSAttributedStringKey.foregroundColor:UIColor.red, NSAttributedStringKey.font: UIFont(name: "Servetica-Thin", size: 15)]
-
-
-// missing this
-//		let myString = "Swift Attributed String"
-//		let attr:[NSAttributedStringKey: Any] = [.foregroundColor: UIColor.blue, .writingDirection: [NSNumber(integerLiteral: 3)]]
-//
-//		let myAttrString = NSAttributedString(string: myString, attributes:attr)
-//
-//		self.label.attributedText = myAttrString
-
-		if (UIScreen.main.bounds.size.height == 480) {
-		UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.red, NSAttributedString.Key.font: Font.smallText as Any]
-		}
 	}
 
 }

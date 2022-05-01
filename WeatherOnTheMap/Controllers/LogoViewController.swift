@@ -10,8 +10,8 @@ import UIKit
 import Lottie
 
 class LogoViewController: UIViewController {
-	let animateView = AnimationView(name: "logo_final")
-	let animateView2 = AnimationView(name: "loader_animation")
+	let animateView = LOTAnimationView(name: "logo_final")
+	let animateView2 = LOTAnimationView(name: "loader_animation")
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,6 +42,8 @@ class LogoViewController: UIViewController {
 		let storyboard = UIStoryboard(name: "Main", bundle: .main)
 		let vc : UIViewController = storyboard.instantiateViewController(withIdentifier: "main") as! MainViewController
 		self.navigationController?.pushViewController(vc, animated: true)
+
+
 	}
 
 }

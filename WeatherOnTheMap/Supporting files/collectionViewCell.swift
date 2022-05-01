@@ -21,11 +21,11 @@ class collectionViewCell: UICollectionViewCell {
 	
 	var labelCityName = UILabel()
 	var labelCityTemerature = UILabel()
-	var iconViewAnima = AnimationView()
+	var iconViewAnima = LOTAnimationView()
 	
 	lazy var iconImage: UIImageView = {
 		let iview = UIImageView()
-        iview.image = UIImage(named: "bg_sun")?.withRenderingMode(.alwaysOriginal)
+		iview.image = #imageLiteral(resourceName: "sunny").withRenderingMode(.alwaysOriginal)
 		return iview
 	}()
 
@@ -182,9 +182,9 @@ class collectionViewCell: UICollectionViewCell {
 			animaName = "yelloader"
 
 		}
-        self.iconViewAnima.animation = Animation.named(animaName)
+		self.iconViewAnima.setAnimation(named: animaName)
 		self.iconViewAnima.play()
-        self.iconViewAnima.loopMode = .loop
+		self.iconViewAnima.loopAnimation = true
 
 	}
 	
