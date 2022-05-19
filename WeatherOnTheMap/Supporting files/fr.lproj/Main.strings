@@ -1,0 +1,53 @@
+/* Class = "UIButton"; normalTitle = "Privacy policy"; ObjectID = "1qS-dH-uYK"; */
+"1qS-dH-uYK.normalTitle" = "Privacy policy";
+
+/* Class = "UILabel"; text = "Temperature units"; ObjectID = "3vc-Q1-kfK"; */
+"3vc-Q1-kfK.text" = "Temperature units";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "48Q-4b-I6N"; */
+"48Q-4b-I6N.text" = "Location";
+
+/* Class = "UIButton"; normalTitle = "   Search      "; ObjectID = "4uk-MX-Jgq"; */
+"4uk-MX-Jgq.normalTitle" = "   Search      ";
+
+/* Class = "UILabel"; text = "I am Marina Huber and this is my sun weather animation app."; ObjectID = "7vg-No-ZgE"; */
+"7vg-No-ZgE.text" = "I am Marina Huber and this is my sun weather animation app.";
+
+/* Class = "UILabel"; text = "Sun Weather app by  Marina Huber"; ObjectID = "dXq-zU-wzS"; */
+"dXq-zU-wzS.text" = "Sun Weather app by  Marina Huber";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "ebT-6x-Iac"; */
+"ebT-6x-Iac.title" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "Credits"; ObjectID = "FGO-BZ-ZuM"; */
+"FGO-BZ-ZuM.normalTitle" = "Credits";
+
+/* Class = "UILabel"; text = "About me"; ObjectID = "gcg-u4-XwT"; */
+"gcg-u4-XwT.text" = "About me";
+
+/* Class = "UIButton"; normalTitle = "info"; ObjectID = "gze-No-Riw"; */
+"gze-No-Riw.normalTitle" = "info";
+
+/* Class = "UILabel"; text = "Code Bohemia presents"; ObjectID = "htA-wM-19c"; */
+"htA-wM-19c.text" = "Code Bohemia presents";
+
+/* Class = "UILabel"; text = " Animations by Lottie: Trev Zooy, Arpit Aguvwal, Ryan Sterling, Carolina Cajazeire"; ObjectID = "jKQ-0N-kPT"; */
+"jKQ-0N-kPT.text" = " Animations by Lottie: Trev Zooy, Arpit Aguvwal, Ryan Sterling, Carolina Cajazeire";
+
+/* Class = "UILabel"; text = "Forecast days"; ObjectID = "kgZ-fp-2fN"; */
+"kgZ-fp-2fN.text" = "Forecast days";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "mp5-H5-00v"; */
+"mp5-H5-00v.title" = "Item";
+
+/* Class = "UITableViewSection"; footerTitle = "version 1"; ObjectID = "otx-9J-Ezm"; */
+"otx-9J-Ezm.footerTitle" = "version 1";
+
+/* Class = "UIButton"; normalTitle = "marinahuber.com"; ObjectID = "RlF-tD-qaY"; */
+"RlF-tD-qaY.normalTitle" = "marinahuber.com";
+
+/* Class = "UILabel"; text = "Photography by: Billy Watts"; ObjectID = "wYu-nF-4aq"; */
+"wYu-nF-4aq.text" = "Photography by: Billy Watts";
+
+/* Class = "UIButton"; normalTitle = "5"; ObjectID = "Yqr-Qb-yyO"; */
+"Yqr-Qb-yyO.normalTitle" = "5";

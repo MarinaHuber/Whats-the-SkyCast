@@ -1,5 +1,5 @@
 [update]
-tasks = ["interfaces", "code", "transform", "normalize"]
+tasks = ["interfaces", "code", "transform", "normalize", "translate"]
 
 [update.interfaces]
 paths = ["."]
@@ -40,3 +40,9 @@ paths = ["."]
 subpathsToIgnore = [".git", "carthage", "pods", "build", ".build", "docs"]
 duplicateKeys = true
 emptyValues = true
+
+[update.translate]
+paths = ["WeatherOnTheMap/Supporting files"]
+translator = "microsoftTranslator"
+secret = "14def2f596774f5bafba68d544566afa"
+sourceLocale = "en"
