@@ -1,8 +1,8 @@
 [update]
-tasks = ["interfaces", "code", "transform", "normalize", "translate"]
+tasks = ["code", "interfaces", "transform", "normalize", "translate"]
 
 [update.interfaces]
-paths = ["."]
+paths = ["./WeatherOnTheMap/Supporting files"]
 subpathsToIgnore = [".git", "carthage", "pods", "build", ".build", "docs"]
 defaultToBase = false
 ignoreEmptyStrings = false
@@ -10,7 +10,7 @@ unstripped = false
 ignoreKeys = ["#bartycrouch-ignore!", "#bc-ignore!", "#i!"]
 
 [update.code]
-codePaths = ["."]
+codePaths = ["./WeatherOnTheMap/Supporting files"]
 subpathsToIgnore = [".git", "carthage", "pods", "build", ".build", "docs"]
 localizablePaths = ["."]
 defaultToKeys = false
@@ -20,7 +20,7 @@ plistArguments = true
 ignoreKeys = ["#bartycrouch-ignore!", "#bc-ignore!", "#i!"]
 
 [update.transform]
-codePaths = ["."]
+codePaths = ["./WeatherOnTheMap/Supporting files"]
 subpathsToIgnore = [".git", "carthage", "pods", "build", ".build", "docs"]
 localizablePaths = ["."]
 transformer = "foundation"
@@ -29,20 +29,20 @@ typeName = "BartyCrouch"
 translateMethodName = "translate"
 
 [update.normalize]
-paths = ["."]
+paths = ["./WeatherOnTheMap/Supporting files"]
 subpathsToIgnore = [".git", "carthage", "pods", "build", ".build", "docs"]
 sourceLocale = "en"
 harmonizeWithSource = true
 sortByKeys = true
 
 [lint]
-paths = ["."]
+paths = ["./WeatherOnTheMap/Supporting files"]
 subpathsToIgnore = [".git", "carthage", "pods", "build", ".build", "docs"]
 duplicateKeys = true
 emptyValues = true
 
 [update.translate]
-paths = ["WeatherOnTheMap/Supporting files"]
+paths = ["./WeatherOnTheMap/Supporting files"]
 translator = "microsoftTranslator"
-secret = ""
+secret = "14def2f596774f5bafba68d544566afa"
 sourceLocale = "en"
