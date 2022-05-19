@@ -133,6 +133,7 @@ extension MainViewController: UICollectionViewDataSource {
 		case largeCollectionView!:
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ID", for: indexPath) as! collectionViewCell
 			cell.labelCityName.text = cellData.cityName
+            cell.labelCity.text = "City"
 //TODO: place to model
 			let temp = cToFahrenheit(tempC: tempResult)
 			let tempF = Int(round(temp))
