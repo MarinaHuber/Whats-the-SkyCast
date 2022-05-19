@@ -44,5 +44,5 @@ emptyValues = true
 [update.translate]
 paths = ["WeatherOnTheMap/Supporting files"]
 translator = "microsoftTranslator"
-secret = "14def2f596774f5bafba68d544566afa"
+secret = ""
 sourceLocale = "en"

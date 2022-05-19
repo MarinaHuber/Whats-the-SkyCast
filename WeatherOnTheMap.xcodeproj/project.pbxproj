@@ -417,7 +417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which bartycrouch > /dev/null; then\n    bartycrouch update\nelse\n    echo \"warning: BartyCrouch not installed, download it from https://github.com/FlineDev/BartyCrouch\"\nfi\n";
+			shellScript = "if which bartycrouch > /dev/null; then\n    bartycrouch version -x\nelse\n    echo \"warning: BartyCrouch not installed, download it from https://github.com/FlineDev/BartyCrouch\"\nfi\n";
 		};
 		C199444D3F87E79F7132C204 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
