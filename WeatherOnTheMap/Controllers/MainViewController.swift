@@ -65,7 +65,9 @@ class MainViewController: UIViewController {
 			self.largeCollectionView.reloadSections(IndexSet(integer: 0))
 			self.smallCollectionView.reloadSections(IndexSet(integer: 0))
 			//important! on main thread random first scroll selected
+            self.largeCollectionView.isPagingEnabled = false
 			self.largeCollectionView?.scrollToItem(at: IndexPath(row: self.citiesWeather.count - 4, section: 0), at: .centeredHorizontally, animated: true)
+            self.largeCollectionView.isPagingEnabled = true
 			self.smallCollectionView?.selectItem(at: IndexPath(row: self.citiesWeather.count - 4, section: 0), animated: true, scrollPosition: .centeredHorizontally)
 			self.largeCollectionView.animateAppearance()
 			self.smallCollectionView.animateAppearance()
@@ -93,20 +95,22 @@ class MainViewController: UIViewController {
 		largeCollectionView.layoutIfNeeded()
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		setNavigationBar()
-		largeCollectionView.contentInset = UIEdgeInsets.zero
-
-		if !citiesWeather.isEmpty {
-
-		largeCollectionView?.scrollToItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), at: .centeredHorizontally, animated: true)
-		smallCollectionView?.selectItem(at: IndexPath(row: self.citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-		//Reload here to update units for first load
-		largeCollectionView?.reloadItems(at: [IndexPath(row: self.citiesWeather.count - 1, section: 0)])
-		//smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
-		citiesWeather = UserDefaults.standard.cities
-		}
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNavigationBar()
+        largeCollectionView.contentInset = UIEdgeInsets.zero
+        
+        if !citiesWeather.isEmpty {
+            largeCollectionView.isPagingEnabled = false
+            largeCollectionView?.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+            largeCollectionView.isPagingEnabled = true
+            
+            smallCollectionView?.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+                //Reload here to update units for first load
+          //  largeCollectionView?.reloadItems(at: [IndexPath(row: self.citiesWeather.count - 1, section: 0)])
+                //smallCollectionViewWidthConstraint.constant = min(view.frame.width - 20, smallCollectionView.contentSize.width)
+            citiesWeather = UserDefaults.standard.cities
+        }
 
 	}
 
@@ -179,6 +183,14 @@ extension MainViewController: UICollectionViewDataSource {
 
 					cell.labelCityTemerature.text = "\(tempC)°"
 			}
+            
+//            if indexPath.row == 0 {
+//                cell.isSelected = true
+//              //  smallCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+//                largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+//            } else {
+//                cell.isSelected = false
+//            }
 
 			cell.configureCellWithType(.small)
 			return cell
@@ -252,9 +264,10 @@ extension MainViewController: UICollectionViewDelegate {
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if smallCollectionView == collectionView {
-			largeCollectionView.animateAppearance()
+            self.largeCollectionView.isPagingEnabled = false
 			smallCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
 			largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            self.largeCollectionView.isPagingEnabled = false
 		}
 	}
 }
@@ -270,8 +283,9 @@ extension MainViewController: SettingViewControllerDelegate {
 		//important! on background thread
 		largeCollectionView.reloadData()
 		smallCollectionView.reloadData()
-
+        self.largeCollectionView.isPagingEnabled = false
 		largeCollectionView?.scrollToItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), at: .centeredHorizontally, animated: true)
+        self.largeCollectionView.isPagingEnabled = true
 		smallCollectionView?.selectItem(at: IndexPath(row: citiesWeather.count - 1, section: 0), animated: true, scrollPosition: .centeredHorizontally)
 
 
@@ -301,7 +315,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 		if largeCollectionView == collectionView {
 			return 0
 		} else if smallCollectionView == collectionView {
-			return 7
+			return 17
 		}
 		return 0
 	}

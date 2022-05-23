@@ -127,7 +127,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 						self.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
 						self.citiesWeather.append(forecastWeather)
 						self.delegate?.citySelected(cityWeather: one)
-
+                        self.navigationController?.popViewController(animated: true)
 					case .failure(let error):
 						print(error)
 						self.alert(message: "No city found", title: "Location unknown")

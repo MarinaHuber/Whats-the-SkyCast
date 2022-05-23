@@ -91,9 +91,9 @@ class WeatherService {
 				DispatchQueue.main.async(execute: {
 					if let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any] {
 						print("JSON response code:", json ?? "")
-						if let code = json?["cod"] as? String {
+                        if let code = json["cod"] as? String {
 							if code != "200" {
-								if let message = json?["message"] as? String {
+                                if let message = json["message"] as? String {
 									print( "To the user text: ", message.localizedUppercase)
 
 								}
