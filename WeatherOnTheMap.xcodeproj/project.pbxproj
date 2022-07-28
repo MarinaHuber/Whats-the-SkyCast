@@ -47,7 +47,6 @@
 		9CD85D7A2836CEE800606F37 /* Localizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD85D792836CEE800606F37 /* Localizations.swift */; };
 		9CDB95ED1FCAD94A0000C689 /* AllCurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDB95EC1FCAD94A0000C689 /* AllCurrentWeather.swift */; };
 		9CEAE170209D1ACF001415C8 /* logo_final.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CEAE16F209D1ACE001415C8 /* logo_final.json */; };
-		9CF5EDAF28365E0B00ADDD17 /* BartyCrouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF5EDAE28365E0B00ADDD17 /* BartyCrouch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,7 +109,6 @@
 		9CD85D7C2836E44B00606F37 /* en */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9CDB95EC1FCAD94A0000C689 /* AllCurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCurrentWeather.swift; sourceTree = "<group>"; };
 		9CEAE16F209D1ACE001415C8 /* logo_final.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = logo_final.json; sourceTree = "<group>"; };
-		9CF5EDAE28365E0B00ADDD17 /* BartyCrouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BartyCrouch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +155,6 @@
 				9C46DEFE1F7B8DC1004834C8 /* Constants.swift */,
 				9CDB95EC1FCAD94A0000C689 /* AllCurrentWeather.swift */,
 				9C397B39206BE5A200DD95E1 /* SingleCurrentWeather.swift */,
-				9C397B3A206BE5A200DD95E1 /* UserDefaults+.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,7 +184,6 @@
 		9C46DF091F7BB44A004834C8 /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
-				9CF5EDAE28365E0B00ADDD17 /* BartyCrouch.swift */,
 				9CBAF7DF226DE80E00C33055 /* Annimations */,
 				9C9C601A1F7AB4DF00661A58 /* AppDelegate.swift */,
 				9C46DF061F7B9B36004834C8 /* collectionViewCell.swift */,
@@ -209,6 +205,7 @@
 				9C616C58283B910A00B1D1F6 /* String+Localized.swift */,
 				9C616C56283B910A00B1D1F6 /* UIColor+UIImageView.swift */,
 				9C616C55283B910A00B1D1F6 /* UILabel+Localize.swift */,
+				9C397B3A206BE5A200DD95E1 /* UserDefaults+.swift */,
 				9C616C59283B910A00B1D1F6 /* UIView+Anchors.swift */,
 				9C616C57283B910A00B1D1F6 /* UIView+Extension.swift */,
 			);
@@ -315,7 +312,6 @@
 				9C9C60141F7AB4DF00661A58 /* Frameworks */,
 				9C9C60151F7AB4DF00661A58 /* Resources */,
 				C199444D3F87E79F7132C204 /* [CP] Embed Pods Frameworks */,
-				D655200A6C995962298B347B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -338,7 +334,7 @@
 				TargetAttributes = {
 					9C44D52220F6700400597BDD = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9C9C60161F7AB4DF00661A58;
 					};
@@ -434,10 +430,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/IncBuildNumberScript.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcrun --sdk macosx swiftc -parse-as-library $SCRIPT_INPUT_FILE_0 \\\n  -o RealeaseNumberScript\n./RealeaseNumberScript\n\n";
+			shellScript = "xcrun --sdk macosx swiftc -parse-as-library $SCRIPT_INPUT_FILE_0 \\\n  -o RealeaseNumberScript\n./RealeaseNumberScript\n";
 		};
 		C199444D3F87E79F7132C204 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -445,7 +442,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WeatherOnTheMap/Pods-WeatherOnTheMap-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WeatherOnTheMap/Pods-WeatherOnTheMap-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -454,22 +451,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherOnTheMap/Pods-WeatherOnTheMap-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D655200A6C995962298B347B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherOnTheMap/Pods-WeatherOnTheMap-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WeatherOnTheMap/Pods-WeatherOnTheMap-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -510,7 +492,6 @@
 				9C46DF031F7B9255004834C8 /* WeatherService.swift in Sources */,
 				9CD85D782836CD2200606F37 /* Cell.swift in Sources */,
 				9C616C5D283B910A00B1D1F6 /* String+Localized.swift in Sources */,
-				9CF5EDAF28365E0B00ADDD17 /* BartyCrouch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +547,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-.WeatherOnTheMapTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherOnTheMap.app/WeatherOnTheMap";
 			};
@@ -585,7 +566,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-.WeatherOnTheMapTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherOnTheMap.app/WeatherOnTheMap";
 			};
