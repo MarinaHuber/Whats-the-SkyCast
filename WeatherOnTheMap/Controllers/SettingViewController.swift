@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SettingViewControllerDelegate: class {
+protocol SettingViewControllerDelegate: AnyObject {
 	func citySelected(cityWeather: SingleCurrentWeather)
 }
 
@@ -56,7 +56,12 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	}
 
 
+    var loadSettingsCity: SettingsLoader!
 
+    convenience init(loader: SettingsLoader) {
+        self.init()
+        self.loadSettingsCity = loader
+    }
 
 	
 	override func viewDidLoad() {
@@ -120,7 +125,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 		addCity() { city in
 			if city.isEmpty == false {
-				WeatherService.getOneCity(city, completionHandler: { result in
+                self.loadSettingsCity.getOneCity(city, completionHandler: { result in
 					switch result {
 					case .success(let one):
 						let forecastWeather = ForcastBackground(cityName: one.name ?? "", cityTemperature: one.main?.temp ?? 0, cityID: one.weather?.first?.id ?? 0)

@@ -10,6 +10,13 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    var loadMainFeed: MainVCLoader!
+
+    convenience init(loader: MainVCLoader) {
+        self.init()
+        self.loadMainFeed = loader
+    }
+
 	var settingsVC: SettingViewController!
 
 	@IBOutlet weak var largeCollectionView: UICollectionView!
@@ -42,7 +49,7 @@ class MainViewController: UIViewController {
 	func loadCities() {
 		if citiesWeather.isEmpty {
 
-			WeatherService.getCurrentWeather { result in
+            loadMainFeed.getCurrentWeather { result in
 				switch result {
 				case .success(let cities):
 					self.citiesWeather = cities.map {

@@ -9,17 +9,18 @@
 import Foundation
 
 
-
-
-enum ResultType<T> {
-    case success(T)
-	case failure(Error)
-}
-
 enum APIRouter {
 
 	static let APIKey: String = "c6e381d8c7ff98f0fee43775817cf6ad"
 	static let base_URL = "https://api.openweathermap.org/data/2.5/"
+}
+
+protocol MainVCLoader {
+    func getCurrentWeather(_ completionHandler: @escaping (Result<[Cities], Error>) -> ())
+}
+
+protocol SettingsLoader {
+    func getOneCity(_ city: String, completionHandler: @escaping (Result<SingleCurrentWeather, Error>) -> ())
 }
 
 
