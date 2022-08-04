@@ -10,35 +10,19 @@ import Foundation
 
 
 enum APIRouter {
-
 	static let APIKey: String = "c6e381d8c7ff98f0fee43775817cf6ad"
 	static let base_URL = "https://api.openweathermap.org/data/2.5/"
 }
 
-protocol MainVCLoader {
+protocol WeatherServiceProtocol {
     func getCurrentWeather(_ completionHandler: @escaping (Result<[Cities], Error>) -> ())
-}
-
-protocol SettingsLoader {
     func getOneCity(_ city: String, completionHandler: @escaping (Result<SingleCurrentWeather, Error>) -> ())
+
 }
 
-
-//  1. create basic request without making the object first with URLString
-//  2. Decouple results Cities from the WeatherService & SingleCurrentWeather
-//  3. getCurrenWeather is after we made the object
-//  The limit of locations is 20: treated as 6 API calls for 6 city IDs
-//  &units=metric url added GET for Celsius units temp
-//INFO: https://medium.com/movile-tech/dependency-inversion-principle-in-swift-18ef482284f5
-
-//this need to be FINAL class so no subclassing
-class WeatherService {
-
-    private init() {}
-
-// Type methods with CLOSURE
-// static func used in Factroty pattern
-	 static func getCurrentWeather(_ completionHandler: @escaping (Result<[Cities], Error>) -> ()) {
+//this need to be FINAL class so no subclassing as we are not exstendning jet
+class WeatherService: WeatherServiceProtocol {
+	  func getCurrentWeather(_ completionHandler: @escaping (Result<[Cities], Error>) -> ()) {
 		let urlString = String("\(APIRouter.base_URL)group?id=2172797,2643743,1016666,524901,703448,1851632&units=metric&appid=\(APIRouter.APIKey)")
 		guard let url = URL(string: urlString) else { return }
 
@@ -68,7 +52,7 @@ class WeatherService {
 	}
 
 
-	public static func getOneCity(_ city: String, completionHandler: @escaping (Result<SingleCurrentWeather, Error>) -> ()) {
+	 func getOneCity(_ city: String, completionHandler: @escaping (Result<SingleCurrentWeather, Error>) -> ()) {
 		let urlString = String("\(APIRouter.base_URL)/weather?q=" + (city.replacingOccurrences(of: " ", with: "%20")) + "&units=metric&appid=\(APIRouter.APIKey)")
 		guard let url = URL(string: urlString) else { return }
 		URLSession.shared.dataTask(with: url) { (data, response, err) in
@@ -113,11 +97,6 @@ class WeatherService {
 			}
 			}.resume()
 	}
-
-
-
-
-
 
 // MARK: - Helper functions
 	func changeUTCtoDayOfWeek(timeStamp: Int) -> String{

@@ -56,9 +56,9 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	}
 
 
-    var loadSettingsCity: SettingsLoader!
+    var loadSettingsCity: WeatherServiceProtocol?
 
-    convenience init(loader: SettingsLoader) {
+    convenience init(loader: WeatherServiceProtocol) {
         self.init()
         self.loadSettingsCity = loader
     }
@@ -125,7 +125,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 		addCity() { city in
 			if city.isEmpty == false {
-                self.loadSettingsCity.getOneCity(city, completionHandler: { result in
+                self.loadSettingsCity?.getOneCity(city, completionHandler: { result in
 					switch result {
 					case .success(let one):
 						let forecastWeather = ForcastBackground(cityName: one.name ?? "", cityTemperature: one.main?.temp ?? 0, cityID: one.weather?.first?.id ?? 0)

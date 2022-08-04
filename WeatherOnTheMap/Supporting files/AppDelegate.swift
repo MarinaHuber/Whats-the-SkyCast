@@ -17,13 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-		//:::::What is this????
 		let controller = MainViewController()
 		controller.setNeedsStatusBarAppearanceUpdate()
-		//customizeUI()
-		// ********************************************************
-		//https://stackoverflow.com/questions/30743408/check-for-internet-connection-with-swift
-		// ********************************************************
 
 		let reachability = Reachability()!
 		if reachability.connection != .none {

@@ -10,9 +10,9 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    var loadMainFeed: MainVCLoader!
+    var loadMainFeed: WeatherServiceProtocol?
 
-    convenience init(loader: MainVCLoader) {
+    convenience init(loader: WeatherServiceProtocol) {
         self.init()
         self.loadMainFeed = loader
     }
@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
 	func loadCities() {
 		if citiesWeather.isEmpty {
 
-            loadMainFeed.getCurrentWeather { result in
+            loadMainFeed?.getCurrentWeather { result in
 				switch result {
 				case .success(let cities):
 					self.citiesWeather = cities.map {

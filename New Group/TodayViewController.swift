@@ -8,6 +8,8 @@
 
 import UIKit
 import NotificationCenter
+import WidgetKit
+
 
 class TodayViewController: UIViewController, NCWidgetProviding {
 	@IBOutlet weak var cityLabel: UILabel!
