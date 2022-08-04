@@ -7,30 +7,25 @@
 As a uer I want to see animated city weather. 
 
 # Used Libraries
- 
  Lottie
 
 # Technologies / Stack used
 ###  REST API for Networking 
-#### (The limit of locations is 20: treated as 6 API calls for 6 city IDs
-&units=metric url added GET for Celsius units temp)
-###  Localization script
+###  Localization with script
 
-![alt tag](https://github.com/MarinaHuber/TradeMySurf/blob/corrections-branch/Working/coordination.)
  + Splash screen
  + Main animated weather screen
  + Setting screen
  + About screen
 
 # List of features
-
  + Search world cities
  
  # Project Architecture
  <p>( This Dependency Diagram is a simple visual representation language <br>
 that helps us quickly show the dependency relationships between modules and components in the system design. )</p>
 
-![alt tag]() 
+![alt tag](https://github.com/MarinaHuber/Whats-the-SkyCast/blob/development/Scripts:Assets/WeatherFeatureDiagram.png) 
 
 
 # Troubleshooting
