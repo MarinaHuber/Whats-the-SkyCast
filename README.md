@@ -7,43 +7,37 @@
 As a uer I want to see animated city weather. 
 
 # Used Libraries
- 
  Lottie
 
 # Technologies / Stack used
-###  REST API for Networking 
-#### (The limit of locations is 20: treated as 6 API calls for 6 city IDs
-&units=metric url added GET for Celsius units temp)
-###  Localization script
+###  REST API for Networking, Localization with script, Modular (reusable) architecture
 
-![alt tag](https://github.com/MarinaHuber/TradeMySurf/blob/corrections-branch/Working/coordination.)
  + Splash screen
  + Main animated weather screen
  + Setting screen
  + About screen
 
 # List of features
-
  + Search world cities
  
  # Project Architecture
  <p>( This Dependency Diagram is a simple visual representation language <br>
 that helps us quickly show the dependency relationships between modules and components in the system design. )</p>
 
-![alt tag]() 
+![alt tag](https://github.com/MarinaHuber/Whats-the-SkyCast/blob/development/Scripts:Assets/WeatherFeatureDiagram.png) 
 
 
 # Troubleshooting
-- Save the recommended surf trips into a storage (local or cloud)
+- Save the city weather into a storage (UserDefaults)
 
 
 # Installation
 Download the project.
 
-Open the terminal and navigate to the directory of project ```cd TradeMySurf```.
+Open the terminal and navigate to the directory of project ```cd WeatherOnTheMap```.
 
 Install Dependencies with Cocoapods ```pod install```.
 
-Open the workspace open ```TradeMySurf.xcworkspace```.
+Open the workspace open ```WeatherOnTheMap.xcworkspace```.
 
 
