@@ -10,7 +10,8 @@ As a uer I want to see animated city weather.
  Lottie
 
 # Technologies / Stack used
-###  REST API for Networking, Localization with script, Modular (reusable) architecture
+###  REST API for Networking 
+###  Localization with script
 
  + Splash screen
  + Main animated weather screen
@@ -28,16 +29,16 @@ that helps us quickly show the dependency relationships between modules and comp
 
 
 # Troubleshooting
-- Save the city weather into a storage (UserDefaults)
+- Save the recommended surf trips into a storage (local or cloud)
 
 
 # Installation
 Download the project.
 
-Open the terminal and navigate to the directory of project ```cd WeatherOnTheMap```.
+Open the terminal and navigate to the directory of project ```cd TradeMySurf```.
 
 Install Dependencies with Cocoapods ```pod install```.
 
-Open the workspace open ```WeatherOnTheMap.xcworkspace```.
+Open the workspace open ```TradeMySurf.xcworkspace```.
 
 
