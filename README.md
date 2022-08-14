@@ -6,7 +6,7 @@
 
 1) Conform to the `<WeatherLoader>` protocol creating an array of `AllWeather`:
 
-![Weather API Diagram]()
+![Weather API Diagram](https://github.com/MarinaHuber/Whats-the-SkyCast/blob/master/RemoteWeatherLoader.png)
 
 2) Follow the backend contract below:
 
@@ -60,7 +60,7 @@ The goal of this exercise is to get you used to the TDD flow.
 
 6) The `AllWeather` should *not* implement `Decodable` - even in extensions. 
 
-	- That's because the `CodingKeys` to decode the JSON are API-specific details defined in the backend. So declaring the `CodingKeys` in the `AllWeather` will couple it with API implementation details. And since other modules depend on the `FeedImage`, they'll also be coupled with API implementation details.
+	- That's because the `CodingKeys` to decode the JSON are API-specific details defined in the backend. So declaring the `CodingKeys` in the `AllWeather` will couple it with API implementation details. And since other modules depend on the `AllWeather`, they'll also be coupled with API implementation details.
 
 	- Suggestion: Create an API-specific struct in the 'Weather API' module to perform the decoding. Thus, preventing API details from leaking into other modules. So, for example, if there's a change in the backend, it doesn't propagate everywhere in the codebase. You just update the Feed API module without affecting others.
 
