@@ -90,7 +90,6 @@ class WeatherService {
 				completionHandler(.failure(error))
 				DispatchQueue.main.async(execute: {
 					if let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String:Any] {
-						print("JSON response code:", json ?? "")
                         if let code = json["cod"] as? String {
 							if code != "200" {
                                 if let message = json["message"] as? String {
@@ -109,10 +108,6 @@ class WeatherService {
 			}
 			}.resume()
 	}
-
-
-
-
 
 
 // MARK: - Helper functions
