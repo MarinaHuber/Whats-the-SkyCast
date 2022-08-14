@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SettingViewControllerDelegate: class {
-	func citySelected(cityWeather: SingleCurrentWeather)
+	func citySelected(cityWeather: City)
 }
 
 class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -123,7 +123,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 				WeatherService.getOneCity(city, completionHandler: { result in
 					switch result {
 					case .success(let one):
-						let forecastWeather = ForcastBackground(cityName: one.name ?? "", cityTemperature: one.main?.temp ?? 0, cityID: one.weather?.first?.id ?? 0)
+                        let forecastWeather = ForcastBackground(cityName: one.name ?? "", cityTemperature: one.main.temp ?? 0, cityID: one.weather.first?.id ?? 0)
 						self.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
 						self.citiesWeather.append(forecastWeather)
 						self.delegate?.citySelected(cityWeather: one)

@@ -27,9 +27,6 @@ class MainViewController: UIViewController {
 	var unitType: Int? = 0
 
 
-
-
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	//TODO: setNavigationBar() -> appDelegate
@@ -277,8 +274,8 @@ extension MainViewController: UICollectionViewDelegate {
 //MARK: Passing data from SettingsVC to UICollectionView
 extension MainViewController: SettingViewControllerDelegate {
 
-	func citySelected(cityWeather: SingleCurrentWeather) {
-		let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main?.temp ?? 0, cityID: cityWeather.weather?.first?.id ?? 0)
+	func citySelected(cityWeather: City) {
+		let forecastWeather = ForcastBackground(cityName: cityWeather.name ?? "", cityTemperature: cityWeather.main.temp ?? 0, cityID: cityWeather.weather.first?.id ?? 0)
 		citiesWeather.append(forecastWeather)
 		//important! on background thread
 		largeCollectionView.reloadData()

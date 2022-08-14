@@ -29,7 +29,7 @@ enum APIRouter {
 class WeatherService {
 
 
-	public static func getCurrentWeather(_ completionHandler: @escaping (_ result: ResultType<[Cities]>) -> ()) {
+	public static func getCurrentWeather(_ completionHandler: @escaping (_ result: ResultType<[City]>) -> ()) {
 		let urlString = String("\(APIRouter.base_URL)group?id=2172797,2643743,1016666,524901,703448,1851632&units=metric&appid=\(APIRouter.APIKey)")
 		guard let url = URL(string: urlString) else { return }
 
@@ -42,12 +42,8 @@ class WeatherService {
 			guard let data = data else { return }
 			do {
 				let decoder = JSONDecoder()
-				if #available(iOS 10.0, *) {
 					decoder.dateDecodingStrategy = .iso8601
-				} else {
-					// Fallback on earlier versions
-					decoder.dateDecodingStrategy = .secondsSince1970
-				}
+
 				let currentWeatherDecoded = try decoder.decode(AllCurrentWeather.self, from: data)
 				print(currentWeatherDecoded)
 
@@ -64,7 +60,7 @@ class WeatherService {
 	}
 
 
-	public static func getOneCity(_ city: String, completionHandler: @escaping (_ result: ResultType<SingleCurrentWeather>) -> ()) {
+	public static func getOneCity(_ city: String, completionHandler: @escaping (_ result: ResultType<City>) -> ()) {
 		let urlString = String("\(APIRouter.base_URL)/weather?q=" + (city.replacingOccurrences(of: " ", with: "%20")) + "&units=metric&appid=\(APIRouter.APIKey)")
 		guard let url = URL(string: urlString) else { return }
 		URLSession.shared.dataTask(with: url) { (data, response, err) in
@@ -81,7 +77,7 @@ class WeatherService {
 					decoder.dateDecodingStrategy = .secondsSince1970
 				}
 
-				let currentForecastDecoded = try decoder.decode(SingleCurrentWeather.self, from: data)
+				let currentForecastDecoded = try decoder.decode(City.self, from: data)
 				DispatchQueue.main.async(execute: {
 				completionHandler(.success(currentForecastDecoded))
 				})
@@ -101,10 +97,6 @@ class WeatherService {
 						}
 					}
 				})
-
-
-
-
 			}
 			}.resume()
 	}
