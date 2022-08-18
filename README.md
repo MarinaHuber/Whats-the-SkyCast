@@ -16,8 +16,8 @@
 |---------------|---------------------|
 | `id`          | `UUID`              |
 | `main`        | `String` (optional) |
-| `description  | `String` (optional) |
-| `icon`	    | `URL`               |
+| `description` | `String` (optional) |
+| `icon`	| `URL`               |
 
 ### Payload contract
 
