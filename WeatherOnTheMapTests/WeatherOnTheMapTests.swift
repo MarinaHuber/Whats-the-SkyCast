@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import WeatherOnTheMap
 
 class WeatherOnTheMapTests: XCTestCase {
     
@@ -36,14 +37,10 @@ class WeatherOnTheMapTests: XCTestCase {
 
 
 			let decoder = JSONDecoder()
-			if #available(iOS 10.0, *) {
 				decoder.dateDecodingStrategy = .iso8601
-			} else {
-				decoder.dateDecodingStrategy = .secondsSince1970
-			}
 
 			do {
-				let _ = try decoder.decode(SingleCurrentWeather.self, from: data)
+                let _ = try decoder.decode(City.self, from: data)
 			} catch {
 				XCTFail("Failed decoding")
 			}
@@ -89,25 +86,6 @@ class WeatherOnTheMapTests: XCTestCase {
 			} catch {
 				XCTFail("Failed serializing JSON")
 			}
-
-
-			//let user: User = try unbox(data: json)
-
-			//XCTAssertEqual(user.name, "")
-		//	XCTAssertEqual(user.age, 29)
 		}
-	//}
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+
 }

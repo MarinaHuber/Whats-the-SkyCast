@@ -1,5 +1,5 @@
 //
-//  Cell.swift
+//  CellSwiftUI.swift
 //  WeatherOnTheMap
 //
 //  Created by Marina Huber on 19.05.2022..
@@ -9,7 +9,7 @@
 import SwiftUI
 
 
-struct Cell: View {
+struct CellSwiftUI: View {
     var body: some View {
         Text(Localizations.forecastDays)
     }
@@ -17,6 +17,6 @@ struct Cell: View {
 
 struct Cell_Previews: PreviewProvider {
     static var previews: some View {
-        Cell()
+        CellSwiftUI()
     }
 }

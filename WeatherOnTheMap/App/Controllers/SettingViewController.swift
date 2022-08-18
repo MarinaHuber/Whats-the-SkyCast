@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol SettingViewControllerDelegate: class {
-	func citySelected(cityWeather: City)
+protocol SettingViewControllerDelegate {
+	func citySelected(cityWeather: CityWeather)
 }
 
 class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
@@ -17,6 +17,7 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 	@IBOutlet weak var pickerView: UIPickerView!
 	var celsiusBlock: (() -> ())?
 	var fahrenheitBlock: (() -> ())?
+    private let loader = WeatherServiceLoader()
 	
 	
 	var isHidden: Bool = true {
@@ -24,10 +25,10 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 			pickerView.isHidden = isHidden ? true :  false
 		}
 	}
-	weak var delegate: SettingViewControllerDelegate?
+	var delegate: SettingViewControllerDelegate?
 	var dataSourcePicker:[String] = []
 	
-	private var citiesWeather: Array<ForcastBackground> = UserDefaults.standard.cities
+    private var citiesWeather: [CurrentWeatherMapper] = UserDefaults.standard.cities
 	
 	@IBOutlet weak var buttonTitleLocation: UIButton!
 	@IBOutlet weak var buttonTitleTemp: UIButton!
@@ -120,21 +121,34 @@ class SettingViewController: UITableViewController, UIPickerViewDataSource, UIPi
 
 		addCity() { city in
 			if city.isEmpty == false {
-				WeatherService.getOneCity(city, completionHandler: { result in
-					switch result {
-					case .success(let one):
-                        let forecastWeather = ForcastBackground(cityName: one.name ?? "", cityTemperature: one.main.temp ?? 0, cityID: one.weather.first?.id ?? 0)
-						self.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
-						self.citiesWeather.append(forecastWeather)
-						self.delegate?.citySelected(cityWeather: one)
-                        self.navigationController?.popViewController(animated: true)
-					case .failure(let error):
-						print(error)
-						self.alert(message: "No city found", title: "Location unknown")
+                self.loader.request(.search(matching: city), model: CityWeather.self) { result in
+                    switch result {
+                    case .success(let weather):
+                        let forecastWeather = CurrentWeatherMapper(cityName: weather.name, cityTemperature: weather.main.temp, cityID: weather.id)
+                        self.citiesWeather.append(forecastWeather)
+                        self.delegate?.citySelected(cityWeather: weather)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
 
-					}
-					
-				})
+                    case .failure: break
+                    }
+                }
+//				loader.getOneCity(city, completionHandler: { result in
+//					switch result {
+//					case .success(let one):
+//                        let forecastWeather = CurrentWeatherMapper(cityName: one.name ?? "", cityTemperature: one.main.temp ?? 0, cityID: one.weather.first?.id ?? 0)
+//						self.buttonTitleLocation.titleLabel?.text = forecastWeather.cityName
+//						self.citiesWeather.append(forecastWeather)
+//						self.delegate?.citySelected(cityWeather: one)
+//                        self.navigationController?.popViewController(animated: true)
+//					case .failure(let error):
+//						print(error)
+//						self.alert(message: "No city found", title: "Location unknown")
+//
+//					}
+//					
+//				})
 
 			} else {
 				print("No city provided")

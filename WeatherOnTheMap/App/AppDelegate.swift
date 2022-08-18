@@ -17,13 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-		//:::::What is this????
 		let controller = MainViewController()
-		controller.setNeedsStatusBarAppearanceUpdate()
-		//customizeUI()
-		// ********************************************************
-		//https://stackoverflow.com/questions/30743408/check-for-internet-connection-with-swift
-		// ********************************************************
 
 		let reachability = Reachability()!
 		if reachability.connection != .none {
@@ -48,26 +42,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-
-		switch UIDevice().userInterfaceIdiom {
-		case UIUserInterfaceIdiom.pad:
-
-			return .portrait
-		default:
-			return .portrait
-		}
-
-
-	}
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
+//	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+//
+//		switch UIDevice().userInterfaceIdiom {
+//		case UIUserInterfaceIdiom.pad:
+//
+//			return .portrait
+//		default:
+//			return .portrait
+//		}
+//
+//
+//	}
 
 
 }

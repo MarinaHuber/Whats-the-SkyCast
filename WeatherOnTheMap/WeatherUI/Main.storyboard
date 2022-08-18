@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w64-Ml-Rn3">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="4864" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -285,10 +285,10 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am Marina Huber and this is my sun weather animation app." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7vg-No-ZgE">
-                                <rect key="frame" x="81.666666666666671" y="306" width="211.66666666666663" height="62"/>
+                                <rect key="frame" x="67" y="306" width="241" height="62"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="62" id="Izg-pA-ob6"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="241" id="rAp-H0-3sk"/>
+                                    <constraint firstAttribute="width" constant="241" id="rAp-H0-3sk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
@@ -359,12 +359,24 @@
                                         <constraint firstAttribute="width" secondItem="OwW-tw-2P6" secondAttribute="height" multiplier="125:54" constant="-585.64814814814815" id="jLJ-6Q-KLs"/>
                                     </constraints>
                                 </pickerView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VeQ-Nd-crf">
+                                    <rect key="frame" x="137.66666666666666" y="157.66666666666666" width="100" height="99.999999999999972"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="MoY-jc-Ppi"/>
+                                        <constraint firstAttribute="width" constant="100" id="jVm-Mc-leJ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="OwW-tw-2P6" firstAttribute="leading" secondItem="SgR-5u-YZN" secondAttribute="leading" id="4in-ii-VOE"/>
                                 <constraint firstAttribute="bottom" secondItem="OwW-tw-2P6" secondAttribute="bottom" id="BHb-t5-GeO"/>
+                                <constraint firstItem="VeQ-Nd-crf" firstAttribute="centerX" secondItem="SgR-5u-YZN" secondAttribute="centerX" id="atG-9i-b6N"/>
                                 <constraint firstAttribute="trailing" secondItem="OwW-tw-2P6" secondAttribute="trailing" id="cBU-mS-Vyl"/>
+                                <constraint firstItem="VeQ-Nd-crf" firstAttribute="centerY" secondItem="SgR-5u-YZN" secondAttribute="centerY" id="m8s-fq-s7u"/>
                             </constraints>
                         </view>
                         <sections>
@@ -378,7 +390,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleAspectFill" semanticContentAttribute="forceLeftToRight" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="fill" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4uk-MX-Jgq">
-                                                    <rect key="frame" x="218" y="0.0" width="137" height="44"/>
+                                                    <rect key="frame" x="218" y="0.0" width="135" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                     <viewLayoutGuide key="safeArea" id="Wcc-so-TDl"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -387,12 +399,9 @@
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                                    <state key="normal" title="Search      ">
+                                                    <state key="normal" title="   Search      ">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.70387414383561642" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localized" value="search"/>
-                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="buttonCityAdd:" destination="7Gb-ji-dmO" eventType="touchUpInside" id="Sd7-hI-8Lf"/>
                                                     </connections>
@@ -403,9 +412,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="location" localized="YES"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -417,13 +423,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleAspectFill" semanticContentAttribute="forceRightToLeft" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="fill" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="whI-Pf-UPz">
-                                                    <rect key="frame" x="218" y="0.0" width="217" height="44"/>
+                                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="whI-Pf-UPz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                                    <state key="normal" title=" ">
+                                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
+                                                    <state key="normal">
                                                         <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
@@ -436,11 +442,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="temperature.units" localized="YES"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="3vc-Q1-kfK" secondAttribute="trailing" constant="16" id="hki-xm-JG6"/>
+                                                <constraint firstItem="3vc-Q1-kfK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Nd3-OJ-RkA" secondAttribute="leading" constant="16" id="yO7-ck-NPu"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="kgZ-fp-2fN" style="IBUITableViewCellStyleDefault" id="qU3-Xb-p3O">
@@ -458,22 +465,16 @@
                                                     <state key="normal" title="5">
                                                         <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localized" value="days"/>
-                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="buttonDays:" destination="7Gb-ji-dmO" eventType="touchUpInside" id="zCU-eM-4Lh"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kgZ-fp-2fN">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Forecast days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kgZ-fp-2fN">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="forecast.days" localized="YES"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -485,15 +486,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gcg-u4-XwT">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="About me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gcg-u4-XwT">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="about" localized="YES"/>
-                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gze-No-Riw">
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
@@ -504,9 +502,6 @@
                                                     <state key="normal" title="info">
                                                         <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="localized" value="info"/>
-                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <segue destination="HWD-fc-zPs" kind="show" id="NK7-x4-DF0"/>
                                                     </connections>

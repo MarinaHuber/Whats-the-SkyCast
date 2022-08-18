@@ -12,11 +12,11 @@ import Foundation
 extension UserDefaults {
     private static let citiesKey = "citiesKey"
     
-    var cities: [ForcastBackground] {
+    var cities: [CurrentWeatherMapper] {
         get {
             let decoder = JSONDecoder()
             if let data = value(forKey: UserDefaults.citiesKey) as? Data,
-                let cities = try? decoder.decode([ForcastBackground].self, from: data) {
+                let cities = try? decoder.decode([CurrentWeatherMapper].self, from: data) {
                 return cities
             }
             return[]
