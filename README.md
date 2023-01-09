@@ -71,3 +71,7 @@ The goal of this exercise is to get you used to the TDD flow.
 
 10) If instructors request changes in your Pull Request, **only push your changes once you're done with all changes** to avoid running CI for every tiny commit. 
 
+TODO: 
+
+Add URLcache with update configuration and Store for UserDefaults
+
