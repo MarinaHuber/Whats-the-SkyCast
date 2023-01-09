@@ -72,4 +72,5 @@ The goal of this exercise is to get you used to the TDD flow.
 TODO: 
 
 Add URLcache with update configuration and Store for UserDefaults
+Content loading, error handling, 
 
