@@ -62,14 +62,12 @@ The goal of this exercise is to get you used to the TDD flow.
 
 	- That's because the `CodingKeys` to decode the JSON are API-specific details defined in the backend. So declaring the `CodingKeys` in the `AllWeather` will couple it with API implementation details. And since other modules depend on the `AllWeather`, they'll also be coupled with API implementation details.
 
-	- Suggestion: Create an API-specific struct in the 'Weather API' module to perform the decoding. Thus, preventing API details from leaking into other modules. So, for example, if there's a change in the backend, it doesn't propagate everywhere in the codebase. You just update the Feed API module without affecting others.
+	- Suggestion: Create an API-specific struct in the 'Weather API' module to perform the decoding. Thus, preventing API details from leaking into other modules. So, for example, if there's a change in the backend, it doesn't propagate everywhere in the codebase. You just update the Weather API module without affecting others.
 
 7) Make careful and proper use of access control (e.g., marking as `private` any implementation details that aren’t referenced from other external components).
 
-8) When all tests are passing and you're done implementing your solution:
+8) When all tests are passing and you're done implementing tests
 
-
-10) If instructors request changes in your Pull Request, **only push your changes once you're done with all changes** to avoid running CI for every tiny commit. 
 
 TODO: 
 
